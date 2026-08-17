@@ -14,10 +14,18 @@ config/name="Sonic Battle 2 Project"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SyncManager="*uid://xohxvtt4jjfo"
+
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/delta_rollback/plugin.cfg")
 
 [input]
 
