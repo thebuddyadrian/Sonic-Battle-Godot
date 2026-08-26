@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://cbkk1ut6e81c0"]
+
+[ext_resource type="PackedScene" uid="uid://5xfk0ysf13j4" path="res://menus/controls_settings/controls_setup_action/controls_setup_action.tscn" id="1_8cmok"]
+[ext_resource type="Script" uid="uid://1jkn8ui2ioae" path="res://menus/controls_settings/controls_setup_player/controls_setup_player.gd" id="1_bcllm"]
+[ext_resource type="Theme" uid="uid://by533c5jnqvoi" path="res://menus/controls_settings/controls_settings_theme.tres" id="1_ekfr2"]
+
+[node name="ControlsSetupPlayer" type="Control" unique_id=1009609581]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ekfr2")
+script = ExtResource("1_bcllm")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1637701104]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="ActionContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=913811574]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="InputDevice" type="HBoxContainer" parent="ScrollContainer/ActionContainer" unique_id=2010213376]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/ActionContainer/InputDevice" unique_id=1607917321]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Input Device"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeviceDropdown" type="OptionButton" parent="ScrollContainer/ActionContainer/InputDevice" unique_id=762303093]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+selected = 0
+item_count = 1
+popup/item_0/text = "Keyboard"
+popup/item_0/id = 0
+
+[node name="DetectButton" type="Button" parent="ScrollContainer/ActionContainer/InputDevice" unique_id=14198698]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Detect"
+
+[node name="ResetToDefault" type="Button" parent="ScrollContainer/ActionContainer" unique_id=1204312323]
+layout_mode = 2
+text = "RESET TO DEFAULT"
+
+[node name="SetAsDefault" type="Button" parent="ScrollContainer/ActionContainer" unique_id=513216245]
+visible = false
+layout_mode = 2
+text = "SET AS DEFAULT (DEV ONLY)"
+
+[node name="Left" parent="ScrollContainer/ActionContainer" unique_id=1650126041 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "left"
+text = "Left"
+
+[node name="ActionLabel" parent="ScrollContainer/ActionContainer/Left/HBoxContainer" parent_id_path=PackedInt32Array(1650126041, 1947312390) index="0" unique_id=980831693]
+text = "Left"
+
+[node name="Right" parent="ScrollContainer/ActionContainer" unique_id=905327664 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "right"
+text = "Right"
+
+[node name="Up" parent="ScrollContainer/ActionContainer" unique_id=1519600385 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "up"
+text = "Up"
+
+[node name="Down" parent="ScrollContainer/ActionContainer" unique_id=644215015 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "down"
+text = "Down"
+
+[node name="Jump" parent="ScrollContainer/ActionContainer" unique_id=1568681809 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "jump"
+text = "Jump"
+
+[node name="Dash" parent="ScrollContainer/ActionContainer" unique_id=978362381 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "dash"
+text = "Dash"
+
+[node name="Attack" parent="ScrollContainer/ActionContainer" unique_id=1508879968 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "attack"
+text = "Attack"
+
+[node name="Skill" parent="ScrollContainer/ActionContainer" unique_id=1546105040 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "skill"
+text = "Skill"
+
+[node name="Upper" parent="ScrollContainer/ActionContainer" unique_id=698597067 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "upper"
+text = "Upper"
+
+[node name="Guard" parent="ScrollContainer/ActionContainer" unique_id=1560257684 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "guard"
+text = "Guard"
+
+[node name="Pause" parent="ScrollContainer/ActionContainer" unique_id=287021459 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "pause"
+text = "Pause"
+
+[node name="UILeft" parent="ScrollContainer/ActionContainer" unique_id=495224781 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "ui_left"
+text = "Menu Left"
+
+[node name="UIRight" parent="ScrollContainer/ActionContainer" unique_id=1839346255 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "ui_right"
+text = "Menu Right"
+
+[node name="UIUp" parent="ScrollContainer/ActionContainer" unique_id=271834065 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "ui_up"
+text = "Menu Up"
+
+[node name="UIDown" parent="ScrollContainer/ActionContainer" unique_id=1886126788 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "ui_down"
+text = "Menu Down"
+
+[node name="UIAccept" parent="ScrollContainer/ActionContainer" unique_id=1427323466 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "ui_accept"
+text = "Menu Accept"
+
+[node name="UICancel" parent="ScrollContainer/ActionContainer" unique_id=1773868283 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "ui_cancel"
+text = "Menu Cancel"
+
+[node name="UILeftCorner" parent="ScrollContainer/ActionContainer" unique_id=1630064243 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "ui_left_corner"
+text = "Menu Left Corner"
+
+[node name="UIRightCorner" parent="ScrollContainer/ActionContainer" unique_id=421229357 instance=ExtResource("1_8cmok")]
+layout_mode = 2
+action = "ui_right_corner"
+text = "Menu Right Corner"
+
+[connection signal="item_selected" from="ScrollContainer/ActionContainer/InputDevice/DeviceDropdown" to="." method="_on_device_dropdown_item_selected"]
+[connection signal="pressed" from="ScrollContainer/ActionContainer/InputDevice/DeviceDropdown" to="." method="_on_device_dropdown_pressed"]
+[connection signal="pressed" from="ScrollContainer/ActionContainer/InputDevice/DetectButton" to="." method="_on_detect_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/ActionContainer/ResetToDefault" to="." method="_on_reset_to_default_pressed"]
+[connection signal="pressed" from="ScrollContainer/ActionContainer/SetAsDefault" to="." method="_on_set_as_default_pressed"]
+
+[editable path="ScrollContainer/ActionContainer/Left"]

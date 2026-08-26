@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bsemd68skb2c1"]
+
+[ext_resource type="Texture2D" uid="uid://0a05iynurnt2" path="res://assets/ui/MainHealth1.png" id="1_a4w2u"]
+[ext_resource type="Script" uid="uid://qa1ulecic7dd" path="res://components/player_hud/player_hud.gd" id="1_dgf6l"]
+[ext_resource type="Texture2D" uid="uid://cnyqiftdlqdoq" path="res://assets/ui/MainHealth2.png" id="2_dgf6l"]
+[ext_resource type="Texture2D" uid="uid://bts0x6bqw6t3i" path="res://characters/shadow/sprites/ShadowLife.png" id="4_233co"]
+[ext_resource type="PackedScene" uid="uid://cifkfj62fb1ho" path="res://UI/Pause.tscn" id="5_dgf6l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4w2u"]
+font_size = 12
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PlayerHUD" type="CanvasLayer" unique_id=1271735690]
+layer = 128
+script = ExtResource("1_dgf6l")
+
+[node name="Lifebar" type="TextureProgressBar" parent="." unique_id=904970514]
+offset_left = 21.0
+offset_top = 4.0
+offset_right = 77.0
+offset_bottom = 44.0
+max_value = 300.0
+texture_under = ExtResource("1_a4w2u")
+texture_progress = ExtResource("2_dgf6l")
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="Sprite2D" parent="Lifebar" unique_id=274162017]
+position = Vector2(-12, 5)
+texture = ExtResource("4_233co")
+
+[node name="StockLabel" type="Label" parent="." unique_id=173383679]
+offset_left = 4.0
+offset_top = 14.0
+offset_right = 13.0
+offset_bottom = 37.0
+text = "3"
+label_settings = SubResource("LabelSettings_a4w2u")
+
+[node name="Pause" parent="." unique_id=1424514726 instance=ExtResource("5_dgf6l")]
+visible = false
+
+[node name="PlayerIDLabel" type="Label" parent="." unique_id=738923930]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_bottom = 17.0
+grow_horizontal = 0
+label_settings = SubResource("LabelSettings_a4w2u")
+horizontal_alignment = 1

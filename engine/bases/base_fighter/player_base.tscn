@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cwr3ph7e6g1hq"]
+
+[ext_resource type="Script" uid="uid://d4caqjmiqrbmi" path="res://scripts/players/player_brain.gd" id="1_5ce3u"]
+[ext_resource type="Shader" uid="uid://blv5m2gdcne5m" path="res://shaders/players/player_highlight.gdshader" id="3_svcel"]
+[ext_resource type="Script" uid="uid://d0127k12xvws" path="res://components/battle_sprite/battle_animated_sprite.gd" id="5_13wot"]
+[ext_resource type="Script" uid="uid://ck7sijudvma6k" path="res://scripts/players/player_state_machine.gd" id="6_coink"]
+[ext_resource type="Script" uid="uid://c8deswq6muu7v" path="res://characters/shadow_raycast.gd" id="7_yj6a4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u1vfk"]
+radius = 0.3
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo4yj"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+specular_mode = 2
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 1
+billboard_keep_scale = true
+z_clip_scale = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpkxf"]
+render_priority = 1
+shader = ExtResource("3_svcel")
+shader_parameter/color = Color(0, 0, 0, 0.50200003)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nc8i"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uwfmh"]
+top_radius = 0.52
+bottom_radius = 0.0
+height = 0.001
+radial_segments = 16
+cap_bottom = false
+
+[node name="Player" type="CharacterBody3D" unique_id=1535971227]
+collision_layer = 0
+input_ray_pickable = false
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+floor_constant_speed = true
+platform_on_leave = 2
+platform_floor_layers = 1
+script = ExtResource("1_5ce3u")
+metadata/_custom_type_script = "uid://d4caqjmiqrbmi"
+
+[node name="Collbox" type="CollisionShape3D" parent="." unique_id=1644590465]
+debug_color = Color(0, 0.6, 0.69803923, 1)
+
+[node name="GrabBox" type="Area3D" parent="." unique_id=863282851]
+collision_layer = 0
+collision_mask = 0
+
+[node name="GrabBoxShape" type="CollisionShape3D" parent="GrabBox" unique_id=172974575]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.8, 0.85, 0)
+shape = SubResource("CapsuleShape3D_u1vfk")
+disabled = true
+debug_color = Color(1, 0.5019608, 0, 1)
+
+[node name="GrabPoint" type="Marker3D" parent="GrabBox" unique_id=379838720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.9, 0)
+
+[node name="CenterPoint" type="Marker3D" parent="." unique_id=911248692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="SpriteAnchor" type="Node3D" parent="." unique_id=872788722]
+
+[node name="BillboardAnim" type="AnimatedSprite3D" parent="SpriteAnchor" unique_id=1037363561]
+material_override = SubResource("StandardMaterial3D_jo4yj")
+material_overlay = SubResource("ShaderMaterial_lpkxf")
+centered = false
+offset = Vector2(-32, -11)
+pixel_size = 0.04
+billboard = 1
+script = ExtResource("5_13wot")
+z_offset = null
+metadata/_custom_type_script = "uid://d0127k12xvws"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1803453290]
+autoplay = &"Idle"
+
+[node name="PlayerStateMachine" type="Node" parent="." unique_id=345778050]
+script = ExtResource("6_coink")
+metadata/_custom_type_script = "uid://ck7sijudvma6k"
+
+[node name="ShadowRayCast" type="RayCast3D" parent="." unique_id=1155105408]
+target_position = Vector3(0, -5, 0)
+collision_mask = 3
+script = ExtResource("7_yj6a4")
+
+[node name="Shadow" type="MeshInstance3D" parent="ShadowRayCast" unique_id=497378944]
+material_override = SubResource("StandardMaterial3D_2nc8i")
+mesh = SubResource("CylinderMesh_uwfmh")

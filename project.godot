@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SyncManager="*uid://xohxvtt4jjfo"
+ControlsSettings="*uid://cnly37m0yyieg"
 
 [display]
 
