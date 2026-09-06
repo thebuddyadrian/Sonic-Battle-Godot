@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://15coxxqw12kr"]
 
-[ext_resource type="Shader" uid="uid://cog3k73gsqffj" path="res://pixelate.gdshader" id="1_pq8p7"]
-[ext_resource type="PackedScene" uid="uid://r8ajlj5l5ifb" path="res://UI/battlemode_hud_bg.tscn" id="1_xectl"]
-[ext_resource type="Texture2D" uid="uid://doi3o74wjlh3u" path="res://characters/sonic/sprites/Sonic Portrait.png" id="2_pq8p7"]
+[ext_resource type="Shader" uid="uid://cog3k73gsqffj" path="res://engine/assets/shaders/pixelate.gdshader" id="1_pq8p7"]
+[ext_resource type="PackedScene" path="res://UI/battlemode_hud_bg.tscn" id="1_xectl"]
+[ext_resource type="Texture2D" path="res://characters/sonic/sprites/Sonic Portrait.png" id="2_pq8p7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cl634"]
 shader = ExtResource("1_pq8p7")

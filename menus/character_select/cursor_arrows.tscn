@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bu74bh1pcju6h"]
 
-[ext_resource type="Texture2D" uid="uid://ct67yxep3jie0" path="res://assets/ui/menus/arrow_left.png" id="1_3svkt"]
-[ext_resource type="Texture2D" uid="uid://coos7u8xni8mu" path="res://assets/ui/menus/arrow_right.png" id="2_5u6ae"]
-[ext_resource type="AudioStream" uid="uid://dl8ljyjfruc5e" path="res://assets/audio/sfx/menu/mode_change.wav" id="3_kkhke"]
+[ext_resource type="Texture2D" uid="uid://ct67yxep3jie0" path="res://engine/assets/sprites/ui/menus/arrow_left.png" id="1_3svkt"]
+[ext_resource type="Texture2D" uid="uid://coos7u8xni8mu" path="res://engine/assets/sprites/ui/menus/arrow_right.png" id="2_5u6ae"]
+[ext_resource type="AudioStream" uid="uid://dl8ljyjfruc5e" path="res://engine/assets/audio/sfx/menu/mode_change.wav" id="3_kkhke"]
 
 [sub_resource type="Animation" id="Animation_rxcab"]
 resource_name = "ArrowBumpLeft"

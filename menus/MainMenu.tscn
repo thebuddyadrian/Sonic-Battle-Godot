@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://3yefhhhajnqk"]
 
-[ext_resource type="Script" uid="uid://dpsy1u0t5ei1o" path="res://levels/level.gd" id="1_ot3ob"]
-[ext_resource type="Texture2D" uid="uid://cdaxr0wjdfxxw" path="res://assets/ui/BattleEmblem.png" id="2_rmsp1"]
-[ext_resource type="Script" uid="uid://d2luikke1goi4" path="res://levels/hologram/Boxspin.tres.gd" id="3_218cn"]
-[ext_resource type="Texture2D" uid="uid://47og8hxik4d0" path="res://assets/ui/twoDriver.png" id="4_218cn"]
+[ext_resource type="Script" path="res://levels/level.gd" id="1_ot3ob"]
+[ext_resource type="Texture2D" uid="uid://cdaxr0wjdfxxw" path="res://engine/assets/sprites/ui/menus/BattleEmblem.png" id="2_rmsp1"]
+[ext_resource type="Script" path="res://levels/hologram/Boxspin.tres.gd" id="3_218cn"]
+[ext_resource type="Texture2D" uid="uid://47og8hxik4d0" path="res://engine/assets/sprites/ui/twoDriver.png" id="4_218cn"]
 [ext_resource type="PackedScene" uid="uid://c2tqnyliq0dwg" path="res://menus/mode_select.tscn" id="6_lb38e"]
 
 [sub_resource type="GDScript" id="GDScript_vp83o"]

@@ -18,7 +18,6 @@ func _ready() -> void:
 	if !MatchSetup.is_playing_solo():
 		cursor_arrows.visible = false
 	
-	MusicPlayer.play_track(MusicPlayer.CHALLENGE_BATTLE_MODE)
 	for i in range(MatchSetup.get_total_players()):
 		var player_character = PLAYER_CHARACTER_SCENE.instantiate()
 		# If this index is above the amount of human players, it must be a CPU

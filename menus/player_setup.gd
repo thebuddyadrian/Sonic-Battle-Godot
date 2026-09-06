@@ -12,7 +12,7 @@ const MAX_PLAYERS = 4
 
 
 func _ready() -> void:
-	MusicPlayer.play_track(MusicPlayer.CHALLENGE_BATTLE_MODE)
+	pass
 
 
 func _process(delta: float) -> void:
