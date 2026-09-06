@@ -18,7 +18,12 @@ config/icon="res://icon.svg"
 
 SyncManager="*uid://xohxvtt4jjfo"
 ControlsSettings="*uid://cnly37m0yyieg"
-ControllerIcons="*uid://b6ub0a8slk1q7"
+GameData="*uid://dil4a64we5aok"
+Globals="*uid://q5ujhre6kv5g"
+MatchSetup="*uid://bqxb7kj42gep5"
+MusicPlayer="*uid://14gnalgc412c"
+PlayerInput="*uid://b3je8b8aenfww"
+SceneChanger="*uid://c7oowes0v0tnw"
 
 [display]
 
