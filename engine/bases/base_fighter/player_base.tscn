@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cwr3ph7e6g1hq"]
 
-[ext_resource type="Script" uid="uid://d4caqjmiqrbmi" path="res://scripts/players/player_brain.gd" id="1_5ce3u"]
-[ext_resource type="Shader" uid="uid://blv5m2gdcne5m" path="res://shaders/players/player_highlight.gdshader" id="3_svcel"]
-[ext_resource type="Script" uid="uid://d0127k12xvws" path="res://components/battle_sprite/battle_animated_sprite.gd" id="5_13wot"]
-[ext_resource type="Script" uid="uid://ck7sijudvma6k" path="res://scripts/players/player_state_machine.gd" id="6_coink"]
-[ext_resource type="Script" uid="uid://c8deswq6muu7v" path="res://characters/shadow_raycast.gd" id="7_yj6a4"]
+[ext_resource type="Script" uid="uid://d144rl443bx7n" path="res://engine/bases/base_fighter/player_brain.gd" id="1_5ce3u"]
+[ext_resource type="Shader" uid="uid://blv5m2gdcne5m" path="res://engine/assets/shaders/player/player_highlight.gdshader" id="3_svcel"]
+[ext_resource type="Script" uid="uid://d0127k12xvws" path="res://engine/parts/battle_sprite/battle_animated_sprite.gd" id="5_13wot"]
+[ext_resource type="Script" uid="uid://dy6nbw3lad7ow" path="res://engine/bases/base_fighter/player_state_machine.gd" id="6_coink"]
+[ext_resource type="Script" path="res://characters/shadow_raycast.gd" id="7_yj6a4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u1vfk"]
 radius = 0.3

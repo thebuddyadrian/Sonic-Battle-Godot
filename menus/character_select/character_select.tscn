@@ -5,7 +5,6 @@
 [ext_resource type="Shader" uid="uid://b7frwxe5glvvi" path="res://menus/background.gdshader" id="3_xarbf"]
 [ext_resource type="Script" uid="uid://dkvj5h5bvohkv" path="res://menus/character_select/mapselect.gd" id="4_pprmj"]
 [ext_resource type="PackedScene" uid="uid://bu74bh1pcju6h" path="res://menus/character_select/cursor_arrows.tscn" id="4_xarbf"]
-[ext_resource type="Texture2D" uid="uid://dlpflfbgbkx5f" path="res://icon.png" id="5_3f6ee"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pprmj"]
 shader = ExtResource("3_xarbf")
@@ -55,7 +54,6 @@ offset_bottom = 120.0
 
 [node name="TextureRect" type="TextureRect" parent="MAPSELECT/CenterContainer" unique_id=751172665]
 layout_mode = 2
-texture = ExtResource("5_3f6ee")
 
 [node name="Label" type="Label" parent="MAPSELECT" unique_id=971147638]
 layout_mode = 0
