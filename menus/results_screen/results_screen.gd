@@ -10,14 +10,14 @@ func _ready() -> void:
 	# If no players are present, inject fake results and character choices
 	if MatchSetup.get_total_players() == 0:
 		for i in range(test_players.size()):
-			Game.match_results[i + 1] = i + 1
+			MatchResults.results[i + 1] = i + 1
 			MatchSetup.character_choices[i + 1] = test_players[i]
 		MatchSetup.human_players = test_players.size()
 
 	var player_order: Array[int]
 	player_order.resize(MatchSetup.get_total_players()) # This must be changed later when CPUs are added
-	for player_id in Game.match_results.keys():
-		var rank: int = Game.match_results[player_id]
+	for player_id in MatchResults.results.keys():
+		var rank: int = MatchResults.results[player_id]
 		player_order[rank - 1] = player_id
 	
 	var winner_player_id = player_order.pop_front() # Removes the winner from the array
@@ -36,7 +36,7 @@ func _ready() -> void:
 		winner_portrait.texture = load("res://characters/shadow/sprites/Shadow Portrait.png")
 	
 	for player_id in player_order:
-		var rank: int = Game.match_results[player_id]
+		var rank: int = MatchResults.results[player_id]
 		var rank_string: String
 		var character = MatchSetup.character_choices[player_id]
 		var character_display_name =  GameData.get_character_info(character).display_name

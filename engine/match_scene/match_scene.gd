@@ -27,7 +27,7 @@ func _ready() -> void:
 	ControlsSettings.load_all_button_layouts()
 	ControlsSettings.load_controls_settings()
 	ControlsSettings.apply_button_layouts()
-	Game.match_results.clear()
+	MatchResults.results.clear()
 	initialize_match()
 
 	
@@ -192,13 +192,13 @@ func _get_alive_player_count():
 
 func _on_player_kod(player: PlayerBrain):
 	# Your placement depends on how many players were alive when you got KO'd
-	Game.match_results[player.player_id] = _get_alive_player_count() + 1
+	MatchResults.results[player.player_id] = _get_alive_player_count() + 1
 	if _get_alive_player_count() <= 1:
 		# Add the winner player
 		for remaining_player in get_tree().get_nodes_in_group("characters"):
 			if remaining_player is PlayerBrain:
 				if remaining_player.points > 0:
-					Game.match_results[remaining_player.player_id] = 1
+					MatchResults.results[remaining_player.player_id] = 1
 		_go_to_results_screen()
 
 
