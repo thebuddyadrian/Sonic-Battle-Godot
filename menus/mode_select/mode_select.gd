@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 
 func _next_menu():
 	if selected_mode == MODE.BATTLE:
-		SceneChanger.change_scene_to_file("res://menus/player_setup.tscn")
+		SceneChanger.change_scene_to_file("uid://buw0m6frm5qum") # player_setup.tscn
 
 
 func change_mode(p_mode):
