@@ -2,6 +2,7 @@ extends Node
 
 var _character_info_dict: Dictionary[String, PlayerData]
 
+# TO-DO store characters in a list resource instead of storing it here in an array
 var characters: Array[String] = [
 	"sonic", 
 	"tails", 
@@ -14,6 +15,7 @@ var characters: Array[String] = [
 	#"emerl"
 ]
 
+# TO-DO do the same with the stages
 var battle_stages: Array[String] = [
 	"emeraldbeach", 
 	"amysroom", 
