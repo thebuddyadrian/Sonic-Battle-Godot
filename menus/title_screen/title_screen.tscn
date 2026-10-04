@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgrinwd5mmw30"]
 
-[ext_resource type="Script" uid="uid://bw7bdawjib2mc" path="res://menus/TitleScreen/title_screen.gd" id="1_yngg5"]
+[ext_resource type="Script" uid="uid://bw7bdawjib2mc" path="res://menus/title_screen/title_screen.gd" id="1_yngg5"]
 [ext_resource type="Texture2D" uid="uid://18ccaswlus40" path="res://engine/assets/opening/Cutins.png" id="2_s146n"]
 [ext_resource type="Texture2D" uid="uid://rk8gqg6xn2r3" path="res://engine/assets/opening/Character1.png" id="3_0jsmq"]
 [ext_resource type="Texture2D" uid="uid://cfd6ojmkcxvkh" path="res://engine/assets/opening/Character2.png" id="4_xdfig"]
@@ -8,13 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://7rimslh0hm05" path="res://engine/assets/opening/Character4.png" id="6_kqnf8"]
 [ext_resource type="Texture2D" uid="uid://bpp30t26fut2w" path="res://engine/assets/opening/Character5.png" id="7_le5n5"]
 [ext_resource type="PackedScene" uid="uid://bdxoanh00d4h4" path="res://menus/flame_logo.tscn" id="8_yubun"]
-[ext_resource type="AudioStream" path="res://assets/audio/bgm/01. Title.mp3" id="9_p5s4k"]
+[ext_resource type="AudioStream" uid="uid://d2d8nkb46k8sr" path="res://engine/assets/audio/bgm/title.mp3" id="9_p5s4k"]
 [ext_resource type="Texture2D" uid="uid://q6xlagepcaxa" path="res://engine/assets/opening/Scene01BG.png" id="10_saqug"]
 [ext_resource type="Texture2D" uid="uid://sh1axjkuy0x2" path="res://engine/assets/opening/SonicScene01.png" id="11_4y71n"]
 [ext_resource type="Texture2D" uid="uid://bt2hqk4gmyxdr" path="res://engine/assets/opening/AmyScene01.png" id="12_6b2vh"]
-[ext_resource type="Shader" uid="uid://cpmq66edu6d6o" path="res://menus/TitleScreen/TitleScreen.gdshader" id="13_scd31"]
+[ext_resource type="Shader" uid="uid://cpmq66edu6d6o" path="res://menus/title_screen/scroll.gdshader" id="13_scd31"]
 [ext_resource type="Texture2D" uid="uid://bs778i2xfpspo" path="res://engine/assets/opening/5.png" id="14_fbxrp"]
-[ext_resource type="Shader" uid="uid://c33oj3ntnnvie" path="res://menus/TitleScreen/Scene2.gdshader" id="15_bky4q"]
+[ext_resource type="Shader" uid="uid://c33oj3ntnnvie" path="res://menus/title_screen/static.gdshader" id="15_bky4q"]
 [ext_resource type="Texture2D" uid="uid://bhwjpimj8k23v" path="res://engine/assets/opening/IntroSlide2.png" id="16_b4ght"]
 [ext_resource type="Texture2D" uid="uid://xbnpjh3vqv0m" path="res://engine/assets/opening/IntroSlide1.png" id="17_myec0"]
 [ext_resource type="Texture2D" uid="uid://cgeldp27htyho" path="res://engine/assets/opening/Scene03BG.png" id="18_ttuns"]
@@ -640,7 +640,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j3bwb")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 12.0
 }]
@@ -704,7 +704,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ej271")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 32.0
 }]
@@ -761,7 +761,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2imw1")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 18.0
 }]
@@ -890,7 +890,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_stos2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 20.0
 }]
