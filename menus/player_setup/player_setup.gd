@@ -2,12 +2,12 @@ extends Control
 
 const MAX_PLAYERS = 4
 
-@onready var title_label: Label = $TitleLabel
-@onready var ok_label: Label = $OKLabel
-@onready var ok_button: Button = $OKButton
-@onready var human_spin_box: SpinBox = $GridContainer/HumanSpinBox
-@onready var cpu_spin_box: SpinBox = $GridContainer/CPUSpinBox
-@onready var cpu_label : Label = $GridContainer/CPULabel
+@onready var title_label: Label = %TitleLabel
+@onready var ok_label: Label = %OKLabel
+@onready var ok_button: Button = %OKButton
+@onready var human_spin_box: SpinBox = %HumanSpinBox
+@onready var cpu_spin_box: SpinBox = %CPUSpinBox
+@onready var cpu_label : Label = %CPULabel
 #@onready var stage_option_button: OptionButton = $GridContainer/StageOptionButton
 
 

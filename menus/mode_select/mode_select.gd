@@ -5,13 +5,13 @@ const MODE_NAMES = ["Story Mode", "Battle Mode", "Challenge Mode", "Training Mod
 const ARROW_SCALE_DEFAULT: Vector2 = Vector2(1, 1)
 var selected_mode: MODE = MODE.BATTLE : set = change_mode
 var current_sprite: Sprite2D
-@onready var current_mode_label: Label = $CurrentMode
-@onready var not_ready_yet: Label = $NotReadyYet
-@onready var mode_sprites: Node2D = $ModeSprites
-@onready var arrow_left: Sprite2D = $ArrowLeft
-@onready var arrow_right: Sprite2D = $ArrowRight
-@onready var flame_logo: AnimatedSprite2D = $FlameLogo
-@onready var mode_change_sound: AudioStreamPlayer = $ModeChangeSound
+@onready var current_mode_label: Label = %CurrentMode
+@onready var not_ready_yet: Label = %NotReadyYet
+@onready var mode_sprites: Node2D = %ModeSprites
+@onready var arrow_left: Sprite2D = %ArrowLeft
+@onready var arrow_right: Sprite2D = %ArrowRight
+@onready var flame_logo: AnimatedSprite2D = %FlameLogo
+@onready var mode_change_sound: AudioStreamPlayer = %ModeChangeSound
 
 
 func _ready() -> void:

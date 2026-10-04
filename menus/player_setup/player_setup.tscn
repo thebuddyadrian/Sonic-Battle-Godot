@@ -10,6 +10,9 @@ shader_parameter/h = 0.0
 shader_parameter/s = 0.788
 shader_parameter/v = 1.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_5m4gg"]
+font_size = 48
+
 [node name="PlayerSetup" type="Control" unique_id=1034371918]
 layout_mode = 3
 anchors_preset = 15
@@ -19,64 +22,89 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xwnrc")
 
-[node name="Background" parent="." unique_id=1483897854 instance=ExtResource("2_7oubm")]
+[node name="BlackBars" type="ColorRect" parent="." unique_id=163427580]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1431225241]
+position = Vector2(144, 0)
+scale = Vector2(6.75, 6.75)
+
+[node name="Background" parent="Node2D" unique_id=1483897854 instance=ExtResource("2_7oubm")]
 material = SubResource("ShaderMaterial_mqmvs")
 
-[node name="TitleLabel" type="Label" parent="." unique_id=575597664]
-layout_mode = 0
+[node name="TitleLabel" type="Label" parent="Node2D" unique_id=575597664]
+unique_name_in_owner = true
 offset_left = 69.0
 offset_top = 10.0
 offset_right = 166.0
 offset_bottom = 33.0
 text = "Player Setup"
 
-[node name="GridContainer" type="GridContainer" parent="." unique_id=181704826]
-layout_mode = 0
+[node name="GridContainer" type="GridContainer" parent="Node2D" unique_id=181704826]
 offset_left = 8.0
 offset_top = 45.0
 offset_right = 232.0
 offset_bottom = 111.0
 columns = 2
 
-[node name="HumanLabel" type="Label" parent="GridContainer" unique_id=315381806]
+[node name="HumanLabel" type="Label" parent="Node2D/GridContainer" unique_id=315381806]
 layout_mode = 2
 text = "Players"
 
-[node name="HumanSpinBox" type="SpinBox" parent="GridContainer" unique_id=945423833]
+[node name="HumanSpinBox" type="SpinBox" parent="Node2D/GridContainer" unique_id=945423833]
+unique_name_in_owner = true
 layout_mode = 2
 max_value = 4.0
 value = 2.0
 
-[node name="CPULabel" type="Label" parent="GridContainer" unique_id=442801643]
+[node name="CPULabel" type="Label" parent="Node2D/GridContainer" unique_id=442801643]
+unique_name_in_owner = true
 layout_mode = 2
 text = "How many CPUs?"
 
-[node name="CPUSpinBox" type="SpinBox" parent="GridContainer" unique_id=35284776]
+[node name="CPUSpinBox" type="SpinBox" parent="Node2D/GridContainer" unique_id=35284776]
+unique_name_in_owner = true
 layout_mode = 2
 max_value = 2.0
 
-[node name="ChangeControlsButton" type="Button" parent="." unique_id=948563980]
-layout_mode = 0
+[node name="ChangeControlsButton" type="Button" parent="Node2D" unique_id=948563980]
 offset_left = 7.0
 offset_top = 107.0
 offset_right = 143.0
 offset_bottom = 138.0
 text = "Change Controls"
 
+[node name="OKButton" type="Button" parent="Node2D" unique_id=1870612340]
+unique_name_in_owner = true
+visible = false
+offset_left = 134.0
+offset_top = 122.0
+offset_right = 241.0
+offset_bottom = 153.0
+text = "OK"
+
 [node name="OKLabel" type="Label" parent="." unique_id=399283075]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -126.0
-offset_top = -24.0
-offset_right = -1.0
-offset_bottom = -1.0
+offset_left = -757.0
+offset_top = -75.0
+offset_right = -160.0
+offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "CHAR SELECT(Press Enter)"
+label_settings = SubResource("LabelSettings_5m4gg")
 
 [node name="ChangeControlsLabel" type="Label" parent="." unique_id=1935778931]
 visible = false
@@ -94,16 +122,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Remap Controls (BUTTON)"
 
-[node name="OKButton" type="Button" parent="." unique_id=1870612340]
-visible = false
-layout_mode = 0
-offset_left = 134.0
-offset_top = 122.0
-offset_right = 241.0
-offset_bottom = 153.0
-text = "OK"
-
-[connection signal="value_changed" from="GridContainer/HumanSpinBox" to="." method="_on_human_spin_box_value_changed"]
-[connection signal="value_changed" from="GridContainer/CPUSpinBox" to="." method="_on_cpu_spin_box_value_changed"]
-[connection signal="pressed" from="ChangeControlsButton" to="." method="_on_change_controls_button_pressed"]
-[connection signal="pressed" from="OKButton" to="." method="_on_ok_button_pressed"]
+[connection signal="value_changed" from="Node2D/GridContainer/HumanSpinBox" to="." method="_on_human_spin_box_value_changed"]
+[connection signal="value_changed" from="Node2D/GridContainer/CPUSpinBox" to="." method="_on_cpu_spin_box_value_changed"]
+[connection signal="pressed" from="Node2D/ChangeControlsButton" to="." method="_on_change_controls_button_pressed"]
+[connection signal="pressed" from="Node2D/OKButton" to="." method="_on_ok_button_pressed"]
