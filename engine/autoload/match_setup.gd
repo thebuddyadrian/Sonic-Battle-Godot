@@ -1,8 +1,8 @@
 ## Autoload script that stores the match configuration, or the info needed to set up a match in MatchScene
 extends Node
 
-var human_players: float = 0.0
-var cpu_players: float = 0.0
+var human_players: int = 0
+var cpu_players: int = 0
 # Stores each player's character choice (maps Player Number -> Character Name)
 var character_choices: Dictionary[int, String]= {}
 # Stores the stages selected in the Map Select screen
