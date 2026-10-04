@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b7yen7hjxbrmp" path="res://engine/assets/opening/Character3.png" id="5_5punh"]
 [ext_resource type="Texture2D" uid="uid://7rimslh0hm05" path="res://engine/assets/opening/Character4.png" id="6_kqnf8"]
 [ext_resource type="Texture2D" uid="uid://bpp30t26fut2w" path="res://engine/assets/opening/Character5.png" id="7_le5n5"]
-[ext_resource type="PackedScene" uid="uid://bdxoanh00d4h4" path="res://menus/flame_logo.tscn" id="8_yubun"]
+[ext_resource type="PackedScene" uid="uid://bdxoanh00d4h4" path="res://menus/_common/flame_logo.tscn" id="8_yubun"]
 [ext_resource type="AudioStream" uid="uid://d2d8nkb46k8sr" path="res://engine/assets/audio/bgm/title.mp3" id="9_p5s4k"]
 [ext_resource type="Texture2D" uid="uid://q6xlagepcaxa" path="res://engine/assets/opening/Scene01BG.png" id="10_saqug"]
 [ext_resource type="Texture2D" uid="uid://sh1axjkuy0x2" path="res://engine/assets/opening/SonicScene01.png" id="11_4y71n"]

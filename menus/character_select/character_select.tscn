@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://kulyqmhcf2k2"]
 
 [ext_resource type="Script" uid="uid://bl12xr1kfvop2" path="res://menus/character_select/character_select.gd" id="1_xptye"]
-[ext_resource type="PackedScene" uid="uid://dmqtdie76rgi8" path="res://menus/background.tscn" id="2_kxvnc"]
-[ext_resource type="Shader" uid="uid://b7frwxe5glvvi" path="res://menus/background.gdshader" id="3_xarbf"]
+[ext_resource type="PackedScene" uid="uid://dmqtdie76rgi8" path="res://menus/_common/background/background.tscn" id="2_kxvnc"]
+[ext_resource type="Shader" uid="uid://b7frwxe5glvvi" path="res://menus/_common/background/background.gdshader" id="3_xarbf"]
 [ext_resource type="Script" uid="uid://dkvj5h5bvohkv" path="res://menus/character_select/mapselect.gd" id="4_pprmj"]
 [ext_resource type="PackedScene" uid="uid://bu74bh1pcju6h" path="res://menus/character_select/cursor_arrows.tscn" id="4_xarbf"]
 

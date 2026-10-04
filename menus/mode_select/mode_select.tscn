@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c2tqnyliq0dwg"]
 
-[ext_resource type="Script" uid="uid://cseybjtb7aloj" path="res://menus/mode_select.gd" id="1_5ovjn"]
-[ext_resource type="PackedScene" uid="uid://dmqtdie76rgi8" path="res://menus/background.tscn" id="2_p6y4n"]
+[ext_resource type="Script" uid="uid://cseybjtb7aloj" path="res://menus/mode_select/mode_select.gd" id="1_5ovjn"]
+[ext_resource type="PackedScene" uid="uid://dmqtdie76rgi8" path="res://menus/_common/background/background.tscn" id="2_p6y4n"]
 [ext_resource type="Texture2D" uid="uid://bvbtspsj4y8oh" path="res://engine/assets/sprites/ui/menus/mode_select/story.png" id="3_ij2dm"]
 [ext_resource type="Texture2D" uid="uid://ct67yxep3jie0" path="res://engine/assets/sprites/ui/menus/arrow_left.png" id="4_4lvc0"]
 [ext_resource type="Texture2D" uid="uid://blfijwc27g7rg" path="res://engine/assets/sprites/ui/menus/mode_select/mode_select_bg_edited.png" id="4_cne22"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://omjnld08itl3" path="res://engine/assets/sprites/ui/menus/mode_select/mini-games.png" id="8_cne22"]
 [ext_resource type="Texture2D" uid="uid://p884uj8qq1xx" path="res://engine/assets/sprites/ui/menus/mode_select/record.png" id="9_h5q80"]
 [ext_resource type="Texture2D" uid="uid://b63yx57cgh47o" path="res://engine/assets/sprites/ui/menus/mode_select/mode_select.png" id="14_h5q80"]
-[ext_resource type="PackedScene" uid="uid://bdxoanh00d4h4" path="res://menus/flame_logo.tscn" id="15_j86my"]
+[ext_resource type="PackedScene" uid="uid://bdxoanh00d4h4" path="res://menus/_common/flame_logo.tscn" id="15_j86my"]
 [ext_resource type="AudioStream" uid="uid://dl8ljyjfruc5e" path="res://engine/assets/audio/sfx/menu/mode_change.wav" id="16_4rtil"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tfsul"]
