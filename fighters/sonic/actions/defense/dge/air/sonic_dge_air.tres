@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SonicDgA" format=3 uid="uid://cdb0g4kua5pvx"]
+
+[ext_resource type="Script" uid="uid://pxe37qvh2lfk" path="res://scripts/collision/grabbox/grabbox_data.gd" id="1_4qt1q"]
+[ext_resource type="Script" uid="uid://df4sy4b83fepm" path="res://scripts/collision/guardbox/guardbox_data.gd" id="2_v7e3f"]
+[ext_resource type="Script" uid="uid://duq5jnfskpxxr" path="res://scripts/collision/hitbox/hitbox_group.gd" id="3_2ygjy"]
+[ext_resource type="Script" uid="uid://c25cesi6ntj0q" path="res://scripts/collision/hurtbox/hurtbox_data.gd" id="4_pnw3d"]
+[ext_resource type="Script" uid="uid://dcusg72fijw0x" path="res://scripts/players/sonic/actions/Movement/Dodge/Air/sonic_dge_air.gd" id="5_qnkut"]
+
+[resource]
+script = ExtResource("5_qnkut")
+metadata/_custom_type_script = "uid://dcusg72fijw0x"

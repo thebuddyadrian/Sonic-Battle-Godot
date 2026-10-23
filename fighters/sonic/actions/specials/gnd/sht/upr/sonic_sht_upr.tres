@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SonicShtUpr" format=3 uid="uid://budhgwlrogmp2"]
+
+[ext_resource type="Script" path="res://scripts/collision/grabbox/grabbox_data.gd" id="1_o8ngj"]
+[ext_resource type="Script" path="res://scripts/collision/guardbox/guardbox_data.gd" id="2_43yxg"]
+[ext_resource type="Script" path="res://scripts/collision/hitbox/hitbox_group.gd" id="3_hfn5h"]
+[ext_resource type="Script" path="res://scripts/collision/hurtbox/hurtbox_data.gd" id="4_yvfgv"]
+[ext_resource type="Script" path="res://scripts/players/sonic/actions/Specials/Ground/Shot/Upper/sonic_sht_upr.gd" id="5_iu48e"]
+
+[resource]
+script = ExtResource("5_iu48e")
+metadata/_custom_type_script = "uid://icggwl72im5i"

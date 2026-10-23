@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="SonicAtkUpT" format=3 uid="uid://voogehhkpo0f"]
+
+[ext_resource type="Script" path="res://scripts/collision/grabbox/grabbox_data.gd" id="1_edo5l"]
+[ext_resource type="Script" path="res://scripts/collision/guardbox/guardbox_data.gd" id="2_1lsuh"]
+[ext_resource type="Script" path="res://scripts/collision/hitbox/hitbox_group.gd" id="3_33j3y"]
+[ext_resource type="Script" path="res://scripts/collision/hitbox/hitbox_data.gd" id="4_cjtej"]
+[ext_resource type="Script" path="res://scripts/collision/hurtbox/hurtbox_data.gd" id="5_ykm1y"]
+[ext_resource type="Script" path="res://scripts/players/sonic/actions/Attacks/Ground/Upper/Tap/sonic_atk_upt.gd" id="6_qo4h4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f7yrh"]
+radius = 0.4
+
+[sub_resource type="Resource" id="Resource_4cono"]
+script = ExtResource("4_cjtej")
+hit_damage = 6.0
+hit_angle = Vector2(0, 89)
+hit_knockback = 15.0
+hit_stun = 20.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 2
+type_hitbox = 0
+type_angle = 0
+shape = SubResource("SphereShape3D_f7yrh")
+position = Vector3(0.64, 1.28, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 2.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://bj7yuguovfsh3"
+
+[sub_resource type="Resource" id="Resource_hv067"]
+script = ExtResource("3_33j3y")
+hitboxes = Array[ExtResource("4_cjtej")]([SubResource("Resource_4cono")])
+metadata/_custom_type_script = "uid://duq5jnfskpxxr"
+
+[resource]
+script = ExtResource("6_qo4h4")
+hitbox_groups = Dictionary[StringName, ExtResource("3_33j3y")]({
+&"A": SubResource("Resource_hv067")
+})
+metadata/_custom_type_script = "uid://dpifxf00mupjb"
