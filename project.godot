@@ -11,11 +11,7 @@ config_version=5
 [application]
 
 config/name="Sonic Battle 2 Project"
-<<<<<<< Updated upstream
 run/main_scene="uid://c2tqnyliq0dwg"
-=======
-run/main_scene="uid://ck27muptncsc5"
->>>>>>> Stashed changes
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
