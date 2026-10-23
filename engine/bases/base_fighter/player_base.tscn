@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://blv5m2gdcne5m" path="res://engine/assets/shaders/player/player_highlight.gdshader" id="3_svcel"]
 [ext_resource type="Script" uid="uid://d0127k12xvws" path="res://engine/parts/battle_sprite/battle_animated_sprite.gd" id="5_13wot"]
 [ext_resource type="Script" uid="uid://dy6nbw3lad7ow" path="res://engine/bases/base_fighter/player_state_machine.gd" id="6_coink"]
-[ext_resource type="Script" path="res://characters/shadow_raycast.gd" id="7_yj6a4"]
+[ext_resource type="Script" uid="uid://q7goxdaup0lj" path="res://engine/parts/shadow_raycast.gd" id="7_yj6a4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u1vfk"]
 radius = 0.3
@@ -47,7 +47,6 @@ floor_constant_speed = true
 platform_on_leave = 2
 platform_floor_layers = 1
 script = ExtResource("1_5ce3u")
-metadata/_custom_type_script = "uid://d4caqjmiqrbmi"
 
 [node name="Collbox" type="CollisionShape3D" parent="." unique_id=1644590465]
 debug_color = Color(0, 0.6, 0.69803923, 1)
@@ -78,7 +77,6 @@ offset = Vector2(-32, -11)
 pixel_size = 0.04
 billboard = 1
 script = ExtResource("5_13wot")
-z_offset = null
 metadata/_custom_type_script = "uid://d0127k12xvws"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1803453290]
@@ -86,7 +84,6 @@ autoplay = &"Idle"
 
 [node name="PlayerStateMachine" type="Node" parent="." unique_id=345778050]
 script = ExtResource("6_coink")
-metadata/_custom_type_script = "uid://ck7sijudvma6k"
 
 [node name="ShadowRayCast" type="RayCast3D" parent="." unique_id=1155105408]
 target_position = Vector3(0, -5, 0)
