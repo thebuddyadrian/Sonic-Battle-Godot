@@ -119,11 +119,11 @@ class_name PlayerData extends Resource
 #region GROUND ATTACKS
 @export_subgroup("Attacks")
 @export_subgroup("Attacks/Ground")
-@export_subgroup("Attacks/Ground/Neutral", "atk_nt")
-@export var atk_nt1: PlayerAction
-@export var atk_nt2: PlayerAction
-@export var atk_nt3: PlayerAction
-@export_subgroup("Attacks/Ground/Forward", "atk_fwd")
+@export_subgroup("Attacks/Ground/Light", "atk_lt")
+@export var atk_lt1: PlayerAction
+@export var atk_lt2: PlayerAction
+@export var atk_lt3: PlayerAction
+@export_subgroup("Attacks/Ground/Heavy", "atk_fwd")
 @export var atk_fwd_tap: PlayerAction:
 	get():
 		return atk_fwd_hld if !atk_fwd_tap else atk_fwd_tap
