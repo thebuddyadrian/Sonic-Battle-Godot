@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SonicDgG" format=3 uid="uid://b6wsy5gibm7hw"]
+
+[ext_resource type="Script" uid="uid://pxe37qvh2lfk" path="res://scripts/collision/grabbox/grabbox_data.gd" id="1_77ehd"]
+[ext_resource type="Script" uid="uid://df4sy4b83fepm" path="res://scripts/collision/guardbox/guardbox_data.gd" id="2_3ppni"]
+[ext_resource type="Script" uid="uid://duq5jnfskpxxr" path="res://scripts/collision/hitbox/hitbox_group.gd" id="3_4ouwm"]
+[ext_resource type="Script" uid="uid://c25cesi6ntj0q" path="res://scripts/collision/hurtbox/hurtbox_data.gd" id="4_hhsmq"]
+[ext_resource type="Script" uid="uid://1u26egkhk6b2" path="res://scripts/players/sonic/actions/Movement/Dodge/Ground/sonic_dge_gnd.gd" id="5_758xe"]
+
+[resource]
+script = ExtResource("5_758xe")
+metadata/_custom_type_script = "uid://1u26egkhk6b2"

@@ -1,0 +1,74 @@
+[gd_resource type="Resource" script_class="SonicAtkArA" format=3 uid="uid://dxav51m4c70rm"]
+
+[ext_resource type="Script" path="res://scripts/collision/grabbox/grabbox_data.gd" id="1_dkr2f"]
+[ext_resource type="Script" path="res://scripts/collision/guardbox/guardbox_data.gd" id="2_oyo25"]
+[ext_resource type="Script" path="res://scripts/collision/hitbox/hitbox_group.gd" id="3_ccj27"]
+[ext_resource type="Script" path="res://scripts/collision/hitbox/hitbox_data.gd" id="4_pe2fr"]
+[ext_resource type="Script" path="res://scripts/collision/hurtbox/hurtbox_data.gd" id="5_pa5yb"]
+[ext_resource type="Script" path="res://scripts/players/sonic/actions/Attacks/Aerial/Action/sonic_atk_ara.gd" id="6_d8jfj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5kw7e"]
+radius = 0.32
+
+[sub_resource type="Resource" id="Resource_ow43l"]
+script = ExtResource("4_pe2fr")
+hit_damage = 15.0
+hit_angle = Vector2(0, 20)
+hit_knockback = 20.0
+hit_stun = 15.0
+hit_lag = 3.0
+shield_damage = 20.0
+shield_knockback = 15.0
+shield_stun = 15.0
+shield_lag = 20.0
+type_launch = 1
+type_hitbox = 0
+type_angle = 0
+shape = SubResource("SphereShape3D_5kw7e")
+position = Vector3(0.72, 0.32, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 2.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://bj7yuguovfsh3"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b4abx"]
+radius = 0.48
+
+[sub_resource type="Resource" id="Resource_84vy5"]
+script = ExtResource("4_pe2fr")
+hit_damage = 5.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 5.0
+hit_stun = 15.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+shape = SubResource("SphereShape3D_b4abx")
+position = Vector3(0.6, 0.32, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://bj7yuguovfsh3"
+
+[sub_resource type="Resource" id="Resource_1j4mq"]
+script = ExtResource("3_ccj27")
+hitboxes = Array[ExtResource("4_pe2fr")]([SubResource("Resource_ow43l"), SubResource("Resource_84vy5")])
+metadata/_custom_type_script = "uid://duq5jnfskpxxr"
+
+[resource]
+script = ExtResource("6_d8jfj")
+hitbox_groups = Dictionary[StringName, ExtResource("3_ccj27")]({
+&"A": SubResource("Resource_1j4mq")
+})
+metadata/_custom_type_script = "uid://clv2rbferyyro"

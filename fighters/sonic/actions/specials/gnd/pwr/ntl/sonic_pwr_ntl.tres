@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="SonicPwrNtl" format=3 uid="uid://c1ehahe61t6ic"]
+
+[ext_resource type="Script" path="res://scripts/collision/grabbox/grabbox_data.gd" id="1_fmta2"]
+[ext_resource type="Script" path="res://scripts/collision/guardbox/guardbox_data.gd" id="2_42ude"]
+[ext_resource type="Script" path="res://scripts/collision/hitbox/hitbox_group.gd" id="3_06xab"]
+[ext_resource type="Script" path="res://scripts/collision/hitbox/hitbox_data.gd" id="4_xp6ox"]
+[ext_resource type="Script" path="res://scripts/collision/hurtbox/hurtbox_data.gd" id="5_aymqa"]
+[ext_resource type="Script" path="res://scripts/players/sonic/actions/Specials/Ground/Power/Neutral/sonic_pwr_ntl.gd" id="6_cocca"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1hhyf"]
+radius = 0.48
+
+[sub_resource type="Resource" id="Resource_awp6n"]
+script = ExtResource("4_xp6ox")
+hit_damage = 10.0
+hit_angle = Vector2(0, 75)
+hit_knockback = 10.0
+hit_stun = 20.0
+hit_lag = 0.0
+shield_damage = 5.0
+shield_knockback = 0.0
+shield_stun = 15.0
+shield_lag = 15.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+shape = SubResource("SphereShape3D_1hhyf")
+position = Vector3(0, 0.48, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 11.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://bj7yuguovfsh3"
+
+[sub_resource type="Resource" id="Resource_b4abx"]
+script = ExtResource("3_06xab")
+hitboxes = Array[ExtResource("4_xp6ox")]([SubResource("Resource_awp6n")])
+metadata/_custom_type_script = "uid://duq5jnfskpxxr"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dp61d"]
+radius = 0.36
+
+[sub_resource type="Resource" id="Resource_75u1f"]
+script = ExtResource("5_aymqa")
+defense = 100.0
+weight = 100.0
+hurtbox_mode = 0
+shape = SubResource("SphereShape3D_dp61d")
+position = Vector3(0, 0.48, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://c25cesi6ntj0q"
+
+[resource]
+script = ExtResource("6_cocca")
+hitbox_groups = Dictionary[StringName, ExtResource("3_06xab")]({
+&"A": SubResource("Resource_b4abx")
+})
+hurtbox_datas = Dictionary[StringName, ExtResource("5_aymqa")]({
+&"A": SubResource("Resource_75u1f")
+})
+metadata/_custom_type_script = "uid://b5bgcx2wrdvdc"

@@ -1,0 +1,81 @@
+[gd_resource type="Resource" script_class="SonicPwrArN" format=3 uid="uid://dsp1j4shqeh5e"]
+
+[ext_resource type="Script" path="res://scripts/collision/grabbox/grabbox_data.gd" id="1_0og1j"]
+[ext_resource type="Script" path="res://scripts/collision/guardbox/guardbox_data.gd" id="2_yhawk"]
+[ext_resource type="Script" path="res://scripts/collision/hitbox/hitbox_group.gd" id="3_pca8o"]
+[ext_resource type="Script" path="res://scripts/collision/hitbox/hitbox_data.gd" id="4_w1t85"]
+[ext_resource type="Script" path="res://scripts/collision/hurtbox/hurtbox_data.gd" id="5_fqvyy"]
+[ext_resource type="Script" path="res://scripts/players/sonic/actions/Specials/Aerial/Power/Neutral/sonic_pwr_arn.gd" id="6_ur85t"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_46oyi"]
+radius = 0.44
+
+[sub_resource type="Resource" id="Resource_yk3ch"]
+script = ExtResource("4_w1t85")
+hit_damage = 3.0
+hit_angle = Vector2(0, 90)
+hit_knockback = 15.0
+hit_stun = 15.0
+hit_lag = 2.0
+shield_damage = 1.0
+shield_knockback = 0.0
+shield_stun = 5.0
+shield_lag = 3.0
+type_launch = 0
+type_hitbox = 2
+type_angle = 13
+shape = SubResource("SphereShape3D_46oyi")
+position = Vector3(0, 0.44, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 1.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://bj7yuguovfsh3"
+
+[sub_resource type="Resource" id="Resource_dv5oc"]
+script = ExtResource("3_pca8o")
+hitboxes = Array[ExtResource("4_w1t85")]([SubResource("Resource_yk3ch")])
+metadata/_custom_type_script = "uid://duq5jnfskpxxr"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_avppo"]
+height = 0.4
+radius = 1.2
+
+[sub_resource type="Resource" id="Resource_hc2jn"]
+script = ExtResource("4_w1t85")
+hit_damage = 14.0
+hit_angle = Vector2(0, 90)
+hit_knockback = 10.0
+hit_stun = 20.0
+hit_lag = 0.0
+shield_damage = 10.0
+shield_knockback = 5.0
+shield_stun = 20.0
+shield_lag = 3.0
+type_launch = 2
+type_hitbox = 2
+type_angle = 0
+shape = SubResource("CylinderShape3D_avppo")
+position = Vector3(0, 0.2, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 2.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://bj7yuguovfsh3"
+
+[sub_resource type="Resource" id="Resource_dp61d"]
+script = ExtResource("3_pca8o")
+hitboxes = Array[ExtResource("4_w1t85")]([SubResource("Resource_hc2jn")])
+metadata/_custom_type_script = "uid://duq5jnfskpxxr"
+
+[resource]
+script = ExtResource("6_ur85t")
+hitbox_groups = Dictionary[StringName, ExtResource("3_pca8o")]({
+&"A": SubResource("Resource_dv5oc"),
+&"B": SubResource("Resource_dp61d")
+})
+metadata/_custom_type_script = "uid://ctwudswmiuko8"
