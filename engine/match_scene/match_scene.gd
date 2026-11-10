@@ -1,16 +1,16 @@
 extends Node3D
 class_name MatchScene
 
-const CAMERA_ROOT = preload("res://components/camera_root/camera_root.tscn")
-const PLAYER_WINDOW = preload("res://components/player_window/player_window.tscn")
-const PLAYER_HUD = preload("res://components/player_hud/player_hud.tscn")
-const PAUSE_MENU = preload("uid://cifkfj62fb1ho")
+const CAMERA_ROOT = preload("uid://dgswtfbyqn45x") # player_camera.tscn
+const PLAYER_WINDOW = preload("uid://dhw76smlt6230") # player_window.tscn
+const PLAYER_HUD = preload("uid://bsemd68skb2c1") # player_hud.tscn
+const PAUSE_MENU = preload("uid://cifkfj62fb1ho") # pause.tscn
 
 
 @export var test_characters: Array[String] = ["sonic", "tails"]
-@export var test_stage: String # TODO, not in use yet
+@export var test_stage: String
 
-var stage: Level
+var stage: BaseStage
 var camera_pivots: Dictionary[int, Node3D]
 var cameras: Dictionary[int, BattleCamera]
 var original_content_scale_size: Vector2i
@@ -43,8 +43,9 @@ func initialize_match():
 
 	# Load Stage
 	var current_stage: String = MatchSetup.stage_list[MatchSetup.current_stage_index]
+	var stage_info: StageInfo = GameData.get_stage_info(current_stage)
 	print("Loading stage \"%s\"" % current_stage)
-	var stage_scene: PackedScene = load("res://levels/%s/%s.tscn" % [current_stage, current_stage])
+	var stage_scene: PackedScene = load(stage_info.stage_scene_path)
 	stage = stage_scene.instantiate()
 	add_child(stage)
 

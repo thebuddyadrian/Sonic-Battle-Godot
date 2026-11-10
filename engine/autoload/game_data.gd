@@ -1,6 +1,7 @@
 extends Node
 
 var _character_info_dict: Dictionary[String, PlayerData]
+var _stage_info_dict: Dictionary[String, StageInfo]
 
 # TO-DO store characters in a list resource instead of storing it here in an array
 var characters: Array[String] = [
@@ -17,13 +18,14 @@ var characters: Array[String] = [
 
 # TO-DO do the same with the stages
 var battle_stages: Array[String] = [
-	"emeraldbeach", 
-	"amysroom", 
-	"battlehwy", 
-	"chaoruins",
-	"hologram",
-	"holysummit",
-	"greenhill"
+	"test_stage",
+	# "emeraldbeach", 
+	# "amysroom", 
+	# "battlehwy", 
+	# "chaoruins",
+	# "hologram",
+	# "holysummit",
+	# "greenhill"
 ]
 
 var modded_battle_stages: Array[String]
@@ -33,6 +35,8 @@ func _init() -> void:
 	# Preload all CharacterInfo resources
 	for character in characters:
 		_character_info_dict[character] = load("res://scripts/players/%s/resources/%s_data.tres" % [character, character])
+	for stage in battle_stages:
+		_stage_info_dict[stage] = load("res://stages/%s/%s.tres" % [stage, stage])
 
 
 func _ready() -> void:
@@ -66,3 +70,8 @@ func _ready() -> void:
 func get_character_info(character_name: String):
 	assert(_character_info_dict.has(character_name), "Cannot find CharacterInfo for %s" % character_name)
 	return _character_info_dict[character_name]
+
+
+func get_stage_info(stage_name: String):
+	assert(_stage_info_dict.has(stage_name), "Cannot find StageInfo for %s" % stage_name)
+	return _stage_info_dict[stage_name]

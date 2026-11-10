@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StageInfo" format=3 uid="uid://cv77jbgutl0jn"]
+
+[ext_resource type="Script" uid="uid://syr8wqb3hkp6" path="res://engine/data_types/stage_info.gd" id="1_w5xdk"]
+
+[resource]
+script = ExtResource("1_w5xdk")
+display_name = "Test Stage"
+stage_scene_path = "uid://crj3vgxvwehw3"
+metadata/_custom_type_script = "uid://syr8wqb3hkp6"
