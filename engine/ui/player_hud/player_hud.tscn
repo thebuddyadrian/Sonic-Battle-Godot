@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://bsemd68skb2c1"]
 
-[ext_resource type="Texture2D" path="res://assets/ui/MainHealth1.png" id="1_a4w2u"]
+[ext_resource type="Texture2D" uid="uid://0a05iynurnt2" path="res://engine/assets/sprites/ui/ingame/MainHealth1.png" id="1_a4w2u"]
 [ext_resource type="Script" uid="uid://qa1ulecic7dd" path="res://engine/ui/player_hud/player_hud.gd" id="1_dgf6l"]
-[ext_resource type="Texture2D" path="res://assets/ui/MainHealth2.png" id="2_dgf6l"]
-[ext_resource type="Texture2D" path="res://characters/shadow/sprites/ShadowLife.png" id="4_233co"]
-[ext_resource type="PackedScene" uid="uid://cifkfj62fb1ho" path="res://engine/ui/pause_screen/Pause.tscn" id="5_dgf6l"]
+[ext_resource type="Texture2D" uid="uid://cnyqiftdlqdoq" path="res://engine/assets/sprites/ui/ingame/MainHealth2.png" id="2_dgf6l"]
+[ext_resource type="PackedScene" uid="uid://cifkfj62fb1ho" path="res://engine/ui/pause_screen/pause.tscn" id="5_dgf6l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a4w2u"]
 font_size = 12
@@ -27,7 +26,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Icon" type="Sprite2D" parent="Lifebar" unique_id=274162017]
 position = Vector2(-12, 5)
-texture = ExtResource("4_233co")
 
 [node name="StockLabel" type="Label" parent="." unique_id=173383679]
 offset_left = 4.0
