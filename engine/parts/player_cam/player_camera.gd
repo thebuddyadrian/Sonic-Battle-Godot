@@ -19,6 +19,8 @@ var player_to_track: PlayerBrain
 var _dont_rotate = false
 
 func _process(delta):
+	if !player_to_track:
+		return
 	var targetposex := Vector3.ZERO
 	targetposex += player_to_track.global_position
 	

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dgswtfbyqn45x"]
 
-[ext_resource type="Script" uid="uid://cuvca6ikekxsy" path="res://levels/pivot.gd" id="1_he7xx"]
-[ext_resource type="Environment" uid="uid://gje4rk62y4yw" path="res://MAINLIGHTING.tres" id="2_u38fi"]
-[ext_resource type="Script" uid="uid://bmsefbkmwyqoo" path="res://components/camera_root/camera.gd" id="3_l44vk"]
+[ext_resource type="Script" uid="uid://u2d8oflikkce" path="res://engine/parts/player_cam/pivot.gd" id="1_he7xx"]
+[ext_resource type="Environment" uid="uid://gje4rk62y4yw" path="res://engine/parts/player_cam/main_lighting.tres" id="2_u38fi"]
+[ext_resource type="Script" uid="uid://bmsefbkmwyqoo" path="res://engine/parts/player_cam/player_camera.gd" id="3_l44vk"]
 
 [sub_resource type="Animation" id="Animation_gjl0y"]
 resource_name = "Flip1"
