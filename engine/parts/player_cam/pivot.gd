@@ -12,7 +12,7 @@ const SPRITE_FLIPPED_VISUAL_LAYER: int = 8
 var taps = 0
 var taptime = 0
 var follow_player = false
-var player_to_follow: PlayerBrain : set = set_player_to_follow
+var player_to_follow: FighterBrain : set = set_player_to_follow
 
 var _offset_from_player: Vector3
 
@@ -56,6 +56,6 @@ func _physics_process(delta: float) -> void:
 		
 
 
-func set_player_to_follow(player: PlayerBrain):
+func set_player_to_follow(player: FighterBrain):
 	player_to_follow = player
 	_offset_from_player = global_position - player_to_follow.global_position

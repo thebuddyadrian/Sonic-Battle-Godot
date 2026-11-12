@@ -1,5 +1,5 @@
 @tool
-class_name PlayerData extends Resource
+class_name FighterData extends Resource
 
 @export var display_name: String
 @export_group("File Paths")
@@ -107,138 +107,132 @@ class_name PlayerData extends Resource
 #region MOVEMENT
 @export_subgroup("Movement", "mov")
 @export_subgroup("Movement/Mobility", "mov_mob")
-@export var mov_mob_dsh: PlayerAction
-@export var mov_mob_air: PlayerAction
+@export var mov_mob_dsh: FighterAction
+@export var mov_mob_air: FighterAction
 @export_subgroup("Movement/Defense", "mov_def")
-@export var mov_def_grd: PlayerAction
-@export var mov_def_hel: PlayerAction
+@export var mov_def_grd: FighterAction
+@export var mov_def_hel: FighterAction
 @export_subgroup("Movement/Dodge", "mov_dge")
-@export var mov_dge_gnd: PlayerAction
-@export var mov_dge_air: PlayerAction
+@export var mov_dge_gnd: FighterAction
+@export var mov_dge_air: FighterAction
 #endregion
 #region GROUND ATTACKS
 @export_subgroup("Attacks")
 @export_subgroup("Attacks/Ground")
 @export_subgroup("Attacks/Ground/Neutral", "atk_nt")
-@export var atk_nt1: PlayerAction
-@export var atk_nt2: PlayerAction
-@export var atk_nt3: PlayerAction
-@export_subgroup("Attacks/Ground/Forward", "atk_fwd")
-@export var atk_fwd_tap: PlayerAction:
+@export var atk_nt1: FighterAction
+@export var atk_nt2: FighterAction
+@export var atk_nt3: FighterAction
+@export_subgroup("Attacks/Ground/Forward", "atk_fw")
+@export var atk_fwl: FighterAction:
 	get():
-		return atk_fwd_hld if !atk_fwd_tap else atk_fwd_tap
-@export var atk_fwd_hld: PlayerAction
-@export_subgroup("Attacks/Ground/Upper", "atk_upr")
-@export var atk_upr_tap: PlayerAction:
+		return atk_fwh if !atk_fwl else atk_fwl
+@export var atk_fwh: FighterAction
+@export_subgroup("Attacks/Ground/Upper", "atk_up")
+@export var atk_upl: FighterAction:
 	get():
-		return atk_upr_hld if !atk_upr_tap else atk_upr_tap
-@export var atk_upr_hld: PlayerAction
-@export_subgroup("Attacks/Dash", "atk_dsh")
-@export var atk_dsh_ntl: PlayerAction
-@export var atk_dsh_fwd: PlayerAction:
-	get():
-		return atk_dsh_ntl if !atk_dsh_fwd else atk_dsh_fwd
-@export var atk_dsh_upr: PlayerAction:
-	get():
-		return atk_dsh_ntl if !atk_dsh_upr else atk_dsh_upr
+		return atk_uph if !atk_upl else atk_upl
+@export var atk_uph: FighterAction
+@export_subgroup("Attacks/Ground/Dash", "atk_dsh")
+@export var atk_dsh: FighterAction
 #endregion
 #region AIR ATTACKS
 @export_subgroup("Attacks/Air", "atk_air")
-@export var atk_air_ntl: PlayerAction
-@export var atk_air_fwd: PlayerAction:
+@export var atk_air_ntl: FighterAction
+@export var atk_air_fwd: FighterAction:
 	get():
 		return atk_air_ntl if !atk_air_fwd else atk_air_fwd
-@export var atk_air_upr: PlayerAction:
+@export var atk_air_upr: FighterAction:
 	get():
 		return atk_air_ntl if !atk_air_upr else atk_air_upr
-@export var atk_air_act: PlayerAction:
+@export var atk_air_act: FighterAction:
 	get():
 		return atk_air_ntl if !atk_air_act else atk_air_act
-@export var atk_air_dnk: PlayerAction
+@export var atk_air_dnk: FighterAction
 #endregion
 #region GROUND SPECIALS
 @export_subgroup("Specials")
 @export_subgroup("Specials/Ground")
 @export_subgroup("Specials/Ground/Shot", "sht_gnd")
-@export var sht_gnd_ntl: PlayerAction
-@export var sht_gnd_fwd: PlayerAction:
+@export var sht_gnd_ntl: FighterAction
+@export var sht_gnd_fwd: FighterAction:
 	get():
 		return sht_gnd_ntl if !sht_gnd_fwd else sht_gnd_fwd
-@export var sht_gnd_upr: PlayerAction:
+@export var sht_gnd_upr: FighterAction:
 	get():
 		return sht_gnd_ntl if !sht_gnd_upr else sht_gnd_upr
 @export_subgroup("Specials/Ground/Power", "pwr_gnd")
-@export var pwr_gnd_ntl: PlayerAction
-@export var pwr_gnd_fwd: PlayerAction:
+@export var pwr_gnd_ntl: FighterAction
+@export var pwr_gnd_fwd: FighterAction:
 	get():
 		return pwr_gnd_ntl if !pwr_gnd_fwd else pwr_gnd_fwd
-@export var pwr_gnd_upr: PlayerAction:
+@export var pwr_gnd_upr: FighterAction:
 	get():
 		return pwr_gnd_ntl if !pwr_gnd_upr else pwr_gnd_upr
 @export_subgroup("Specials/Ground/Trap", "trp_gnd")
-@export var trp_gnd_ntl: PlayerAction
-@export var trp_gnd_fwd: PlayerAction:
+@export var trp_gnd_ntl: FighterAction
+@export var trp_gnd_fwd: FighterAction:
 	get():
 		return trp_gnd_ntl if !trp_gnd_fwd else trp_gnd_fwd
-@export var trp_gnd_upr: PlayerAction:
+@export var trp_gnd_upr: FighterAction:
 	get():
 		return trp_gnd_ntl if !trp_gnd_upr else trp_gnd_upr
 #endregion
 #region AIR SPECIALS
 @export_subgroup("Specials/Air")
 @export_subgroup("Specials/Air/Shot", "sht_air")
-@export var sht_air_ntl: PlayerAction
-@export var sht_air_fwd: PlayerAction:
+@export var sht_air_ntl: FighterAction
+@export var sht_air_fwd: FighterAction:
 	get():
 		return sht_air_ntl if !sht_air_fwd else sht_air_fwd
-@export var sht_air_upr: PlayerAction:
+@export var sht_air_upr: FighterAction:
 	get():
 		return sht_air_ntl if !sht_air_upr else sht_air_upr
 @export_subgroup("Specials/Air/Power", "pwr_air")
-@export var pwr_air_ntl: PlayerAction
-@export var pwr_air_fwd: PlayerAction:
+@export var pwr_air_ntl: FighterAction
+@export var pwr_air_fwd: FighterAction:
 	get():
 		return pwr_air_ntl if !pwr_air_fwd else pwr_air_fwd
-@export var pwr_air_upr: PlayerAction:
+@export var pwr_air_upr: FighterAction:
 	get():
 		return pwr_air_ntl if !pwr_air_upr else pwr_air_upr
 @export_subgroup("Specials/Air/Trap", "trp_air")
-@export var trp_air_ntl: PlayerAction
-@export var trp_air_fwd: PlayerAction:
+@export var trp_air_ntl: FighterAction
+@export var trp_air_fwd: FighterAction:
 	get():
 		return trp_air_ntl if !trp_air_fwd else trp_air_fwd
-@export var trp_air_upr: PlayerAction:
+@export var trp_air_upr: FighterAction:
 	get():
 		return trp_air_ntl if !trp_air_upr else trp_air_upr
 #endregion
 #region DEFENSE SPECIALS
 @export_subgroup("Specials/Defense")
-@export var sht_def: PlayerAction:
+@export var sht_def: FighterAction:
 	get():
 		return sht_gnd_ntl if !sht_def else sht_def
-@export var pwr_def: PlayerAction:
+@export var pwr_def: FighterAction:
 	get():
 		return pwr_gnd_ntl if !pwr_def else pwr_def
-@export var trp_def: PlayerAction:
+@export var trp_def: FighterAction:
 	get():
 		return trp_gnd_ntl if !trp_def else trp_def
 #endregion
 #region GRABS
 @export_subgroup("Grabs", "grb")
-@export var grb_idl: PlayerAction
-@export var grb_dsh: PlayerAction:
+@export var grb_idl: FighterAction
+@export var grb_dsh: FighterAction:
 	get():
 		return grb_idl if !grb_dsh else grb_dsh
-@export var grb_pvt: PlayerAction:
+@export var grb_pvt: FighterAction:
 	get():
 		return grb_idl if !grb_pvt else grb_pvt
 #endregion
 #region THROWS
 @export_subgroup("Throws", "thw")
-@export var thw_fwd: PlayerAction
-@export var thw_bak: PlayerAction
-@export var thw_upr: PlayerAction
-@export var thw_dwn: PlayerAction
+@export var thw_fwd: FighterAction
+@export var thw_bak: FighterAction
+@export var thw_upr: FighterAction
+@export var thw_dwn: FighterAction
 #endregion
 
 

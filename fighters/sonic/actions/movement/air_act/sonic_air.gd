@@ -1,4 +1,4 @@
-class_name SonicAir extends PlayerAction
+class_name SonicAir extends FighterAction
 
 
 func wake() -> void:
@@ -33,12 +33,12 @@ func update(delta: float) -> void:
 		brain.play_section(&"AirAct", &"Loop", &"", true, Animation.LOOP_LINEAR)
 	
 	if brain.attack_buffer > 0.0:
-		if brain.buffered_attack_input_data.type == PlayerBrain.AttackType.SPL:
+		if brain.buffered_attack_input_data.type == FighterBrain.AttackType.SPL:
 			if brain.frame >= 8.0:
 				if sm.input_attack(
-					sm.get_special(PlayerBrain.SpecialVariant.AIR, PlayerBrain.AttackInput.NTL),
-					sm.get_special(PlayerBrain.SpecialVariant.AIR, PlayerBrain.AttackInput.FWD),
-					sm.get_special(PlayerBrain.SpecialVariant.AIR, PlayerBrain.AttackInput.BAK)
+					sm.get_special(FighterBrain.SpecialVariant.AIR, FighterBrain.AttackInput.NTL),
+					sm.get_special(FighterBrain.SpecialVariant.AIR, FighterBrain.AttackInput.FWD),
+					sm.get_special(FighterBrain.SpecialVariant.AIR, FighterBrain.AttackInput.BAK)
 					): return
 		else:
 			if brain.frame >= 20.0:

@@ -1,6 +1,6 @@
 extends Node
 
-var _character_info_dict: Dictionary[String, PlayerData]
+var _character_info_dict: Dictionary[String, FighterData]
 var _stage_info_dict: Dictionary[String, StageInfo]
 
 # TO-DO store characters in a list resource instead of storing it here in an array
@@ -34,7 +34,7 @@ var modded_battle_stages: Array[String]
 func _init() -> void:
 	# Preload all CharacterInfo resources
 	for character in characters:
-		_character_info_dict[character] = load("res://scripts/players/%s/resources/%s_data.tres" % [character, character])
+		_character_info_dict[character] = load("res://fighters/%s/%s_data.tres" % [character, character])
 	for stage in battle_stages:
 		_stage_info_dict[stage] = load("res://stages/%s/%s.tres" % [stage, stage])
 

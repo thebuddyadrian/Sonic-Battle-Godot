@@ -1,4 +1,4 @@
-class_name PlayerBrain extends EntityBody
+class_name FighterBrain extends EntityBody
 
 
 const JUMP_BUFFER_FRAMES: float = 6.0
@@ -68,7 +68,7 @@ enum SpriteModes{
 }
 
 
-@export var player_data: PlayerData
+@export var player_data: FighterData
 @export_group("")
 @export var player_id: int
 @export var player_name: String
@@ -77,7 +77,7 @@ enum SpriteModes{
 @export var aerial_special: SpecialType
 @export var defense_special: SpecialType
 
-@onready var sm: PlayerStateMachine = $PlayerStateMachine
+@onready var sm: FighterStateMachine = $FighterStateMachine
 #@onready var grabbox: Area3D = $GrabBox
 #@onready var grabbox_shape: CollisionShape3D = $GrabBox/GrabBoxShape
 #@onready var grab_point: Marker3D = $GrabBox/GrabPoint
@@ -139,11 +139,11 @@ var knockback: Vector3 = Vector3.ZERO
 
 var char_name: String
 
-var data: PlayerData
+var data: FighterData
 
-var chase_target: PlayerBrain
-var grab_target: PlayerBrain
-var grab_holder: PlayerBrain
+var chase_target: FighterBrain
+var grab_target: FighterBrain
+var grab_holder: FighterBrain
 
 var hurtbox: HurtboxArea
 
@@ -156,9 +156,9 @@ func _ready() -> void:
 	data = player_data.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
 	sm.data = data
 	for property in data.get_property_list():
-		if property.class_name == &"PlayerAction":
+		if property.class_name == &"FighterAction":
 			if data.get(property.name):
-				var action: PlayerAction = data.get(property.name)
+				var action: FighterAction = data.get(property.name)
 				action.brain = self
 				action.wake()
 	data.combat_hurtbox.weight = data.combat_weight
@@ -558,7 +558,7 @@ func chase(target_pos: Vector3) -> bool:
 
 func land(landing_lag: float = data.land_soft_lag, landing_decel: float = data.land_deceleration) -> void:
 	land_lag = landing_lag
-	land_decel = PlayerData.get_accel_amount(landing_decel, data.walk_speed)
+	land_decel = FighterData.get_accel_amount(landing_decel, data.walk_speed)
 	landed.emit()
 	sm.change_state(sm.states.LND)
 #endregion

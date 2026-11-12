@@ -13,7 +13,7 @@ func _on_box_entered(area: Area3D) -> void:
 		return
 	if area is HurtboxArea:
 		var hurtbox: HurtboxArea = area
-		var hurtbox_owner: PlayerBrain = hurtbox.hurtbox_owner
+		var hurtbox_owner: FighterBrain = hurtbox.hurtbox_owner
 		if hurtbox_owner == box_owner:
 			return
 		if box_owner.grab_target != null:
@@ -22,8 +22,8 @@ func _on_box_entered(area: Area3D) -> void:
 			return
 		if [HurtboxData.HurtboxModes.INT, HurtboxData.HurtboxModes.INV].has(hurtbox.data.hurtbox_mode):
 			return
-		var hurtbox_sm: PlayerStateMachine = hurtbox_owner.sm
-		var grabbox_sm: PlayerStateMachine = box_owner.sm
+		var hurtbox_sm: FighterStateMachine = hurtbox_owner.sm
+		var grabbox_sm: FighterStateMachine = box_owner.sm
 		
 		grabbox_sm.change_state(grabbox_sm.states.GRB_HLD)
 		hurtbox_sm.change_state(hurtbox_sm.states.STN_GRB)

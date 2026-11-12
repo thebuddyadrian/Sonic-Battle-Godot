@@ -1,4 +1,4 @@
-class_name SonicDsh extends PlayerAction
+class_name SonicDsh extends FighterAction
 
 func wake() -> void:
 	super()
@@ -23,9 +23,9 @@ func update(delta: float) -> void:
 		
 	if brain.frame >= 5.0:
 		if sm.input_attack(
-			sm.states.ATK_DSN,
-			sm.states.ATK_DSN,
-			sm.states.ATK_DSN
+			sm.states.ATK_DSH,
+			sm.states.ATK_DSH,
+			sm.states.ATK_DSH
 			):
 			return
 	if brain.frame >= 18.0:

@@ -1,14 +1,14 @@
-class_name PlayerAction extends Resource
+class_name FighterAction extends Resource
 
 
-var brain: PlayerBrain:
+var brain: FighterBrain:
 	set(value):
 		brain = value
 		if brain.data:
 			data = brain.data
 			sm = brain.sm
-var data: PlayerData
-var sm: PlayerStateMachine
+var data: FighterData
+var sm: FighterStateMachine
 
 @export var hitbox_groups: Dictionary[StringName, HitboxGroup]
 @export var hurtbox_datas: Dictionary[StringName, HurtboxData]

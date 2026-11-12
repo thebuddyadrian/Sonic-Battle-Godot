@@ -183,8 +183,8 @@ func _on_box_entered(area: Area3D) -> void:
 			area_owner.pause_vel = area_owner.velocity
 			return
 		var dmg: float
-		dmg = get_damage(get_data().hit_damage, box_owner.data.combat_atk if box_owner is PlayerBrain else 100.0, hurtbox.defense)
-		if area_owner is PlayerBrain:
+		dmg = get_damage(get_data().hit_damage, box_owner.data.combat_atk if box_owner is FighterBrain else 100.0, hurtbox.defense)
+		if area_owner is FighterBrain:
 			area_owner.hgauge += dmg/8.0
 		if hurtbox.hurtbox_mode == HurtboxData.HurtboxModes.ARM && dmg <= hurtbox.armor:
 			area_owner.pause_dur = get_data().hit_lag
@@ -196,7 +196,7 @@ func _on_box_entered(area: Area3D) -> void:
 		area_owner.pause_pos = area_owner.global_position
 		area_owner.velocity = launch_vel
 		area_owner.pause_vel = launch_vel
-		if area_owner is PlayerBrain:
+		if area_owner is FighterBrain:
 			area_owner.stun = get_data().hit_stun
 			area_owner.knockback = launch_vel
 			area_owner.health -= dmg
@@ -212,9 +212,9 @@ func _on_box_entered(area: Area3D) -> void:
 				HitboxData.LaunchTypes.DNK:
 					area_owner.sm.change_state(area_owner.sm.states.LNC_DNK)
 		if get_data().type_launch == HitboxData.LaunchTypes.HVY:
-			box_owner.chase_window = PlayerBrain.CHASE_WINDOW_FRAMES
+			box_owner.chase_window = FighterBrain.CHASE_WINDOW_FRAMES
 			box_owner.chase_target = area_owner
-			area_owner.chase_window = PlayerBrain.CHASE_WINDOW_FRAMES
+			area_owner.chase_window = FighterBrain.CHASE_WINDOW_FRAMES
 			area_owner.chase_target = box_owner
 	'''var player: PlayerBrain = area.owner
 	if hb_owner == player:

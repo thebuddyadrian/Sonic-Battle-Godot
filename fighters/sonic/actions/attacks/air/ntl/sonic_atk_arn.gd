@@ -1,4 +1,4 @@
-class_name SonicAtkArN extends PlayerAction
+class_name SonicAtkArN extends FighterAction
 
 
 var can_boost: bool = true
@@ -30,15 +30,15 @@ func update(delta: float) -> void:
 		if brain.attack_buffer > 0.0:
 			var attack_input_data: Dictionary = brain.buffered_attack_input_data
 			match attack_input_data.type:
-				PlayerBrain.AttackType.NML:
+				FighterBrain.AttackType.NML:
 					match attack_input_data.input:
-						PlayerBrain.AttackInput.NTL:
+						FighterBrain.AttackInput.NTL:
 							brain.reset_attack_buffer()
 							sm.change_state(sm.states.ATK_ARN)
-						PlayerBrain.AttackInput.FWD:
+						FighterBrain.AttackInput.FWD:
 							brain.reset_attack_buffer()
 							sm.change_state(sm.states.ATK_ARF)
-						PlayerBrain.AttackInput.BAK:
+						FighterBrain.AttackInput.BAK:
 							brain.reset_attack_buffer()
 							sm.change_state(sm.states.ATK_ARU)
 		elif brain.jump_buffer > 0.0 && brain.air_act_refreshed:

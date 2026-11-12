@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dpysne3nmcap1"]
+
+[ext_resource type="PackedScene" uid="uid://cwr3ph7e6g1hq" path="res://engine/bases/base_fighter/fighter_base.tscn" id="1_v76ad"]
+[ext_resource type="Script" uid="uid://ckdrwjyw4ibp0" path="res://fighters/sonic/sonic_brain.gd" id="2_cxkcp"]
+[ext_resource type="Resource" uid="uid://dmu4k5t8fwr7e" path="res://fighters/sonic/sonic_data.tres" id="3_1k5qc"]
+[ext_resource type="Texture2D" uid="uid://d2hfvlr1paroj" path="res://fighters/sonic/sprites/SonicSpriteSheet.png" id="4_67y5v"]
+[ext_resource type="Shader" uid="uid://blv5m2gdcne5m" path="res://engine/assets/shaders/player/player_highlight.gdshader" id="5_lbp1w"]
+[ext_resource type="SpriteFrames" uid="uid://df8awwisy41ia" path="res://fighters/sonic/sonic_sprite_frames.tres" id="6_or4nb"]
+[ext_resource type="AnimationLibrary" uid="uid://dqpdkjdlfe5vp" path="res://fighters/sonic/sonic_anim_lib.tres" id="7_3k1go"]
+[ext_resource type="Script" uid="uid://dsmvur3qt2fh6" path="res://fighters/sonic/sonic_state_machine.gd" id="8_smc22"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_q2y22"]
+height = 1.52
+radius = 0.28
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xcmf"]
+transparency = 1
+shading_mode = 0
+specular_mode = 2
+albedo_texture = ExtResource("4_67y5v")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4gjej"]
+render_priority = 1
+shader = ExtResource("5_lbp1w")
+shader_parameter/color = Color(0, 0.2509804, 0.9098039, 0.5019608)
+shader_parameter/texture_alpha = ExtResource("4_67y5v")
+
+[node name="Player" unique_id=1535971227 groups=["characters"] instance=ExtResource("1_v76ad")]
+script = ExtResource("2_cxkcp")
+player_data = ExtResource("3_1k5qc")
+
+[node name="Collbox" parent="." index="0" unique_id=1644590465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76, 0)
+shape = SubResource("CylinderShape3D_q2y22")
+
+[node name="GrabBox" parent="." index="1" unique_id=863282851]
+visible = false
+
+[node name="BillboardAnim" parent="SpriteAnchor" parent_id_path=PackedInt32Array(872788722) index="0" unique_id=1037363561]
+material_override = SubResource("StandardMaterial3D_7xcmf")
+material_overlay = SubResource("ShaderMaterial_4gjej")
+texture_filter = 0
+sprite_frames = ExtResource("6_or4nb")
+animation = &"AtkDsh"
+
+[node name="AnimationPlayer" parent="." index="4" unique_id=1803453290]
+libraries/sonic_anim_lib = ExtResource("7_3k1go")
+
+[node name="FighterStateMachine" parent="." index="5" unique_id=345778050]
+script = ExtResource("8_smc22")

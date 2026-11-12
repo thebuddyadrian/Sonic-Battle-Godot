@@ -6,10 +6,10 @@ extends CanvasLayer
 @onready var pause_menu: Control = $Pause
 @onready var player_id_label: Label = $PlayerIDLabel
 
-var player_tracking: PlayerBrain
+var player_tracking: FighterBrain
 
 
-func track_player(player: PlayerBrain):
+func track_player(player: FighterBrain):
 	icon.texture = load(GameData.get_character_info(player.char_name).life_icon_path)
 	lifebar.max_value = player.data.combat_max_hp
 	player_tracking = player

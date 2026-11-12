@@ -1,4 +1,4 @@
-class_name SonicDgG extends PlayerAction
+class_name SonicDgG extends FighterAction
 
 func wake() -> void:
 	super()
@@ -26,7 +26,7 @@ func update(delta: float) -> void:
 		brain.walk(
 			brain.dodge_input,
 			data.dodge_speed,
-			PlayerData.get_accel_amount(
+			FighterData.get_accel_amount(
 				data.dodge_acceleration,
 				data.dodge_speed
 				),
@@ -38,7 +38,7 @@ func update(delta: float) -> void:
 			Vector3.ZERO,
 			data.dodge_speed,
 			0.0,
-			PlayerData.get_accel_amount(
+			FighterData.get_accel_amount(
 				data.dodge_deceleration,
 				data.dodge_speed
 				),
@@ -55,11 +55,11 @@ func update(delta: float) -> void:
 		if sm.input_jump(): return 
 		if sm.input_dash(): return
 		if brain.attack_buffer > 0.0:
-			if brain.buffered_attack_input_data.type == PlayerBrain.AttackType.SPL:
+			if brain.buffered_attack_input_data.type == FighterBrain.AttackType.SPL:
 				if sm.input_attack(
-					sm.get_special(PlayerBrain.SpecialVariant.GND, PlayerBrain.AttackInput.NTL),
-					sm.get_special(PlayerBrain.SpecialVariant.GND, PlayerBrain.AttackInput.FWD),
-					sm.get_special(PlayerBrain.SpecialVariant.GND, PlayerBrain.AttackInput.BAK)
+					sm.get_special(FighterBrain.SpecialVariant.GND, FighterBrain.AttackInput.NTL),
+					sm.get_special(FighterBrain.SpecialVariant.GND, FighterBrain.AttackInput.FWD),
+					sm.get_special(FighterBrain.SpecialVariant.GND, FighterBrain.AttackInput.BAK)
 					): return
 			else:
 				if sm.input_attack(

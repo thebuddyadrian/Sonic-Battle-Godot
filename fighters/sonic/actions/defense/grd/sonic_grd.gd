@@ -1,4 +1,4 @@
-class_name SonicGrd extends PlayerAction
+class_name SonicGrd extends FighterAction
 
 var guard_speed: float
 var guard_decel: float
@@ -29,11 +29,11 @@ func update(delta: float) -> void:
 		return
 	if brain.frame >= 33.0:
 		if brain.attack_buffer > 0.0:
-			if brain.buffered_attack_input_data.type == PlayerBrain.AttackType.SPL:
+			if brain.buffered_attack_input_data.type == FighterBrain.AttackType.SPL:
 				if sm.input_attack(
-					sm.get_special(PlayerBrain.SpecialVariant.GND, PlayerBrain.AttackInput.NTL),
-					sm.get_special(PlayerBrain.SpecialVariant.GND, PlayerBrain.AttackInput.FWD),
-					sm.get_special(PlayerBrain.SpecialVariant.GND, PlayerBrain.AttackInput.BAK)
+					sm.get_special(FighterBrain.SpecialVariant.GND, FighterBrain.AttackInput.NTL),
+					sm.get_special(FighterBrain.SpecialVariant.GND, FighterBrain.AttackInput.FWD),
+					sm.get_special(FighterBrain.SpecialVariant.GND, FighterBrain.AttackInput.BAK)
 					): return
 			else:
 				if sm.input_attack(
@@ -54,4 +54,4 @@ func _on_hitbox_entered(hitbox: HitboxArea, hitbox_data: HitboxData) -> void:
 	guard_speed = hitbox_data.shield_knockback
 	if absf(guard_speed) <= 0.1:
 		guard_speed = data.walk_speed
-	guard_decel = PlayerData.get_accel_amount(0.5, guard_speed)
+	guard_decel = FighterData.get_accel_amount(0.5, guard_speed)

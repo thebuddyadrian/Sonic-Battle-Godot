@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="SonicAtkDsN" format=3 uid="uid://81cwjnlwwc2j"]
+
+[ext_resource type="Script" uid="uid://pxe37qvh2lfk" path="res://scripts/collision/grabbox/grabbox_data.gd" id="1_6ibdw"]
+[ext_resource type="Script" uid="uid://df4sy4b83fepm" path="res://scripts/collision/guardbox/guardbox_data.gd" id="2_8lqd0"]
+[ext_resource type="Script" uid="uid://duq5jnfskpxxr" path="res://scripts/collision/hitbox/hitbox_group.gd" id="3_aghqa"]
+[ext_resource type="Script" uid="uid://bj7yuguovfsh3" path="res://scripts/collision/hitbox/hitbox_data.gd" id="4_31jyx"]
+[ext_resource type="Script" uid="uid://c25cesi6ntj0q" path="res://scripts/collision/hurtbox/hurtbox_data.gd" id="5_gatxd"]
+[ext_resource type="Script" uid="uid://ggdclj73n5gu" path="res://scripts/players/sonic/actions/Attacks/Dash/Neutral/sonic_atk_dsn.gd" id="6_vfgp3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5kw7e"]
+radius = 0.4
+height = 1.92
+
+[sub_resource type="Resource" id="Resource_pgmws"]
+script = ExtResource("4_31jyx")
+hit_damage = 15.0
+hit_angle = Vector2(0, 30)
+hit_knockback = 15.0
+hit_stun = 13.0
+hit_lag = 3.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 1
+type_hitbox = 0
+type_angle = 0
+shape = SubResource("CapsuleShape3D_5kw7e")
+position = Vector3(0.12, 0.52, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 90)
+scale = Vector3(1, 1, 1)
+duration = 3.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://bj7yuguovfsh3"
+
+[sub_resource type="Resource" id="Resource_yup1o"]
+script = ExtResource("3_aghqa")
+hitboxes = Array[ExtResource("4_31jyx")]([SubResource("Resource_pgmws")])
+metadata/_custom_type_script = "uid://duq5jnfskpxxr"
+
+[resource]
+script = ExtResource("6_vfgp3")
+hitbox_groups = Dictionary[StringName, ExtResource("3_aghqa")]({
+&"A": SubResource("Resource_yup1o")
+})
+metadata/_custom_type_script = "uid://ggdclj73n5gu"

@@ -1,22 +1,577 @@
-[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://dmu4k5t8fwr7e"]
+[gd_resource type="Resource" script_class="FighterData" format=3 uid="uid://dmu4k5t8fwr7e"]
 
+[ext_resource type="Script" uid="uid://cwuu74bkqw4h2" path="res://engine/data_types/hitbox_data.gd" id="6_koybp"]
 [ext_resource type="Script" uid="uid://b1l4tufitttqq" path="res://engine/data_types/grabbox_data.gd" id="6_krti5"]
+[ext_resource type="Script" uid="uid://clv2rbferyyro" path="res://fighters/sonic/actions/attacks/air/act/sonic_atk_ara.gd" id="6_l8sre"]
+[ext_resource type="Script" uid="uid://c3tdu4axbb6wd" path="res://fighters/sonic/actions/attacks/gnd/fwd/hv/sonic_atk_fwh.gd" id="6_oi3i0"]
+[ext_resource type="Script" uid="uid://c80utkmd2pv" path="res://fighters/sonic/actions/attacks/air/ntl/sonic_atk_arn.gd" id="6_qwosf"]
+[ext_resource type="Script" uid="uid://dnofuhng33cq4" path="res://fighters/sonic/actions/attacks/gnd/ntl/1/sonic_atk_nt1.gd" id="7_1oeli"]
+[ext_resource type="Script" uid="uid://byly3tbikvqcg" path="res://fighters/sonic/actions/attacks/air/dnk/sonic_atk_dnk.gd" id="7_ievgi"]
+[ext_resource type="Script" uid="uid://bqocvftcmv6we" path="res://fighters/sonic/actions/attacks/gnd/fwd/lt/sonic_atk_fwl.gd" id="7_qwosf"]
 [ext_resource type="Script" uid="uid://rkkxdvstbqhq" path="res://engine/data_types/guardbox_data.gd" id="7_vypi6"]
+[ext_resource type="Script" uid="uid://c3yy5jnnqoaec" path="res://fighters/sonic/actions/attacks/gnd/ntl/2/sonic_atk_nt2.gd" id="8_4rqpn"]
+[ext_resource type="Script" uid="uid://bxirtaiu5qmwu" path="res://fighters/sonic/actions/attacks/air/fwd/sonic_atk_arf.gd" id="8_77i2r"]
 [ext_resource type="Script" uid="uid://cf1mhd3sjqm8" path="res://engine/data_types/hitbox_group.gd" id="8_wwy2g"]
 [ext_resource type="Script" uid="uid://1sc8scxr35x" path="res://engine/data_types/hurtbox_data.gd" id="9_3a8mk"]
-[ext_resource type="Script" uid="uid://c5r5s7yeui30f" path="res://engine/bases/base_fighter/player_action.gd" id="10_37su5"]
+[ext_resource type="Script" uid="uid://fpa70k1gbhnp" path="res://fighters/sonic/actions/attacks/gnd/ntl/3/sonic_atk_nt3.gd" id="9_bt552"]
+[ext_resource type="Script" uid="uid://c5r5s7yeui30f" path="res://engine/bases/base_fighter/fighter_action.gd" id="10_37su5"]
+[ext_resource type="Script" uid="uid://cgjkotpsxat2j" path="res://fighters/sonic/actions/attacks/air/upr/sonic_atk_aru.gd" id="10_vu3v6"]
+[ext_resource type="Script" uid="uid://1txo1v3txxjx" path="res://fighters/sonic/actions/attacks/gnd/dsh/sonic_atk_dsh.gd" id="11_ievgi"]
+[ext_resource type="Script" uid="uid://d2f50tv82soyd" path="res://fighters/sonic/actions/attacks/gnd/upr/hv/sonic_atk_uph.gd" id="12_xc7en"]
+[ext_resource type="Script" uid="uid://dpifxf00mupjb" path="res://fighters/sonic/actions/attacks/gnd/upr/lt/sonic_atk_upl.gd" id="13_qf8ll"]
 [ext_resource type="Resource" uid="uid://0382vx6yolot" path="res://fighters/sonic/actions/defense/grd/sonic_grd.tres" id="19_ool3m"]
 [ext_resource type="Resource" uid="uid://cdb0g4kua5pvx" path="res://fighters/sonic/actions/defense/dge/air/sonic_dge_air.tres" id="20_eknn3"]
 [ext_resource type="Resource" uid="uid://b6wsy5gibm7hw" path="res://fighters/sonic/actions/defense/dge/gnd/sonic_dge_gnd.tres" id="21_ljclq"]
 [ext_resource type="Resource" uid="uid://cjcfnmwe03kem" path="res://fighters/sonic/actions/movement/air_act/sonic_air.tres" id="22_bf6cd"]
 [ext_resource type="Resource" uid="uid://m8p43e2w6l5j" path="res://fighters/sonic/actions/movement/dsh/sonic_dsh.tres" id="23_xdml8"]
-[ext_resource type="Script" uid="uid://c4c0bekbe6wut" path="res://engine/data_types/player_data.gd" id="30_oa6xk"]
+[ext_resource type="Script" uid="uid://c4c0bekbe6wut" path="res://engine/data_types/fighter_data.gd" id="30_oa6xk"]
 
-[sub_resource type="Resource" id="Resource_6wjkx"]
-script = ExtResource("10_37su5")
+[sub_resource type="Resource" id="Resource_kwxtg"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
 
-[sub_resource type="Resource" id="Resource_illta"]
-script = ExtResource("10_37su5")
+[sub_resource type="Resource" id="Resource_dbh5c"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_1da8x"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_nvw88"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_kwxtg"), SubResource("Resource_dbh5c"), SubResource("Resource_1da8x")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_1328r"]
+script = ExtResource("6_l8sre")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_nvw88")
+})
+metadata/_custom_type_script = "uid://clv2rbferyyro"
+
+[sub_resource type="Resource" id="Resource_j0tn4"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_1bwpm"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_l5sus"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_j0tn4"), SubResource("Resource_1bwpm")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_2bx8o"]
+script = ExtResource("7_ievgi")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_l5sus")
+})
+metadata/_custom_type_script = "uid://byly3tbikvqcg"
+
+[sub_resource type="Resource" id="Resource_wdt51"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_dh4fc"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_ymasx"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_wdt51"), SubResource("Resource_dh4fc")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_l4f7h"]
+script = ExtResource("8_77i2r")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_ymasx")
+})
+metadata/_custom_type_script = "uid://bxirtaiu5qmwu"
+
+[sub_resource type="Resource" id="Resource_oif2o"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_iom73"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_oif2o")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_py0ix"]
+script = ExtResource("6_qwosf")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_iom73")
+})
+metadata/_custom_type_script = "uid://c80utkmd2pv"
+
+[sub_resource type="Resource" id="Resource_xmm7n"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_xpohp"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_xmm7n")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_nplts"]
+script = ExtResource("10_vu3v6")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_xpohp")
+})
+metadata/_custom_type_script = "uid://cgjkotpsxat2j"
+
+[sub_resource type="Resource" id="Resource_2x2gw"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_w6t7p"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_2x2gw")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_idnpq"]
+script = ExtResource("11_ievgi")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_w6t7p")
+})
+metadata/_custom_type_script = "uid://1txo1v3txxjx"
+
+[sub_resource type="Resource" id="Resource_cl48n"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_itqph"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_cl48n")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_or4nb"]
+script = ExtResource("6_oi3i0")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_itqph")
+})
+metadata/_custom_type_script = "uid://c3tdu4axbb6wd"
+
+[sub_resource type="Resource" id="Resource_68ryy"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_l1m6o"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_68ryy")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_lbp1w"]
+script = ExtResource("7_qwosf")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_l1m6o")
+})
+metadata/_custom_type_script = "uid://bqocvftcmv6we"
+
+[sub_resource type="Resource" id="Resource_koybp"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_bxqwe"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_koybp")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_00kd1"]
+script = ExtResource("7_1oeli")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_bxqwe")
+})
+metadata/_custom_type_script = "uid://dnofuhng33cq4"
+
+[sub_resource type="Resource" id="Resource_67y5v"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_v76ad"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_67y5v")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_oi3i0"]
+script = ExtResource("8_4rqpn")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_v76ad")
+})
+metadata/_custom_type_script = "uid://c3yy5jnnqoaec"
+
+[sub_resource type="Resource" id="Resource_1k5qc"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_cxkcp"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_1k5qc")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_qwosf"]
+script = ExtResource("9_bt552")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_cxkcp")
+})
+metadata/_custom_type_script = "uid://fpa70k1gbhnp"
+
+[sub_resource type="Resource" id="Resource_77i2r"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_ievgi"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_77i2r")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_kq4qv"]
+script = ExtResource("12_xc7en")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_ievgi")
+})
+metadata/_custom_type_script = "uid://d2f50tv82soyd"
+
+[sub_resource type="Resource" id="Resource_l8sre"]
+script = ExtResource("6_koybp")
+hit_damage = 0.0
+hit_angle = Vector2(0, 0)
+hit_knockback = 0.0
+hit_stun = 0.0
+hit_lag = 0.0
+shield_damage = 0.0
+shield_knockback = 0.0
+shield_stun = 0.0
+shield_lag = 0.0
+type_launch = 0
+type_hitbox = 0
+type_angle = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
+
+[sub_resource type="Resource" id="Resource_sxjb0"]
+script = ExtResource("8_wwy2g")
+hitboxes = Array[ExtResource("6_koybp")]([SubResource("Resource_l8sre")])
+metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
+
+[sub_resource type="Resource" id="Resource_w13l2"]
+script = ExtResource("13_qf8ll")
+hitbox_groups = Dictionary[StringName, ExtResource("8_wwy2g")]({
+&"A": SubResource("Resource_sxjb0")
+})
+metadata/_custom_type_script = "uid://dpifxf00mupjb"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c41x5"]
 radius = 0.28
@@ -88,6 +643,8 @@ script = ExtResource("10_37su5")
 resource_name = "SonicData"
 script = ExtResource("30_oa6xk")
 display_name = "Sonic"
+portrait_path = "uid://by4srida44enh"
+life_icon_path = "uid://by4srida44enh"
 walk_startup_frames = 2.0
 walk_start_acceleration = 2.0
 walk_start_speed = 6.0
@@ -105,8 +662,19 @@ mov_mob_air = ExtResource("22_bf6cd")
 mov_def_grd = ExtResource("19_ool3m")
 mov_dge_gnd = ExtResource("21_ljclq")
 mov_dge_air = ExtResource("20_eknn3")
-atk_dsh_fwd = SubResource("Resource_6wjkx")
-atk_dsh_upr = SubResource("Resource_illta")
+atk_nt1 = SubResource("Resource_00kd1")
+atk_nt2 = SubResource("Resource_oi3i0")
+atk_nt3 = SubResource("Resource_qwosf")
+atk_fwl = SubResource("Resource_lbp1w")
+atk_fwh = SubResource("Resource_or4nb")
+atk_upl = SubResource("Resource_w13l2")
+atk_uph = SubResource("Resource_kq4qv")
+atk_dsh = SubResource("Resource_idnpq")
+atk_air_ntl = SubResource("Resource_py0ix")
+atk_air_fwd = SubResource("Resource_l4f7h")
+atk_air_upr = SubResource("Resource_nplts")
+atk_air_act = SubResource("Resource_1328r")
+atk_air_dnk = SubResource("Resource_2bx8o")
 sht_air_ntl = SubResource("Resource_dwip6")
 sht_air_fwd = SubResource("Resource_3kyru")
 sht_air_upr = SubResource("Resource_28pyt")

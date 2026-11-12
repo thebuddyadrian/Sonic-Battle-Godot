@@ -86,7 +86,7 @@ func initialize_match():
 	assert(stage.player_spawn_4, "No spawn position has been placed for player 4")
 	for i in range(MatchSetup.get_total_players()):
 		var character = MatchSetup.character_choices[i + 1]
-		var player: PlayerBrain = ResourceLoader.load("res://scenes/objects/players/player_%s.tscn" % character).instantiate()
+		var player: FighterBrain = ResourceLoader.load("res://fighters/sonic/fighter_sonic.tscn").instantiate()
 		# Get the player_spawn_<x> variable, which holds a node reference to the spawn position
 		var spawn_position: Node3D = stage.get("player_spawn_%s" % str(i + 1))
 		spawn_position.get_parent().add_child(player)
@@ -185,19 +185,19 @@ func _physics_process(delta: float) -> void:
 func _get_alive_player_count():
 	var count: int = 0
 	for player in get_tree().get_nodes_in_group("characters"):
-		if player is PlayerBrain:
+		if player is FighterBrain:
 			if player.points > 0:
 				count += 1
 	return count
 
 
-func _on_player_kod(player: PlayerBrain):
+func _on_player_kod(player: FighterBrain):
 	# Your placement depends on how many players were alive when you got KO'd
 	MatchResults.results[player.player_id] = _get_alive_player_count() + 1
 	if _get_alive_player_count() <= 1:
 		# Add the winner player
 		for remaining_player in get_tree().get_nodes_in_group("characters"):
-			if remaining_player is PlayerBrain:
+			if remaining_player is FighterBrain:
 				if remaining_player.points > 0:
 					MatchResults.results[remaining_player.player_id] = 1
 		_go_to_results_screen()

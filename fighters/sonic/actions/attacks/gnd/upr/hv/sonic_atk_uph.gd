@@ -1,4 +1,4 @@
-class_name SonicAtkUpH extends PlayerAction
+class_name SonicAtkUpH extends FighterAction
 
 
 func wake() -> void:

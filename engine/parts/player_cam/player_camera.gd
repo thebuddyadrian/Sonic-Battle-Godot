@@ -13,7 +13,7 @@ class_name BattleCamera
 @onready var pivot: Node3D = %Pivot
 
 var player_id_to_track: int = 1: set = set_id_to_track
-var player_to_track: PlayerBrain
+var player_to_track: FighterBrain
 
 # Set from the level script if the camera follows the player
 var _dont_rotate = false
@@ -37,7 +37,7 @@ func _process(delta):
 		look_at_from_position(global_position, rotation_target.global_position)
 
 func find_player_to_track(player_id: int) -> void:
-	for player: PlayerBrain in get_tree().get_nodes_in_group("characters"):
+	for player: FighterBrain in get_tree().get_nodes_in_group("characters"):
 		if player.player_id == player_id:
 			player_to_track = player
 			break
