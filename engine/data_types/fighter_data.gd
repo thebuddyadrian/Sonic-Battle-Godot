@@ -10,22 +10,22 @@ class_name FighterData extends Resource
 @export var walk_speed: float = 10.0
 @export var walk_acceleration: float = 2.0
 @export var walk_deceleration: float = 3.0
-@export var walk_startup_frames: float = 5.0
+@export var walk_startup_frames: int = 5
 @export var walk_start_acceleration: float = 0.2
 @export var walk_start_speed: float = 4.0
-@export var walk_stop_frames: float = 14.0
+@export var walk_stop_frames: int = 14
 @export_subgroup("Turn", "turn")
-@export var turn_idle_frames: float = 9.0
-@export var turn_walk_frames: float = 20.0
+@export var turn_idle_frames: int = 9
+@export var turn_walk_frames: int = 20
 @export_subgroup("Land", "land")
-@export var land_soft_lag: float = 4.0
-@export var land_hard_lag: float = 20.0
+@export var land_soft_lag: int = 4
+@export var land_hard_lag: int = 20
 @export var land_deceleration: float = 0.5
 @export_subgroup("Dodge", "dodge")
-@export var dodge_startup_frames: float = 4.0
-@export var dodge_active_frames: float = 11.0
-@export var dodge_endlag_frames: float = 14.0
-@export var dodge_cooldown_frames: float = 20.0
+@export var dodge_startup_frames: int = 4
+@export var dodge_active_frames: int = 11
+@export var dodge_endlag_frames: int = 14
+@export var dodge_cooldown_frames: int = 20
 @export var dodge_speed: float = 20.0
 @export var dodge_acceleration: float = 10.0
 @export var dodge_deceleration: float = 5.0
@@ -39,17 +39,17 @@ class_name FighterData extends Resource
 @export var air_deceleration: float = 0.2
 @export_subgroup("Jump", "jump")
 @export_subgroup("Jump/Squat", "jump_squat")
-@export var jump_squat_frames: float = 3.0
+@export var jump_squat_frames: int = 3
 @export var jump_squat_deceleration: float = 0.05
 @export_subgroup("Jump/Short", "jump_short")
 @export_custom(PROPERTY_HINT_NONE, "suffix:m") var jump_short_height: float = 3.0
-@export_custom(PROPERTY_HINT_RANGE, "0,1,1,or_greater,hide_slider,suffix:f") var jump_short_frames_to_peak: float = 20.0
+@export_custom(PROPERTY_HINT_RANGE, "0,1,1,or_greater,hide_slider,suffix:f") var jump_short_frames_to_peak: int = 20
 @export_subgroup("Jump/Full", "jump_full")
 @export_custom(PROPERTY_HINT_NONE, "suffix:m") var jump_full_height: float = 5.0
-@export_custom(PROPERTY_HINT_RANGE, "0,1,1,or_greater,hide_slider,suffix:f") var jump_full_frames_to_peak: float = 30.0
+@export_custom(PROPERTY_HINT_RANGE, "0,1,1,or_greater,hide_slider,suffix:f") var jump_full_frames_to_peak: int = 30
 @export_subgroup("Fall", "fall")
-@export_custom(PROPERTY_HINT_RANGE, "0,1,1,or_greater,hide_slider,suffix:f") var fall_frames_to_descent: float = 25.0
-@export var fall_fast_frames_to_descent: float = 15.0
+@export_custom(PROPERTY_HINT_RANGE, "0,1,1,or_greater,hide_slider,suffix:f") var fall_frames_to_descent: int = 25
+@export var fall_fast_frames_to_descent: int = 15
 @export_custom(PROPERTY_HINT_NONE, "suffix:m/s") var fall_max_speed: float = 25.0
 @export_custom(PROPERTY_HINT_NONE, "suffix:m/s") var fall_fast_max_speed: float = 40.0
 
@@ -137,18 +137,19 @@ class_name FighterData extends Resource
 @export var atk_dsh: FighterAction
 #endregion
 #region AIR ATTACKS
-@export_subgroup("Attacks/Air", "atk_air")
-@export var atk_air_ntl: FighterAction
-@export var atk_air_fwd: FighterAction:
+@export_subgroup("Attacks/Air", "atk_ar")
+@export var atk_arn: FighterAction
+@export var atk_arf: FighterAction:
 	get():
-		return atk_air_ntl if !atk_air_fwd else atk_air_fwd
-@export var atk_air_upr: FighterAction:
+		return atk_arn if !atk_arf else atk_arf
+@export var atk_aru: FighterAction:
 	get():
-		return atk_air_ntl if !atk_air_upr else atk_air_upr
-@export var atk_air_act: FighterAction:
+		return atk_arn if !atk_aru else atk_aru
+@export var atk_ara: FighterAction:
 	get():
-		return atk_air_ntl if !atk_air_act else atk_air_act
-@export var atk_air_dnk: FighterAction
+		return atk_arn if !atk_ara else atk_ara
+@export_subgroup("Attacks/Air/Dunk", "atk_dnk")
+@export var atk_dnk: FighterAction
 #endregion
 #region GROUND SPECIALS
 @export_subgroup("Specials")

@@ -15,6 +15,7 @@ var debug_color: Color:
 
 signal trigger_entered(self_box: TriggerArea, other_box: TriggerArea)
 
+
 func _init(_data: TriggerData, _owner: EntityBody) -> void:
 	box_data = _data
 	box_owner = _owner
@@ -70,7 +71,7 @@ func _physics_process(delta: float) -> void:
 		frame += floorf(delta*Globals.FPS)
 	if frame >= get_data().duration && get_data().duration > 0.0:
 		deactivate()
-		
+
 func _on_box_entered(area: Area3D) -> void:
 	if !(area is TriggerArea):
 		return

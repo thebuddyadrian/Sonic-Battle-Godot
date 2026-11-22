@@ -20,6 +20,9 @@ func send_remote_stop(peer_id: int) -> void:
 func send_input_tick(peer_id: int, msg: PackedByteArray) -> void:
 	pass
 
+func send_sync_message(peer_id: int, msg: Dictionary) -> void:
+	pass
+
 func is_network_host() -> bool:
 	return my_peer_id == 1
 

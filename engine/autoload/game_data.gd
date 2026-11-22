@@ -1,14 +1,14 @@
 extends Node
 
-var _character_info_dict: Dictionary[String, FighterData]
-var _stage_info_dict: Dictionary[String, StageInfo]
+var _fighter_data_dict: Dictionary[String, FighterData]
+var _stage_data_dict: Dictionary[String, StageData]
 
-# TO-DO store characters in a list resource instead of storing it here in an array
-var characters: Array[String] = [
+# TO-DO store fighters in a list resource instead of storing it here in an array
+var fighters: Array[String] = [
 	"sonic", 
-	"tails", 
-	"knuckles", 
-	"shadow",
+	#"tails", 
+	#"knuckles", 
+	#"shadow",
 	# "kid_goku",
 	#"rouge",
 	#"amy",
@@ -32,11 +32,11 @@ var modded_battle_stages: Array[String]
 
 
 func _init() -> void:
-	# Preload all CharacterInfo resources
-	for character in characters:
-		_character_info_dict[character] = load("res://fighters/%s/%s_data.tres" % [character, character])
+	# Preload all FighterData resources
+	for fighter in fighters:
+		_fighter_data_dict[fighter] = load("res://fighters/%s/resources/%s_data.tres" % [fighter, fighter])
 	for stage in battle_stages:
-		_stage_info_dict[stage] = load("res://stages/%s/%s.tres" % [stage, stage])
+		_stage_data_dict[stage] = load("res://stages/%s/%s.tres" % [stage, stage])
 
 
 func _ready() -> void:
@@ -67,11 +67,11 @@ func _ready() -> void:
 		print("Failed to open " + stage_mods_folder)
 
 
-func get_character_info(character_name: String):
-	assert(_character_info_dict.has(character_name), "Cannot find CharacterInfo for %s" % character_name)
-	return _character_info_dict[character_name]
+func get_fighter_data(fighter_name: String):
+	assert(_fighter_data_dict.has(fighter_name), "Cannot find FighterData for %s" % fighter_name)
+	return _fighter_data_dict[fighter_name]
 
 
-func get_stage_info(stage_name: String):
-	assert(_stage_info_dict.has(stage_name), "Cannot find StageInfo for %s" % stage_name)
-	return _stage_info_dict[stage_name]
+func get_stage_data(stage_name: String):
+	assert(_stage_data_dict.has(stage_name), "Cannot find StageData for %s" % stage_name)
+	return _stage_data_dict[stage_name]

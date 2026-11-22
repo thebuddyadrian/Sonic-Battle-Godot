@@ -1,10 +1,22 @@
 [gd_scene format=3 uid="uid://ck27muptncsc5"]
 
 [ext_resource type="Script" uid="uid://dvpv5r8m73cr2" path="res://engine/match_scene/match_scene.gd" id="1_wwbcy"]
+[ext_resource type="Script" uid="uid://gnc2sowsyj1a" path="res://addons/delta_rollback_rapier/PhysicsWorld.gd" id="2_1eg0s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gaejm"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_1eg0s"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_2xlw5"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_vn64n"]
+font_size = 32
 
 [node name="MatchScene" type="Node3D" unique_id=494511853]
 script = ExtResource("1_wwbcy")
-test_characters = Array[String](["sonic"])
 test_stage = "test_stage"
 
 [node name="SubViewportGridContainer" type="GridContainer" parent="." unique_id=10805103]
@@ -37,3 +49,122 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=321029605]
+
+[node name="MainMenu" type="HBoxContainer" parent="CanvasLayer" unique_id=1697186015]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -20.0
+offset_right = 99.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LocalButton" type="Button" parent="CanvasLayer/MainMenu" unique_id=1143274902]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play Locally"
+
+[node name="OnlineButton" type="Button" parent="CanvasLayer/MainMenu" unique_id=1675401713]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play Online"
+
+[node name="ConnectionWindow" type="Window" parent="CanvasLayer" unique_id=1121534982]
+oversampling_override = 1.0
+title = "Online"
+initial_position = 1
+size = Vector2i(400, 200)
+visible = false
+theme_override_font_sizes/title_font_size = 32
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ConnectionWindow" unique_id=739780177]
+offset_right = 400.0
+offset_bottom = 200.0
+columns = 2
+
+[node name="HostLabel" type="Label" parent="CanvasLayer/ConnectionWindow/GridContainer" unique_id=1191496498]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Host:"
+label_settings = SubResource("LabelSettings_gaejm")
+vertical_alignment = 1
+
+[node name="HostField" type="LineEdit" parent="CanvasLayer/ConnectionWindow/GridContainer" unique_id=2058279037]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "127.0.0.1"
+
+[node name="PortLabel" type="Label" parent="CanvasLayer/ConnectionWindow/GridContainer" unique_id=719988595]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Port:"
+label_settings = SubResource("LabelSettings_1eg0s")
+vertical_alignment = 1
+
+[node name="PortField" type="LineEdit" parent="CanvasLayer/ConnectionWindow/GridContainer" unique_id=1044271953]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "9999"
+
+[node name="ServerButton" type="Button" parent="CanvasLayer/ConnectionWindow/GridContainer" unique_id=1442910199]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Server"
+
+[node name="ClientButton" type="Button" parent="CanvasLayer/ConnectionWindow/GridContainer" unique_id=1669500311]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Client"
+
+[node name="MessageLabel" type="Label" parent="CanvasLayer" unique_id=843545432]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_2xlw5")
+horizontal_alignment = 1
+
+[node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=1090303474]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -54.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "RESET"
+
+[node name="SyncLostLabel" type="Label" parent="CanvasLayer" unique_id=835284153]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -257.0
+offset_bottom = 45.0
+grow_horizontal = 0
+text = "Regaining Sync..."
+label_settings = SubResource("LabelSettings_vn64n")
+
+[node name="PhysicsWorld" type="Node" parent="." unique_id=938621787 node_paths=PackedStringArray("root_node") groups=["network_sync"]]
+script = ExtResource("2_1eg0s")
+physics_3d = true
+root_node = NodePath("..")

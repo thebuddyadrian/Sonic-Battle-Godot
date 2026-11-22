@@ -10,7 +10,7 @@ var player_tracking: FighterBrain
 
 
 func track_player(player: FighterBrain):
-	icon.texture = load(GameData.get_character_info(player.char_name).life_icon_path)
+	icon.texture = load(GameData.get_fighter_data(player.fighter_name).life_icon_path)
 	lifebar.max_value = player.data.combat_max_hp
 	player_tracking = player
 	pause_menu.player_id = player.player_id

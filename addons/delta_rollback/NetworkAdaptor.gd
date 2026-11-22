@@ -5,6 +5,8 @@ signal received_ping_back (peer_id, msg)
 signal received_remote_start ()
 signal received_remote_stop ()
 signal received_input_tick (peer_id, msg)
+# Reliable messages that come once: a peer leaving, a peer joining.
+signal received_sync_message (peer_id, msg)
 
 func attach_network_adaptor(sync_manager) -> void:
 	pass
@@ -32,6 +34,12 @@ func send_remote_stop(peer_id: int) -> void:
 
 func send_input_tick(peer_id: int, msg: PackedByteArray) -> void:
 	push_error("UNIMPLEMENTED ERROR: NetworkAdaptor.send_input_tick()")
+
+# Reliable and ordered: sent once, they must arrive. msg holds only
+# Variants that var_to_bytes() takes, and can be up to 64 KiB once serialized
+# (a part of a match's state, for a late join).
+func send_sync_message(peer_id: int, msg: Dictionary) -> void:
+	push_error("UNIMPLEMENTED ERROR: NetworkAdaptor.send_sync_message()")
 
 func is_network_host() -> bool:
 	push_error("UNIMPLEMENTED ERROR: NetworkAdaptor.is_network_host()")

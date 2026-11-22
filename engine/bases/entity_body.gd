@@ -1,4 +1,4 @@
-class_name EntityBody extends CharacterBody3D
+class_name EntityBody extends RapierCharacterBody3D
 
 
 @onready var center_point: Marker3D = $CenterPoint
@@ -8,7 +8,7 @@ class_name EntityBody extends CharacterBody3D
 
 var global_facing_dir: float = 0.0
 var global_facing_dir_h: float = 1.0
-var frame: float = 0.0
+var frame: int = 0
 var pause_frame: float = 0.0
 var pause_dur: float = 0.0
 var pause_pos: Vector3 = Vector3.ZERO
@@ -22,7 +22,7 @@ signal pause_finished
 func update(delta: float) -> void:
 	var delta_frame: float = floorf(delta*60.0)
 	if pause_dur == 0.0:
-		frame += delta_frame
+		frame += int(delta_frame)
 	sprite.flipped = global_facing_dir_h <= 0.0
 
 func update_freeze(delta: float) -> void:
@@ -61,13 +61,13 @@ func get_center() -> Vector3:
 	return center_point.global_position
 
 func update_facing_dir(direction: Vector3) -> void:
-	var target_dir: float = Vector3.RIGHT.signed_angle_to(direction, Vector3.UP)
-	var facing_dir_x: float = cos(global_facing_dir)
-	var target_dir_x: float = cos(target_dir)
+	var target_dir: float = DetMath.signed_angle_to_3d(Vector3.RIGHT, direction, Vector3.UP)
+	var facing_dir_x: float = DetMath._math.cos(global_facing_dir)
+	var target_dir_x: float = DetMath._math.cos(target_dir)
 	global_facing_dir = target_dir
-	var dir_x: float = cos(fposmod((cam.global_rotation.y - global_facing_dir), 2*PI))
-	if absf(dir_x) > 0.01:
-		global_facing_dir_h = signf(cos(global_facing_dir))
+	var dir_x: float = DetMath._math.cos(fposmod((cam.global_rotation.y - global_facing_dir), 2*PI))
+	if absf(dir_x) > 0.1:
+		global_facing_dir_h = signf(DetMath._math.cos(global_facing_dir))
 
 func move_center_to_point(point: Vector3, collide: bool = false) -> void:
 	var target_pos: Vector3 = point-center_point.position

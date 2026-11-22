@@ -22,13 +22,13 @@ func _ready() -> void:
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	var rot = snappedi(rotation.y, 1.0)
+func _process(delta: float) -> void:
+	var rot = snappedi(rotation.y, 1)
 	
-	if taptime > 0:
-		taptime -= 1
-	else:
-		taps = 0
+	#if taptime > 0:
+		#taptime -= 1
+	#else:
+		#taps = 0
 	# if Input.is_action_just_pressed("Flipcam"):
 	# 	taps += 1
 		
@@ -54,7 +54,6 @@ func _physics_process(delta: float) -> void:
 		camera.set_cull_mask_value(SPRITE_DEFAULT_VISUAL_LAYER + 1, true)
 		camera.set_cull_mask_value(SPRITE_FLIPPED_VISUAL_LAYER + 1, false)
 		
-
 
 func set_player_to_follow(player: FighterBrain):
 	player_to_follow = player

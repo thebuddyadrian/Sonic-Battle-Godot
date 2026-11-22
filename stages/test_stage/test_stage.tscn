@@ -17,7 +17,7 @@ size = Vector3(50, 1, 50)
 
 [node name="TestStage" type="Node3D" unique_id=1371610172 node_paths=PackedStringArray("player_spawn_1", "player_spawn_2", "player_spawn_3", "player_spawn_4", "camera_root_parent")]
 script = ExtResource("1_11kma")
-stage_info = ExtResource("2_jijik")
+stage_data = ExtResource("2_jijik")
 player_spawn_1 = NodePath("PlayerSpawn1")
 player_spawn_2 = NodePath("PlayerSpawn2")
 player_spawn_3 = NodePath("PlayerSpawn3")

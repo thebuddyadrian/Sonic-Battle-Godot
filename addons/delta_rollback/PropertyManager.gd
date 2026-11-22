@@ -35,17 +35,42 @@ func _load_state_forward(state: Array, events: Dictionary) -> void:
 	load_state_forward(state, events)
 
 
-static func _prepare_events_up_to_tick(sync_manager: Node, tick_number: int, events: Dictionary, state: Array) -> Dictionary:
-	# only keep the last tick for each node
+# The last time each key was set: _prepare_events_up_to_tick() keeps that
+# value, in the order they were last set, whatever comes after. Not for the
+# nodes gone for good (SyncManager._nodes_gone()): every load is from a later
+# tick.
+static func _compact_events(events: Dictionary, _tick: int, _state, states := {}) -> Dictionary:
+	var last := {}
+	for t in events:
+		var tick_events: Array = events[t]
+		for i in tick_events.size():
+			last[tick_events[i][0]] = [t, i]
+	var node_paths := []
+	for key in last:
+		node_paths.append(key.get_slice(":", 0))
+	var gone: Dictionary = SyncManager._nodes_gone(node_paths, states)
+	var compacted := {}
+	for t in events:
+		var tick_events: Array = events[t]
+		var kept := []
+		for i in tick_events.size():
+			var key: String = tick_events[i][0]
+			if last[key] == [t, i] and not gone.has(key.get_slice(":", 0)):
+				kept.append(tick_events[i])
+		if not kept.is_empty():
+			compacted[t] = kept
+	return compacted
+
+
+# The last value of each key, in the order they were last set, up to the tick.
+# Also for nodes not in the tree yet, which the load spawns; those of keys with
+# a record in the state are replaced by it (load_state_forward()).
+static func _prepare_events_up_to_tick(_sync_manager: Node, tick_number: int, events: Dictionary, _state: Array) -> Dictionary:
 	var prepared_events := {}
 	for t in events.keys():
-		# Only load up to the asked tick
 		if t > tick_number:
 			break
-		var new_event = events[t]
-		for e in new_event:
-			# don't care if the node is not present or if the value will be erased by the state
-			if sync_manager.get_node_or_null(e[0]) and not e[0] in state[0]:
-				prepared_events[e[0]] = e[1]
-				
+		for e in events[t]:
+			prepared_events.erase(e[0])
+			prepared_events[e[0]] = e[1]
 	return prepared_events

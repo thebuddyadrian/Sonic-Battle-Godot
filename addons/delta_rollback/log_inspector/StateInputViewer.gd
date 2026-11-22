@@ -4,6 +4,7 @@ extends VBoxContainer
 const LogData = preload("res://addons/delta_rollback/log_inspector/LogData.gd")
 const ReplayServer = preload("res://addons/delta_rollback/log_inspector/ReplayServer.gd")
 const DebugStateComparer = preload("res://addons/delta_rollback/DebugStateComparer.gd")
+const LogAnnotator = preload("res://addons/delta_rollback/LogAnnotator.gd")
 
 const JSON_INDENT = "    "
 
@@ -51,10 +52,19 @@ func refresh_replay() -> void:
 				state_data = state_frame.state
 			
 			var events = SyncManager.get_events_up_to_tick(tick, state_data, log_data.events, log_data._events_scripts)
+			# The peers who joined the match in progress, by the tick each
+			# plays from: the host's input saying so may come before this one.
+			var joins := {}
+			for logged_tick in log_data.input:
+				var peers_input: Dictionary = log_data.input[logged_tick].input
+				for peer_id in peers_input:
+					joins.merge(peers_input[peer_id].get(SyncManager.JOIN_INPUT_KEY, {}))
 			replay_server.send_message({
 				type = "load_state",
+				tick = tick,
 				state = state_data,
 				events = events,
+				joins = joins,
 			})
 
 func clear() -> void:
@@ -84,8 +94,13 @@ func _on_TickNumber_value_changed(value: float) -> void:
 		_create_tree_from_mismatches(input_mismatches_data_tree, input_frame.input, input_frame.mismatches)
 	
 	if state_frame:
-		_create_tree_items_from_dictionary(state_data_tree, state_data_tree.create_item(), state_frame.state)
-		_create_tree_from_mismatches(state_mismatches_data_tree, state_frame.state, state_frame.mismatches)
+		# Shown and compared with names on the values saved as Arrays.
+		var state := LogAnnotator.annotate_state(state_frame.state)
+		var mismatches := {}
+		for peer_id in state_frame.mismatches:
+			mismatches[peer_id] = LogAnnotator.annotate_state(state_frame.mismatches[peer_id])
+		_create_tree_items_from_dictionary(state_data_tree, state_data_tree.create_item(), state)
+		_create_tree_from_mismatches(state_mismatches_data_tree, state, mismatches)
 	
 	refresh_replay()
 

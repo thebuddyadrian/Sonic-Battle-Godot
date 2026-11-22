@@ -19,16 +19,26 @@ func _remote_ping_back(msg: Dictionary) -> void:
 func send_remote_start(peer_id: int) -> void:
 	rpc_id(peer_id, "_remote_start")
 
-@rpc("any_peer", "unreliable")
+# Reliable: sent once, unlike the pings and input ticks.
+@rpc("any_peer", "reliable")
 func _remote_start() -> void:
 	emit_signal("received_remote_start")
 
 func send_remote_stop(peer_id: int) -> void:
 	rpc_id(peer_id, "_remote_stop")
 
-@rpc("any_peer", "unreliable")
+# Reliable: sent once, unlike the pings and input ticks.
+@rpc("any_peer", "reliable")
 func _remote_stop() -> void:
 	emit_signal("received_remote_stop")
+
+func send_sync_message(peer_id: int, msg: Dictionary) -> void:
+	rpc_id(peer_id, "_remote_sync_message", msg)
+
+# Reliable: sent once, unlike the pings and input ticks.
+@rpc("any_peer", "reliable")
+func _remote_sync_message(msg: Dictionary) -> void:
+	emit_signal("received_sync_message", multiplayer.get_remote_sender_id(), msg)
 
 func send_input_tick(peer_id: int, msg: PackedByteArray) -> void:
 	rpc_id(peer_id, '_rit', msg)
@@ -37,7 +47,7 @@ func is_network_host() -> bool:
 	return multiplayer.is_server()
 
 func is_network_master_for_node(node: Node) -> bool:
-	return node.is_network_master()
+	return node.is_multiplayer_authority()
 
 func get_network_unique_id() -> int:
 	return multiplayer.get_unique_id()

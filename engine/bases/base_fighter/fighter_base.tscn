@@ -6,10 +6,6 @@
 [ext_resource type="Script" uid="uid://dy6nbw3lad7ow" path="res://engine/bases/base_fighter/fighter_state_machine.gd" id="4_srrlm"]
 [ext_resource type="Script" uid="uid://q7goxdaup0lj" path="res://engine/parts/shadow_raycast.gd" id="5_06n2y"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u1vfk"]
-radius = 0.3
-height = 1.5
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jo4yj"]
 render_priority = 1
 transparency = 1
@@ -37,7 +33,7 @@ height = 0.001
 radial_segments = 16
 cap_bottom = false
 
-[node name="Fighter" type="CharacterBody3D" unique_id=1535971227]
+[node name="Fighter" type="CharacterBody3D" unique_id=1535971227 groups=["network_sync"]]
 collision_layer = 0
 input_ray_pickable = false
 axis_lock_angular_x = true
@@ -51,17 +47,7 @@ script = ExtResource("1_srrlm")
 [node name="Collbox" type="CollisionShape3D" parent="." unique_id=1644590465]
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
-[node name="GrabBox" type="Area3D" parent="." unique_id=863282851]
-collision_layer = 0
-collision_mask = 0
-
-[node name="GrabBoxShape" type="CollisionShape3D" parent="GrabBox" unique_id=172974575]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.8, 0.85, 0)
-shape = SubResource("CapsuleShape3D_u1vfk")
-disabled = true
-debug_color = Color(1, 0.5019608, 0, 1)
-
-[node name="GrabPoint" type="Marker3D" parent="GrabBox" unique_id=379838720]
+[node name="GrabPoint" type="Marker3D" parent="." unique_id=379838720]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0.9, 0)
 
 [node name="CenterPoint" type="Marker3D" parent="." unique_id=911248692]
@@ -82,7 +68,7 @@ metadata/_custom_type_script = "uid://d0127k12xvws"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1803453290]
 autoplay = &"Idle"
 
-[node name="FighterStateMachine" type="Node" parent="." unique_id=345778050]
+[node name="FighterStateMachine" type="Node" parent="." unique_id=345778050 groups=["network_sync"]]
 script = ExtResource("4_srrlm")
 
 [node name="ShadowRayCast" type="RayCast3D" parent="." unique_id=1155105408]

@@ -1,0 +1,79 @@
+[gd_resource type="Resource" script_class="FighterData" format=3 uid="uid://dmu4k5t8fwr7e"]
+
+[ext_resource type="Resource" uid="uid://cp1g1vvx0aq8b" path="res://fighters/sonic/actions/attacks/air/act/atk_ara.tres" id="1_jhur0"]
+[ext_resource type="Resource" uid="uid://dumtry1ox0oq2" path="res://fighters/sonic/actions/attacks/air/dnk/atk_dnk.tres" id="2_8d2t2"]
+[ext_resource type="Resource" uid="uid://c23wkg3dit042" path="res://fighters/sonic/actions/movement/air_act/air_act.tres" id="2_a7uja"]
+[ext_resource type="Resource" uid="uid://cgkophbyprmbd" path="res://fighters/sonic/actions/defense/grd/grd.tres" id="2_ivvbv"]
+[ext_resource type="Resource" uid="uid://da04uijcmqxkb" path="res://fighters/sonic/actions/attacks/air/fwd/atk_arf.tres" id="2_whcbv"]
+[ext_resource type="Resource" uid="uid://v4axunmtm2ok" path="res://fighters/sonic/actions/movement/dsh/dsh.tres" id="3_auns5"]
+[ext_resource type="Resource" uid="uid://c081ix3b30364" path="res://fighters/sonic/actions/attacks/air/ntl/atk_arn.tres" id="3_r0qro"]
+[ext_resource type="Resource" uid="uid://dnesmc3t5jrpo" path="res://fighters/sonic/actions/defense/hel/hel.tres" id="3_urfhl"]
+[ext_resource type="Resource" uid="uid://cteh5dvgong6k" path="res://fighters/sonic/actions/attacks/gnd/dsh/atk_dsh.tres" id="3_whcbv"]
+[ext_resource type="Resource" uid="uid://b7sywvibgntf6" path="res://fighters/sonic/actions/attacks/air/upr/atk_aru.tres" id="4_nj2ql"]
+[ext_resource type="Resource" uid="uid://bitxjb7idk4x8" path="res://fighters/sonic/actions/attacks/gnd/fwd/hv/atk_fwh.tres" id="4_r0qro"]
+[ext_resource type="Script" uid="uid://1sc8scxr35x" path="res://engine/data_types/hurtbox_data.gd" id="5_nf8ls"]
+[ext_resource type="Resource" uid="uid://crd0w5gqvrch2" path="res://fighters/sonic/actions/attacks/gnd/fwd/lt/atk_fwl.tres" id="5_nj2ql"]
+[ext_resource type="Resource" uid="uid://txtvidpvnftf" path="res://fighters/sonic/actions/attacks/gnd/ntl/1/atk_nt1.tres" id="6_vjstf"]
+[ext_resource type="Resource" uid="uid://bei4u20qqjgbv" path="res://fighters/sonic/actions/attacks/gnd/ntl/2/atk_nt2.tres" id="7_2fi43"]
+[ext_resource type="Resource" uid="uid://cbf1arhva2xx2" path="res://fighters/sonic/actions/attacks/gnd/ntl/3/atk_nt3.tres" id="8_6nsia"]
+[ext_resource type="Resource" uid="uid://hhxt5yai63vx" path="res://fighters/sonic/actions/attacks/gnd/upr/hv/atk_uph.tres" id="9_0sg37"]
+[ext_resource type="Resource" uid="uid://cbu6bqu4camrx" path="res://fighters/sonic/actions/attacks/gnd/upr/lt/atk_upl.tres" id="10_ea0fh"]
+[ext_resource type="Resource" uid="uid://bihmhhleh1wes" path="res://fighters/sonic/actions/defense/dge/air/dga.tres" id="14_oc678"]
+[ext_resource type="Resource" uid="uid://rrteevmgmxuo" path="res://fighters/sonic/actions/defense/dge/gnd/dgg.tres" id="15_nf8ls"]
+[ext_resource type="Script" uid="uid://c4c0bekbe6wut" path="res://engine/data_types/fighter_data.gd" id="25_ul28w"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c41x5"]
+radius = 0.28
+height = 1.64
+
+[sub_resource type="Resource" id="Resource_1hhyf"]
+script = ExtResource("5_nf8ls")
+defense = 100.0
+weight = 100.0
+hurtbox_mode = 0
+shape = SubResource("CapsuleShape3D_c41x5")
+position = Vector3(0, 0.82, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+
+[resource]
+resource_name = "SonicData"
+script = ExtResource("25_ul28w")
+display_name = "Sonic"
+portrait_path = "uid://by4srida44enh"
+life_icon_path = "uid://by4srida44enh"
+walk_startup_frames = 2.0
+walk_start_acceleration = 2.0
+walk_start_speed = 6.0
+land_deceleration = 1.0
+air_speed = 6.0
+jump_short_height = 1.0
+jump_short_frames_to_peak = 15.0
+jump_full_height = 3.0
+jump_full_frames_to_peak = 20.0
+fall_frames_to_descent = 20.0
+fall_fast_frames_to_descent = 10.0
+combat_hurtbox = SubResource("Resource_1hhyf")
+mov_mob_dsh = ExtResource("3_auns5")
+mov_mob_air = ExtResource("2_a7uja")
+mov_def_grd = ExtResource("2_ivvbv")
+mov_def_hel = ExtResource("3_urfhl")
+mov_dge_gnd = ExtResource("15_nf8ls")
+mov_dge_air = ExtResource("14_oc678")
+atk_nt1 = ExtResource("6_vjstf")
+atk_nt2 = ExtResource("7_2fi43")
+atk_nt3 = ExtResource("8_6nsia")
+atk_fwl = ExtResource("5_nj2ql")
+atk_fwh = ExtResource("4_r0qro")
+atk_upl = ExtResource("10_ea0fh")
+atk_uph = ExtResource("9_0sg37")
+atk_dsh = ExtResource("3_whcbv")
+atk_arn = ExtResource("3_r0qro")
+atk_arf = ExtResource("2_whcbv")
+atk_aru = ExtResource("4_nj2ql")
+atk_ara = ExtResource("1_jhur0")
+atk_dnk = ExtResource("2_8d2t2")

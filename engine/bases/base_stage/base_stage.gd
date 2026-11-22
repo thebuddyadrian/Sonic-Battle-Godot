@@ -3,7 +3,7 @@
 extends Node3D
 class_name BaseStage
 
-@export var stage_info: StageInfo
+@export var stage_data: StageData
 @export var player_spawn_1: Node3D
 @export var player_spawn_2: Node3D
 @export var player_spawn_3: Node3D
@@ -20,7 +20,7 @@ class_name BaseStage
 ## Returns the name the stage will use internally to load files. 
 ## For example, if the stage is saved in levels/greenhill/greenhill.tscn, the internal name will be greenhill
 func get_stage_internal_name():
-	var file_path_split = stage_info.resource_path.split("/")
+	var file_path_split = stage_data.resource_path.split("/")
 	var file_name = file_path_split[-1] # Last part of the path, the file name
 	return file_name.replace(".tres", "")
 

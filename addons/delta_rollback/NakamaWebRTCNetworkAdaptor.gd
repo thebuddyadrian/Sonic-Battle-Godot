@@ -81,6 +81,7 @@ func _on_OnlineMatch_webrtc_peer_removed(webrtc_peer: WebRTCPeerConnection, play
 		# Can this cause problems with re-establishing the connection?
 		#_data_channels[peer_id].close()
 		_data_channels.erase(peer_id)
+		_last_messages.erase(peer_id)
 
 func _on_OnlineMatch_disconnected() -> void:
 	_data_channels.clear()
@@ -148,6 +149,7 @@ func send_input_tick(peer_id: int, msg: PackedByteArray) -> void:
 			last_messages_for_peer.pop_front()
 
 func poll() -> void:
+	var peers_to_remove := []
 	for peer_id in _data_channels:
 		var data_channel: WebRTCDataChannel = _data_channels[peer_id]
 		var data_channel_state = data_channel.get_ready_state()
@@ -155,9 +157,14 @@ func poll() -> void:
 			# Attempt to reconnect the data channel, if necessary.
 			if data_channel_state != WebRTCDataChannel.STATE_CONNECTING:
 				var player = OnlineMatch.get_player_by_peer_id(peer_id)
-				var webrtc_peer = OnlineMatch.get_webrtc_peer(player.session_id)
-				if webrtc_peer != null:
-					_on_OnlineMatch_webrtc_peer_added(webrtc_peer, player)
+				if player:
+					var webrtc_peer = OnlineMatch.get_webrtc_peer(player.session_id)
+					if webrtc_peer != null:
+						_on_OnlineMatch_webrtc_peer_added(webrtc_peer, player)
+				else:
+					# The player left the match: an error here would stop the
+					# messages of every other peer from being read.
+					peers_to_remove.append(peer_id)
 			continue
 		
 		data_channel.poll()
@@ -166,6 +173,10 @@ func poll() -> void:
 		while data_channel.get_available_packet_count() > 0:
 			var msg = data_channel.get_packet()
 			emit_signal("received_input_tick", peer_id, msg)
+	
+	for peer_id in peers_to_remove:
+		_data_channels.erase(peer_id)
+		_last_messages.erase(peer_id)
 
 func is_network_host() -> bool:
 	return multiplayer.is_server()

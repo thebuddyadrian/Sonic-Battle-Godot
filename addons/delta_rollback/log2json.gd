@@ -1,5 +1,8 @@
 extends SceneTree
 
+const DeltaRollbackLogger = preload("res://addons/delta_rollback/DeltaRollbackLogger.gd")
+const LogAnnotator = preload("res://addons/delta_rollback/LogAnnotator.gd")
+
 func _init() -> void:
 	var arguments = {}
 	for argument in OS.get_cmdline_args():
@@ -39,7 +42,17 @@ func log2json(input_filename: String, output_filename: String) -> bool:
 		return false
 
 	while not infile.eof_reached():
+		# A last read past the end gets an error, not data.
+		if infile.get_length() - infile.get_position() < 4:
+			break
 		var data = infile.get_var()
+		if data is Dictionary:
+			# Names on the values saved as Arrays.
+			match int(data.get('log_type', -1)):
+				DeltaRollbackLogger.LogType.STATE:
+					data['state'] = LogAnnotator.annotate_state(data['state'])
+				DeltaRollbackLogger.LogType.EVENT:
+					data['event'] = LogAnnotator.annotate_events(data['event'])
 		outfile.store_line(JSON.stringify(data))
 	
 	infile.close()

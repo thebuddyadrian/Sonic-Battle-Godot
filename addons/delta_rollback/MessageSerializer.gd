@@ -72,7 +72,13 @@ func unserialize_message(serialized) -> Dictionary:
 	if hash_tick_count > 0:
 		var hash_tick = buffer.get_u32()
 		for hash_tick_index in range(hash_tick_count):
-			msg[InputMessageKey.STATE_HASHES][hash_tick] = buffer.get_u32()
+			var state_hash := buffer.get_u32()
+			# SyncManager.SKIPPED_STATE_HASH (-1), sent as an unsigned 32 bit
+			# integer: read back as itself, a state the peer didn't save,
+			# rather than a hash that differs from everyone's.
+			if state_hash == 0xFFFFFFFF:
+				state_hash = -1
+			msg[InputMessageKey.STATE_HASHES][hash_tick] = state_hash
 			hash_tick += 1
 	
 	return msg

@@ -3,8 +3,8 @@ extends Node
 
 var human_players: int = 0
 var cpu_players: int = 0
-# Stores each player's character choice (maps Player Number -> Character Name)
-var character_choices: Dictionary[int, String]= {}
+# Stores each player's fighter choice (maps Player Number -> Fighter Name)
+var fighter_choices: Dictionary[int, String]= {}
 # Stores the stages selected in the Map Select screen
 var stage_list: Array = ["battlehwy"]
 # The current stage in the list that will be used

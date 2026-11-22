@@ -11,3 +11,5 @@ enum RotationModes{
 }
 
 var CLIENTSIDE_PLAYER = null
+
+var main: Main

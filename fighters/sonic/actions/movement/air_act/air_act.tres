@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="SonicAir" format=3 uid="uid://c23wkg3dit042"]
+
+[ext_resource type="Script" uid="uid://b1l4tufitttqq" path="res://engine/data_types/grabbox_data.gd" id="1_j56qn"]
+[ext_resource type="Script" uid="uid://rkkxdvstbqhq" path="res://engine/data_types/guardbox_data.gd" id="2_qegww"]
+[ext_resource type="Script" uid="uid://cf1mhd3sjqm8" path="res://engine/data_types/hitbox_group.gd" id="3_27twi"]
+[ext_resource type="Script" uid="uid://1sc8scxr35x" path="res://engine/data_types/hurtbox_data.gd" id="4_prrbo"]
+[ext_resource type="Script" uid="uid://cwx338hvu4h2s" path="res://fighters/sonic/actions/movement/air_act/air_act.gd" id="5_hpfjr"]
+
+[sub_resource type="Resource" id="Resource_srrlm"]
+script = ExtResource("4_prrbo")
+defense = 100.0
+weight = 100.0
+hurtbox_mode = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://1sc8scxr35x"
+
+[sub_resource type="Resource" id="Resource_r0qro"]
+script = ExtResource("4_prrbo")
+defense = 100.0
+weight = 100.0
+hurtbox_mode = 0
+position = Vector3(0, 0, 0)
+anchor_rotation = Vector3(0, 0, 0)
+box_rotation = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+duration = 0.0
+rotation_mode = 1
+priority = 0
+metadata/_custom_type_script = "uid://1sc8scxr35x"
+
+[resource]
+script = ExtResource("5_hpfjr")
+hurtbox_datas = Dictionary[StringName, ExtResource("4_prrbo")]({
+&"A": SubResource("Resource_srrlm"),
+&"B": SubResource("Resource_r0qro")
+})
+metadata/_custom_type_script = "uid://cwx338hvu4h2s"

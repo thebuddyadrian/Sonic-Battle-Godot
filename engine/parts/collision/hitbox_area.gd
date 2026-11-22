@@ -154,9 +154,6 @@ func _on_box_entered(area: Area3D) -> void:
 		return
 	if hit_group.hit_log.has_hit(area_owner):
 		return
-	for box in get_overlapping_areas():
-		if box is GuardboxArea:
-			print(true)
 	if area is GuardboxArea:
 		var guardbox: GuardboxArea = area
 		var launch_vel: Vector3 = get_launch_vel(guardbox, create_angle(Vector2.ZERO), HitboxData.AngleTypes.PLR_AWY_X, get_data().shield_knockback, guardbox.get_data().sturdiness)

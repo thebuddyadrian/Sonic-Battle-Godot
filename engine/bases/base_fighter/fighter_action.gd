@@ -7,6 +7,7 @@ var brain: FighterBrain:
 		if brain.data:
 			data = brain.data
 			sm = brain.sm
+
 var data: FighterData
 var sm: FighterStateMachine
 

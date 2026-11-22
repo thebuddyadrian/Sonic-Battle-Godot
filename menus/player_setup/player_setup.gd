@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	#cpu_spin_box.visible = human_players == 1
 	#cpu_label.visible = human_players == 1
 	if Input.is_action_just_pressed("ui_accept") and total_players >= 2:
-		SceneChanger.change_scene_to_file("res://menus/character_select/character_select.tscn")
+		SceneChanger.change_scene_to_file("res://menus/fighter_select/fighter_select.tscn")
 		MatchSetup.cpu_players = cpu_players
 		MatchSetup.human_players = human_players
 
@@ -38,7 +38,7 @@ func _on_cpu_spin_box_value_changed(value: float) -> void:
 
 
 func _on_ok_button_pressed() -> void:
-	SceneChanger.change_scene_to_file("res://menus/character_select/character_select.tscn")
+	SceneChanger.change_scene_to_file("res://menus/fighter_select/fighter_select.tscn")
 	var cpu_players: float = cpu_spin_box.value
 	var human_players: float = human_spin_box.value
 	MatchSetup.cpu_players = cpu_players

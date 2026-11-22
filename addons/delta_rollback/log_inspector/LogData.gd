@@ -107,6 +107,11 @@ signal data_updated ()
 func _init() -> void:
 	_loader_mutex = Mutex.new()
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		if _loader_thread and _loader_thread.is_started():
+			_loader_thread.wait_to_finish()
+
 func clear() -> void:
 	if is_loading():
 		push_error("Cannot clear() log data while loading")
@@ -135,7 +140,7 @@ func load_log_file(path: String) -> void:
 		load_error.emit("Unable to open file for reading: %s" % path)
 		return
 
-	if _loader_thread:
+	if _loader_thread and _loader_thread.is_started():
 		_loader_thread.wait_to_finish()
 	_loader_thread = Thread.new()
 
