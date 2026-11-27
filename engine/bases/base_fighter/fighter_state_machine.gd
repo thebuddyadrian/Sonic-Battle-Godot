@@ -1023,7 +1023,10 @@ func enter_state(new_state: int, old_state: int) -> void:
 		states.WLK:
 			pass
 		states.DSH:
-			actions.dsh_gnd.start(old_state)
+			if actions.has('dsh_gnd'):
+				actions.dsh_gnd.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.JMP_SQT:
 			brain.play_anim(&"JmpSqt", true)
 		states.AIR:
@@ -1031,37 +1034,74 @@ func enter_state(new_state: int, old_state: int) -> void:
 		states.AIR_ACT:
 			if data.mov_mob_air.get("uses") != null:
 				data.mov_mob_air.uses += 1
-			actions.dsh_air.start(old_state)
+			if actions.has('dsh_air'):
+				actions.dsh_air.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.LND:
 			brain.play_section(&"Lnd", &"", &"Land")
 		states.GRD:
-			actions.def_grd.start(old_state)
+			if actions.has('def_grd'):
+				actions.def_grd.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.HEL:
 			brain.play_section(&"Hel", &"Startup", &"LoopStart")
+			if actions.has('def_hel'):
+				actions.def_hel.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.DGE_GND:
 			brain.dodge_input = brain.input_raw_to_world(brain.last_move_input_raw)
 			brain.update_facing_dir(brain.dodge_input)
-			actions.dge_gnd.start(old_state)
+			if actions.has('dge_gnd'):
+				actions.dge_gnd.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.DGE_AIR:
-			actions.dge_air.start(old_state)
+			if actions.has('dge_air'):
+				actions.dge_air.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_NT1:
-			actions.atk_nt1.start(old_state)
+			if actions.has('atk_nt1'):
+				actions.atk_nt1.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_NT2:
-			actions.atk_nt2.start(old_state)
+			if actions.has('atk_nt2'):
+				actions.atk_nt2.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_NT3:
-			actions.atk_nt3.start(old_state)
+			if actions.has('atk_nt3'):
+				actions.atk_nt3.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_FWC:
 			brain.play_anim(&"AtkFwC", true, Animation.LOOP_NONE)
 		states.ATK_FWL:
-			actions.atk_fwl.start(old_state)
+			if actions.has('atk_fwl'):
+				actions.atk_fwl.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_FWH:
-			actions.atk_fwh.start(old_state)
+			if actions.has('atk_fwh'):
+				actions.atk_fwh.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_UPC:
 			brain.play_anim(&"AtkUpC", true, Animation.LOOP_NONE)
 		states.ATK_UPL:
-			actions.atk_upl.start(old_state)
+			if actions.has('atk_upl'):
+				actions.atk_upl.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_UPH:
-			actions.atk_uph.start(old_state)
+			if actions.has('atk_uph'):
+				actions.atk_uph.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_ARN:
 			if old_state == states.JMP_SQT:
 				brain.jump(data.get_short_jump_force())
