@@ -626,11 +626,20 @@ func state_update(delta: float) -> void:
 			else:
 				change_state(states.IDL)
 		states.GRB_IDL:
-			actions.grb_idl.update(delta)
+			if actions.has('grb_idl'):
+				actions.grb_idl.update(delta)
+			else:
+				change_state(states.IDL)
 		states.GRB_DSH:
-			actions.grb_dsh.update(delta)
+			if actions.has('grb_dsh'):
+				actions.grb_dsh.update(delta)
+			else:
+				change_state(states.IDL)
 		states.GRB_PVT:
-			actions.grb_pvt.update(delta)
+			if actions.has('grb_pvt'):
+				actions.grb_pvt.update(delta)
+			else:
+				change_state(states.IDL)
 		states.GRB_HLD:
 			if brain.grab_target == null:
 				change_state(states.IDL)
@@ -657,49 +666,115 @@ func state_update(delta: float) -> void:
 				substates.RLS:
 					change_state(states.IDL)
 		states.THW_FWD:
-			actions.thw_fwd.update(delta)
+			if actions.has('thw_fwd'):
+				actions.thw_fwd.update(delta)
+			else:
+				change_state(states.IDL)
 		states.THW_BAK:
-			actions.thw_bak.update(delta)
+			if actions.has('thw_bak'):
+				actions.thw_bak.update(delta)
+			else:
+				change_state(states.IDL)
 		states.THW_UPR:
-			actions.thw_upr.update(delta)
+			if actions.has('thw_upr'):
+				actions.thw_upr.update(delta)
+			else:
+				change_state(states.IDL)
 		states.THW_DWN:
-			actions.thw_dwn.update(delta)
+			if actions.has('thw_dwn'):
+				actions.thw_dwn.update(delta)
+			else:
+				change_state(states.IDL)
 		states.SHT_NTL:
-			actions.sht_gnn.update(delta)
+			if actions.has('sht_gnn'):
+				actions.sht_gnn.update(delta)
+			else:
+				change_state(states.IDL)
 		states.SHT_FWD:
-			actions.sht_gnf.update(delta)
+			if actions.has('sht_gnf'):
+				actions.sht_gnf.update(delta)
+			else:
+				change_state(states.IDL)
 		states.SHT_UPR:
-			actions.sht_gnu.update(delta)
+			if actions.has('sht_gnu'):
+				actions.sht_gnu.update(delta)
+			else:
+				change_state(states.IDL)
 		states.SHT_ARN:
-			actions.sht_arn.update(delta)
+			if actions.has('sht_arn'):
+				actions.sht_arn.update(delta)
+			else:
+				change_state(states.IDL)
 		states.SHT_ARF:
-			actions.sht_arf.update(delta)
+			if actions.has('sht_arf'):
+				actions.sht_arf.update(delta)
+			else:
+				change_state(states.IDL)
 		states.SHT_ARU:
-			actions.sht_aru.update(delta)
+			if actions.has('sht_aru'):
+				actions.sht_aru.update(delta)
+			else:
+				change_state(states.IDL)
 		states.PWR_NTL:
-			actions.pwr_gnn.update(delta)
+			if actions.has('pwr_gnn'):
+				actions.pwr_gnn.update(delta)
+			else:
+				change_state(states.IDL)
 		states.PWR_FWD:
-			actions.pwr_gnf.update(delta)
+			if actions.has('pwr_gnf'):
+				actions.pwr_gnf.update(delta)
+			else:
+				change_state(states.IDL)
 		states.PWR_UPR:
-			actions.pwr_gnu.update(delta)
+			if actions.has('pwr_gnu'):
+				actions.pwr_gnu.update(delta)
+			else:
+				change_state(states.IDL)
 		states.PWR_ARN:
-			actions.pwr_arn.update(delta)
+			if actions.has('pwr_arn'):
+				actions.pwr_arn.update(delta)
+			else:
+				change_state(states.IDL)
 		states.PWR_ARF:
-			actions.pwr_arf.update(delta)
+			if actions.has('pwr_arf'):
+				actions.pwr_arf.update(delta)
+			else:
+				change_state(states.IDL)
 		states.PWR_ARU:
-			actions.pwr_aru.update(delta)
+			if actions.has('pwr_aru'):
+				actions.pwr_aru.update(delta)
+			else:
+				change_state(states.IDL)
 		states.TRP_NTL:
-			actions.trp_gnn.update(delta)
+			if actions.has('trp_gnn'):
+				actions.trp_gnn.update(delta)
+			else:
+				change_state(states.IDL)
 		states.TRP_FWD:
-			actions.trp_gnf.update(delta)
+			if actions.has('trp_gnf'):
+				actions.trp_gnf.update(delta)
+			else:
+				change_state(states.IDL)
 		states.TRP_UPR:
-			actions.trp_gnu.update(delta)
+			if actions.has('trp_gnu'):
+				actions.trp_gnu.update(delta)
+			else:
+				change_state(states.IDL)
 		states.TRP_ARN:
-			actions.trp_arn.update(delta)
+			if actions.has('trp_arn'):
+				actions.trp_arn.update(delta)
+			else:
+				change_state(states.IDL)
 		states.TRP_ARF:
-			actions.trp_arf.update(delta)
+			if actions.has('trp_arf'):
+				actions.trp_arf.update(delta)
+			else:
+				change_state(states.IDL)
 		states.TRP_ARU:
-			actions.trp_aru.update(delta)
+			if actions.has('trp_aru'):
+				actions.trp_aru.update(delta)
+			else:
+				change_state(states.IDL)
 		states.CHS:
 			chase_pos.x = brain.chase_target.get_center().x
 			chase_pos.z = brain.chase_target.get_center().z
