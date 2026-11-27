@@ -368,7 +368,7 @@ func state_update(delta: float) -> void:
 						delta,
 						data.get_short_jump_gravity()
 						)
-					if brain.is_on_floor() && brain.frame >= 3:
+					if brain.grounded && brain.frame >= 3:
 						brain.land()
 						return
 					if substate_start():
@@ -382,7 +382,7 @@ func state_update(delta: float) -> void:
 						delta,
 						data.get_full_jump_gravity()
 						)
-					if brain.is_on_floor() && brain.frame >= 3:
+					if brain.grounded && brain.frame >= 3:
 						brain.land()
 						return
 					if substate_start():
@@ -399,7 +399,7 @@ func state_update(delta: float) -> void:
 						data.get_fast_fall_gravity() if brain.fast_falling else data.get_fall_gravity(),
 						data.fall_fast_max_speed if brain.fast_falling else data.fall_fast_max_speed
 						)
-					if brain.is_on_floor():
+					if brain.grounded:
 						brain.land()
 						return
 				substates.FAL_FRE:
@@ -410,7 +410,7 @@ func state_update(delta: float) -> void:
 						data.get_fast_fall_gravity() if brain.fast_falling else data.get_fall_gravity(),
 						data.fall_fast_max_speed if brain.fast_falling else data.fall_fast_max_speed
 						)
-					if brain.is_on_floor():
+					if brain.grounded:
 						brain.land(data.land_hard_lag)
 						return
 		states.AIR_ACT:
@@ -790,7 +790,7 @@ func state_update(delta: float) -> void:
 				chase_pos = Vector3.ZERO
 				change_state(states.AIR, "FAL_FRE")
 		states.STN_HIT:
-			if !brain.is_on_floor():
+			if !brain.grounded:
 				brain.apply_gravity(delta, data.get_fall_gravity(), data.fall_max_speed)
 			if Vector2(brain.velocity.x, brain.velocity.z).length() <= 1.0:
 				brain.velocity.x = 0.0
@@ -799,7 +799,7 @@ func state_update(delta: float) -> void:
 				brain.velocity.x *= FighterBrain.STUN_KB_DECAY
 				brain.velocity.z *= FighterBrain.STUN_KB_DECAY
 			if brain.frame >= brain.stun+5:
-				if brain.is_on_floor():
+				if brain.grounded:
 					change_state(states.IDL, "IDL")
 				else:
 					change_state(states.AIR, "FAL_NRM")
@@ -811,7 +811,7 @@ func state_update(delta: float) -> void:
 					change_state(states.IDL, "IDL")
 					return
 				if input_dodge(): return
-				if brain.is_on_floor():
+				if brain.grounded:
 					if input_jump(): return 
 					if input_dash(): return
 					if brain.attack_buffer > 0:
@@ -867,7 +867,7 @@ func state_update(delta: float) -> void:
 			if brain.frame >= brain.stun+3:
 				change_state(states.AIR, "FAL_NRM")
 			brain.apply_gravity(delta, FighterData.get_gravity(brain.knockback.y, brain.stun))
-			if brain.is_on_floor():
+			if brain.grounded:
 				brain.velocity.x *= 0.3
 				brain.velocity.z *= 0.3
 				brain.velocity.y = 5.0
@@ -897,7 +897,7 @@ func state_update(delta: float) -> void:
 				brain.velocity = brain.velocity.limit_length(brain.velocity.length()*0.75)
 				if brain.frame >= brain.stun:
 					if input_dodge(): return
-					if brain.is_on_floor():
+					if brain.grounded:
 						if input_jump(): return 
 						if input_dash(): return
 						if brain.attack_buffer > 0:
@@ -941,12 +941,12 @@ func state_update(delta: float) -> void:
 			var substates: Dictionary[String, int] = get_substates()
 			match substate:
 				substates.IMP:
-					if brain.is_on_floor():
+					if brain.grounded:
 						brain.velocity = brain.get_floor_normal()*absf(brain.knockback.length()*0.5)
 						change_substate(substates.CRS)
 				substates.CRS:
 					brain.apply_gravity(delta, -absf(brain.knockback.y))
-					if brain.is_on_floor():
+					if brain.grounded:
 						var floor_normal: Vector3 = brain.get_floor_normal()
 						if Vector2(floor_normal.x, floor_normal.z).length() > 0.1:
 							brain.velocity.x = floor_normal.x*5.0
@@ -969,12 +969,12 @@ func state_update(delta: float) -> void:
 				brain.velocity.x *= exp(-0.95*delta)
 				brain.velocity.z *= exp(-0.95*delta)
 				
-				if brain.is_on_floor():
+				if brain.grounded:
 					brain.velocity = Vector3(-6.0*DetMath._math.cos(brain.global_facing_dir), 5.0, 6.0*DetMath._math.sin(brain.global_facing_dir))
 					change_state(states.CRS_FLR)
 		states.CRS_FLR:
 			brain.apply_gravity(delta, -40.0)
-			if brain.is_on_floor():
+			if brain.grounded:
 				change_state(states.FNT)
 		states.TEC_NTL:
 			pass
@@ -1107,35 +1107,59 @@ func enter_state(new_state: int, old_state: int) -> void:
 				brain.jump(data.get_short_jump_force())
 			if actions.atk_arn.get("uses") != null:
 				actions.atk_arn.uses += 1
-			actions.atk_arn.start(old_state)
+			if actions.has('atk_arn'):
+				actions.atk_arn.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_ARF:
 			if old_state == states.JMP_SQT:
 				brain.jump(data.get_short_jump_force())
 			if actions.atk_arf.get("uses") != null:
 				actions.atk_arf.uses += 1
-			actions.atk_arf.start(old_state)
+			if actions.has('atk_arf'):
+				actions.atk_arf.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_ARU:
 			if old_state == states.JMP_SQT:
 				brain.jump(data.get_short_jump_force())
 			if actions.atk_aru.get("uses") != null:
 				actions.atk_aru.uses += 1
-			actions.atk_aru.start(old_state)
+			if actions.has('atk_aru'):
+				actions.atk_aru.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_ARA:
 			if old_state == states.JMP_SQT:
 				brain.jump(data.get_short_jump_force())
 			if actions.atk_ara.get("uses") != null:
 				data.atk_ara.uses += 1
-			actions.atk_ara.start(old_state)
+			if actions.has('atk_ara'):
+				actions.atk_ara.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_DSH:
-			actions.atk_dsh.start(old_state)
+			if actions.has('atk_dsh'):
+				actions.atk_dsh.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.ATK_DNK:
 			brain.chase_target = null
 			SyncManager.set_synced(brain, "chase_window", 0)
-			actions.atk_dnk.start(old_state)
+			if actions.has('atk_dnk'):
+				actions.atk_dnk.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.GRB_IDL:
-			actions.grb_idl.start(old_state)
+			if actions.has('grb_idl'):
+				actions.grb_idl.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.GRB_DSH:
-			actions.grb_dsh.start(old_state)
+			if actions.has('grb_dsh'):
+				actions.grb_dsh.start(old_state)
+			else:
+				change_state(states.IDL)
 		states.GRB_HLD:
 			brain.play_anim("GrbHld")
 		states.THW_FWD:
@@ -1186,7 +1210,7 @@ func enter_state(new_state: int, old_state: int) -> void:
 			brain.play_anim(&"Chs", true, Animation.LOOP_NONE)
 		states.STN_HIT:
 			brain.play_section(&"StnHit", &"", &"Stun", true)
-			if !brain.is_on_floor():
+			if !brain.grounded:
 				if brain.knockback.y == 0.0:
 					brain.velocity.y = 12.0
 		states.STN_BLK:
@@ -1486,7 +1510,7 @@ func falling() -> bool:
 		states.LNC_HVY,
 		states.LNC_UPR,
 		states.LNC_DNK,
-		states.FNT].has(state) && !brain.is_on_floor()
+		states.FNT].has(state) && !brain.grounded
 
 func attacking() -> Array:
 	return [

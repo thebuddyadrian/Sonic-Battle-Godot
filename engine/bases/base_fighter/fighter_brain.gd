@@ -291,11 +291,12 @@ func _predict_remote_input(previous_input: Dictionary, ticks_since_real_input: i
 
 func _network_process(input: Dictionary) -> void:
 	local_input = input
+	move_and_slide()
+	force_update_transform()
+	grounded = is_on_floor()
 	if sm.state != -1:
 		sm.global_state_update(SyncManager.tick_time)
 		sm.state_update(SyncManager.tick_time)
-	move_and_slide()
-	force_update_transform()
 
 func _save_state() -> Dictionary:
 	return {
@@ -318,6 +319,7 @@ func _load_state(state: Dictionary) -> void:
 	sm.substate = state['substate']
 	sm.prev_state = state['prev_state']
 	sm.state_data = state['state_data'].duplicate(true)
+	force_update_transform()
 
 
 func wake() -> void:
@@ -336,7 +338,7 @@ func start() -> void:
 	#hurtbox.activate()
 
 func update(delta: float) -> void:
-	var delta_frame: float = floorf(delta*Globals.FPS)
+	var delta_frame: float = 1
 	frame += 1
 	sub_frame += 1
 	SyncManager.set_synced(self, "dash_input_buffer", dash_input_buffer-1)

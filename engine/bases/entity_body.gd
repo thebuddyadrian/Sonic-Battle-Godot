@@ -1,4 +1,4 @@
-class_name EntityBody extends RapierCharacterBody3D
+class_name EntityBody extends CharacterBody3D
 
 
 @onready var center_point: Marker3D = $CenterPoint
