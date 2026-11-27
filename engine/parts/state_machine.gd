@@ -7,8 +7,10 @@ var substate: int = 0
 var prev_state: int = -1
 var states: Dictionary[String, int] = {}
 var all_substates: Dictionary[int, PackedStringArray] = {}
-var substates: Dictionary[String, int] = {}
 var state_data: Dictionary = {}
+
+func wake() -> void:
+	pass
 
 func _process(delta: float) -> void:
 	if update_mode == 0:
@@ -35,12 +37,11 @@ func exit_state(old_state: int, new_state: int) -> void:
 	pass
 
 func change_state(new_state: int, new_substate: String = get_substates(new_state).find_key(0), data: Dictionary = {}) -> void:
-	substates = get_substates(new_state)
 	state_data = data
-	if substates.has(new_substate):
-		change_substate(substates.duplicate(true)[new_substate])
+	if get_substates(new_state).has(new_substate):
+		change_substate(get_substates(new_state)[new_substate])
 	else:
-		print("substate %s not found in state %s. Transitioning to default substate %s" % [new_substate, states.find_key(new_state), substates.find_key(0)])
+		print("substate %s not found in state %s. Transitioning to default substate %s" % [new_substate, states.find_key(new_state), get_substates(new_state).find_key(0)])
 		change_substate(0)
 	
 	if new_state != state:
@@ -59,24 +60,11 @@ func get_substates(state_id: int = state) -> Dictionary[String, int]:
 	var local_substates: Dictionary[String, int] = {}
 	for substate_name in all_substates[state_id]:
 		local_substates[substate_name] = local_substates.size()
-	return local_substates.duplicate(true)
+	return local_substates
 
 func add_state(state_name: String, substate_names: PackedStringArray = ["BASE"]) -> void:
 	states.set(state_name, states.size())
-	all_substates[states[state_name]] = substate_names.duplicate()
+	all_substates[states[state_name]] = substate_names
 
 func add_substates(state_id: int, substate_names: PackedStringArray) -> void:
-	all_substates[state_id] = substate_names.duplicate()
-
-func _save_state() -> Dictionary:
-	return {
-		substates = substates.duplicate(true),
-		state_data = state_data.duplicate(true),
-	}
-
-func _load_state(_state: Dictionary) -> void:
-	substates = _state['substates'].duplicate(true)
-	state_data = _state['state_data'].duplicate(true)
-
-func _sync_properties() -> Array:
-	return ["state", "substate", "prev_state"]
+	all_substates[state_id] = substate_names

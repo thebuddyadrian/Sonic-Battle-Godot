@@ -1,4 +1,4 @@
-class_name SonicDgG extends FighterAction
+extends FighterAction
 
 func wake() -> void:
 	super()
@@ -8,13 +8,13 @@ func start(old_state: int) -> void:
 	brain.play_anim(&"DgeGnd", true)
 
 func update(delta: float) -> void:
-	if brain.frame == 5.0:
+	if brain.frame == 5:
 		brain.hurtbox.hurtbox_mode = HurtboxData.HurtboxModes.INT
-	if brain.frame == 15.0:
+	if brain.frame == 15:
 		brain.hurtbox.hurtbox_mode = HurtboxData.HurtboxModes.NRM
 		if brain.move_input.length() > PlayerInput.DEADZONE: brain.update_facing_dir(brain.move_input)
 		else: brain.update_facing_dir(-brain.dodge_input)
-	if brain.frame <= 4.0:
+	if brain.frame <= 4:
 		brain.walk(
 			Vector3.ZERO,
 			data.walk_speed,
@@ -22,7 +22,7 @@ func update(delta: float) -> void:
 			data.get_walk_decel_amount(),
 			delta
 			)
-	elif brain.frame <= 15.0:
+	elif brain.frame <= 15:
 		brain.walk(
 			brain.dodge_input,
 			data.dodge_speed,
@@ -33,7 +33,7 @@ func update(delta: float) -> void:
 			0.0,
 			delta
 			)
-	elif brain.frame <= 28.0:
+	elif brain.frame <= 28:
 		brain.walk(
 			Vector3.ZERO,
 			data.dodge_speed,
@@ -44,7 +44,7 @@ func update(delta: float) -> void:
 				),
 			delta
 			)
-	elif brain.frame <= 33.0:
+	elif brain.frame <= 33:
 		brain.walk(
 			Vector3.ZERO,
 			data.walk_speed,
@@ -54,7 +54,7 @@ func update(delta: float) -> void:
 			)
 		if sm.input_jump(): return 
 		if sm.input_dash(): return
-		if brain.attack_buffer > 0.0:
+		if brain.attack_buffer > 0:
 			if brain.buffered_attack_input_data.type == FighterBrain.AttackType.SPL:
 				if sm.input_attack(
 					sm.get_special(FighterBrain.SpecialVariant.GND, FighterBrain.AttackInput.NTL),

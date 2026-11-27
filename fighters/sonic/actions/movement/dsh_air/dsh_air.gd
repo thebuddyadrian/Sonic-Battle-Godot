@@ -1,10 +1,7 @@
-class_name SonicAir extends FighterAction
+extends FighterAction
 
 var uses: int = 0
 var max_uses: int = 1
-
-func wake() -> void:
-	super()
 
 func start(old_state: int) -> void:
 	super(old_state)
@@ -22,20 +19,20 @@ func start(old_state: int) -> void:
 
 func update(delta: float) -> void:
 	sm.input_fast_fall()
-	if brain.frame == 6.0:
+	if brain.frame == 6:
 		hurtboxes["A"].hurtbox_mode = HurtboxData.HurtboxModes.NRM
-	if brain.frame == 12.0:
+	if brain.frame == 12:
 		hurtboxes["A"].deactivate()
 		hurtboxes["B"].activate({
 			weight = data.combat_weight,
 			def = data.combat_def
 		})
-	if brain.frame == 15.0:
+	if brain.frame == 15:
 		brain.play_section(&"AirAct", &"Loop", &"", true, Animation.LOOP_LINEAR)
 	
-	if brain.attack_buffer > 0.0:
+	if brain.attack_buffer > 0:
 		if brain.buffered_attack_input_data.type == FighterBrain.AttackType.SPL:
-			if brain.frame >= 8.0:
+			if brain.frame >= 8:
 				if sm.input_attack(
 					sm.get_special(FighterBrain.SpecialVariant.AIR, FighterBrain.AttackInput.NTL),
 					sm.get_special(FighterBrain.SpecialVariant.AIR, FighterBrain.AttackInput.FWD),
@@ -57,15 +54,15 @@ func update(delta: float) -> void:
 	if brain.frame >= 30.0:
 		sm.change_state(sm.states.AIR)
 		return
-	if brain.frame >= 7.0 || brain.fast_falling:
+	if brain.frame >= 7 || brain.fast_falling:
 		if brain.fast_falling:
 			brain.apply_gravity(delta, -300.0, INF)
 			brain.walk(Vector3.ZERO, data.air_speed, 0.0, data.get_walk_decel_amount(), delta)
 		else:
 			brain.apply_gravity(delta, data.get_fall_gravity(), data.fall_max_speed)
 			brain.walk(Vector3.ZERO, data.air_speed, 0.0, data.get_air_decel_amount(), delta)
-	if brain.is_on_floor() && brain.frame >= 12.0:
-		brain.land(15.0, 2.5)
+	if brain.is_on_floor() && brain.frame >= 12:
+		brain.land(15, 2.5)
 
 func end(new_state: int) -> void:
 	super(new_state)

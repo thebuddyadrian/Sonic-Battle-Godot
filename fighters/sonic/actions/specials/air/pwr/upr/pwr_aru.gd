@@ -1,4 +1,4 @@
-class_name SonicPwrArU extends PlayerAction
+extends FighterAction
 
 func wake() -> void:
 	super()
@@ -9,16 +9,16 @@ func start(old_state: int) -> void:
 	brain.play_anim(&"PwrArU", true, Animation.LOOP_NONE)
 
 func update(delta: float) -> void:
-	if brain.frame >= 9.0:
+	if brain.frame >= 9:
 		brain.velocity = brain.get_forward()*12.0
 		brain.velocity.y = 3.5
-		if brain.frame <= 25.0:
-			if brain.frame/4.0 == roundf(brain.frame/4.0):
+		if brain.frame <= 25:
+			if brain.frame/4 == roundi(brain.frame/4):
 				hitboxes["A/0"].activate({clear = true})
-		if brain.frame == 26.0:
+		if brain.frame == 26:
 			hitboxes["B/0"].activate()
 		
-		if brain.frame >= 31.0:
+		if brain.frame >= 31:
 			sm.change_state(sm.states.AIR, "FAL_FRE")
 
 func end(new_state: int) -> void:

@@ -46,20 +46,21 @@ gdscript/warnings/unused_local_constant=0
 gdscript/warnings/unused_private_class_variable=0
 gdscript/warnings/unused_parameter=0
 gdscript/warnings/unused_signal=0
+gdscript/warnings/integer_division=0
+gdscript/warnings/int_as_enum_without_cast=0
+gdscript/warnings/int_as_enum_without_match=0
+gdscript/warnings/enum_variable_without_default=0
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/GD-Sync/plugin.cfg", "res://addons/controller_icons/plugin.cfg", "res://addons/delta_rollback/plugin.cfg")
-
-[global_group]
-
-network_sync=""
 
 [input]
 
@@ -341,8 +342,6 @@ ui_cancel2={
 
 [network]
 
-rollback/max_buffer_size=60
-rollback/classes/network_adaptor="uid://bt6it4674anvg"
 rollback/classes/message_serializer="uid://ccea36yieyk3n"
 rollback/debug/rollback_ticks=4
 rollback/debug/random_rollback_ticks=10
@@ -356,6 +355,7 @@ rapier/motion/recover_ratio=0.4
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

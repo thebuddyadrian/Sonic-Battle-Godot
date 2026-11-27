@@ -1,4 +1,4 @@
-class_name SonicAtkUpL extends FighterAction
+extends FighterAction
 
 func wake() -> void:
 	super()
@@ -10,12 +10,12 @@ func start(old_state: int) -> void:
 func update(delta: float) -> void:
 	brain.apply_gravity(delta, data.get_fall_gravity())
 	brain.walk(Vector3.ZERO, data.walk_speed, 0.0, 80.0, delta)
-	if brain.frame == 5.0:
+	if brain.frame == 5:
 		hitboxes["A/0"].activate()
-	if brain.frame >= 17.0:
+	if brain.frame >= 17:
 		if sm.input_jump(): return 
 		if sm.input_dash(): return
-		if brain.attack_buffer > 0.0:
+		if brain.attack_buffer > 0:
 			if brain.buffered_attack_input_data.type == FighterBrain.AttackType.SPL:
 				if sm.input_attack(
 					sm.get_special(FighterBrain.SpecialVariant.GND, FighterBrain.AttackInput.NTL),
@@ -30,7 +30,7 @@ func update(delta: float) -> void:
 					): return
 		if sm.input_guard(): return
 		if sm.input_dodge(): return
-	if brain.frame >= 23.0:
+	if brain.frame >= 23:
 		sm.change_state(sm.states.IDL, "IDL")
 
 func end(new_state: int) -> void:

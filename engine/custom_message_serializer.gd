@@ -3,12 +3,6 @@ extends "res://addons/delta_rollback/MessageSerializer.gd"
 const input_path_mapping := {
 	'/root/MatchScene/TestStage/1' : 1,
 	'/root/MatchScene/TestStage/2' : 2,
-	'/root/MatchScene/TestStage/3' : 3,
-	'/root/MatchScene/TestStage/4' : 4,
-	'/root/MatchScene/TestStage/5' : 5,
-	'/root/MatchScene/TestStage/6' : 6,
-	'/root/MatchScene/TestStage/7' : 7,
-	'/root/MatchScene/TestStage/8' : 8,
 }
 
 enum HeaderFlags {

@@ -1,4 +1,4 @@
-class_name SonicPwrArN extends PlayerAction
+extends FighterAction
 
 
 func wake() -> void:
@@ -13,15 +13,15 @@ func start(old_state: int) -> void:
 func update(delta: float) -> void:
 	match sm.substate:
 		sm.substates.DRP:
-			if brain.sub_frame == 13.0:
+			if brain.sub_frame == 13:
 				brain.play_section(&"PwrArN", &"EastStart", &"EastEnd", true, Animation.LOOP_LINEAR)
-			if brain.sub_frame <= 13.0:
+			if brain.sub_frame <= 13:
 				brain.velocity = Vector3.ZERO
 			else:
 				brain.velocity.y = -30.0
 				brain.velocity.x = brain.get_forward().x*3.0
 				brain.velocity.z = brain.get_forward().z*3.0
-				if brain.sub_frame/3.0 == roundf(brain.sub_frame/3.0):
+				if brain.sub_frame/3 == roundi(brain.sub_frame/3):
 					hitboxes["A/0"].activate({clear = true})
 				if brain.is_on_floor():
 					if Input.is_action_pressed(&"Special"):
@@ -36,20 +36,20 @@ func update(delta: float) -> void:
 			brain.apply_gravity(delta, data.get_fall_gravity(), data.fall_max_speed)
 			brain.velocity.x = 0.0
 			brain.velocity.z = 0.0
-			if brain.sub_frame == 1.0:
+			if brain.sub_frame == 1:
 				brain.play_section(&"Lnd", &"", &"Land", true)
-			if brain.sub_frame == 3.0:
+			if brain.sub_frame == 3:
 				hitboxes["B/0"].activate()
-			if brain.sub_frame == 17.0:
+			if brain.sub_frame == 17:
 				brain.play_section(&"Lnd", &"End", &"", true)
-			if brain.sub_frame >= 20.0:
+			if brain.sub_frame >= 20:
 				sm.change_state(sm.states.IDL, "IDL")
 			return
 		sm.substates.RBD:
 			brain.apply_gravity(delta, data.get_full_jump_gravity())
-			if brain.sub_frame/3.0 == roundf(brain.sub_frame/3.0):
+			if brain.sub_frame/3 == roundi(brain.sub_frame/3):
 					hitboxes["A/0"].activate({clear = true})
-			if brain.sub_frame >= 25.0:
+			if brain.sub_frame >= 25:
 				sm.change_state(sm.states.AIR, "FAL_NRM")
 			return
 

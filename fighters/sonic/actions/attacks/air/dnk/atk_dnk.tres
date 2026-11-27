@@ -1,66 +1,11 @@
-[gd_resource type="Resource" script_class="SonicAtkDnk" format=3 uid="uid://dumtry1ox0oq2"]
+[gd_resource type="Resource" format=3 uid="uid://dumtry1ox0oq2"]
 
 [ext_resource type="Script" uid="uid://b1l4tufitttqq" path="res://engine/data_types/grabbox_data.gd" id="1_v4upy"]
 [ext_resource type="Script" uid="uid://rkkxdvstbqhq" path="res://engine/data_types/guardbox_data.gd" id="2_yltd3"]
 [ext_resource type="Script" uid="uid://cf1mhd3sjqm8" path="res://engine/data_types/hitbox_group.gd" id="3_0p83n"]
 [ext_resource type="Script" uid="uid://1sc8scxr35x" path="res://engine/data_types/hurtbox_data.gd" id="4_kgxkl"]
-[ext_resource type="Script" uid="uid://cwuu74bkqw4h2" path="res://engine/data_types/hitbox_data.gd" id="4_yltd3"]
 [ext_resource type="Script" uid="uid://byly3tbikvqcg" path="res://fighters/sonic/actions/attacks/air/dnk/atk_dnk.gd" id="5_6ecsk"]
-
-[sub_resource type="Resource" id="Resource_okgfw"]
-script = ExtResource("4_yltd3")
-hit_damage = 0.0
-hit_angle = Vector2(0, 0)
-hit_knockback = 0.0
-hit_stun = 0.0
-hit_lag = 0.0
-shield_damage = 0.0
-shield_knockback = 0.0
-shield_stun = 0.0
-shield_lag = 0.0
-type_launch = 0
-type_hitbox = 0
-type_angle = 0
-position = Vector3(0, 0, 0)
-anchor_rotation = Vector3(0, 0, 0)
-box_rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
-duration = 0.0
-rotation_mode = 1
-priority = 0
-metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
-
-[sub_resource type="Resource" id="Resource_r7m4y"]
-script = ExtResource("4_yltd3")
-hit_damage = 0.0
-hit_angle = Vector2(0, 0)
-hit_knockback = 0.0
-hit_stun = 0.0
-hit_lag = 0.0
-shield_damage = 0.0
-shield_knockback = 0.0
-shield_stun = 0.0
-shield_lag = 0.0
-type_launch = 0
-type_hitbox = 0
-type_angle = 0
-position = Vector3(0, 0, 0)
-anchor_rotation = Vector3(0, 0, 0)
-box_rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
-duration = 0.0
-rotation_mode = 1
-priority = 0
-metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
-
-[sub_resource type="Resource" id="Resource_ixkw5"]
-script = ExtResource("3_0p83n")
-hitboxes = Array[ExtResource("4_yltd3")]([SubResource("Resource_okgfw"), SubResource("Resource_r7m4y")])
-metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
 
 [resource]
 script = ExtResource("5_6ecsk")
-hitbox_groups = Dictionary[StringName, ExtResource("3_0p83n")]({
-&"A": SubResource("Resource_ixkw5")
-})
-metadata/_custom_type_script = "uid://byly3tbikvqcg"
+metadata/_custom_type_script = "uid://c5r5s7yeui30f"

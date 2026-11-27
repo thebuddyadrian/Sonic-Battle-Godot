@@ -8,6 +8,7 @@ var jab_count: int = 0
 var data: FighterData
 var chase_pos: Vector3
 
+var actions: Dictionary[String, FighterAction] = {}
 
 func _ready() -> void:
 	add_state("IDL", ["IDL", "TRN", "STP"])
@@ -83,6 +84,10 @@ func _ready() -> void:
 	add_state("GTP_ATK")
 	add_state("FNT")
 
+func wake() -> void:
+	for action: FighterAction in actions.values():
+		action.wake()
+
 func global_state_update(delta: float) -> void:
 	brain.update_freeze(delta)
 	if brain.pause_dur == 0:
@@ -91,9 +96,6 @@ func global_state_update(delta: float) -> void:
 func state_update(delta: float) -> void:
 	if brain.pause_dur > 0:
 		return
-	
-	brain.move_and_slide()
-	brain.force_update_transform()
 	
 	if falling():
 		change_state(states.AIR, "FAL_NRM")
@@ -130,7 +132,7 @@ func state_update(delta: float) -> void:
 	match state:
 		states.IDL:
 			if input_jump(): return 
-			if input_dash(): return
+			#if input_dash(): return
 			if brain.attack_buffer > 0:
 				if brain.buffered_attack_input_data.type == FighterBrain.AttackType.SPL:
 					if input_attack(
@@ -146,6 +148,7 @@ func state_update(delta: float) -> void:
 						): return
 			if input_guard(): return
 			if input_dodge(): return
+			var substates: Dictionary[String, int] = get_substates()
 			match substate:
 				substates.IDL:
 					if substate_start():
@@ -211,7 +214,7 @@ func state_update(delta: float) -> void:
 							change_substate(substates.IDL)
 		states.WLK:
 			if input_jump(): return
-			if input_dash(): return
+			#if input_dash(): return
 			if brain.attack_buffer > 0:
 				if brain.buffered_attack_input_data.type == FighterBrain.AttackType.SPL:
 					if input_attack(
@@ -227,6 +230,7 @@ func state_update(delta: float) -> void:
 						): return
 			if input_guard(): return
 			if input_dodge(): return
+			var substates: Dictionary[String, int] = get_substates()
 			match substate:
 				substates.SRT:
 					if substate_start():
@@ -337,6 +341,7 @@ func state_update(delta: float) -> void:
 				data.get_air_decel_amount(),
 				delta
 				)
+			var substates: Dictionary[String, int] = get_substates()
 			if substate != substates.FAL_FRE:
 				if (brain.jump_buffer > 0 || brain.dash_buffer > 0):
 					SyncManager.set_synced(brain, "jump_buffer", 0)
@@ -451,6 +456,7 @@ func state_update(delta: float) -> void:
 					return
 			data.mov_def_grd.update(delta)
 		states.HEL:
+			var substates: Dictionary[String, int] = get_substates()
 			match substate:
 				substates.SRT:
 					if brain.sub_frame >= data.heal_startup_frames:
@@ -577,6 +583,7 @@ func state_update(delta: float) -> void:
 		states.GRB_HLD:
 			if brain.grab_target == null:
 				change_state(states.IDL)
+			var substates: Dictionary[String, int] = get_substates()
 			match substate:
 				substates.IDL:
 					if brain.attack_buffer > 0:
@@ -805,6 +812,7 @@ func state_update(delta: float) -> void:
 				brain.play_section(&"StnUpr", &"Apex", &"", true)
 			brain.apply_gravity(delta, FighterData.get_gravity(brain.knockback.y, brain.stun))
 		states.LNC_DNK:
+			var substates: Dictionary[String, int] = get_substates()
 			match substate:
 				substates.IMP:
 					if brain.is_on_floor():
@@ -889,7 +897,7 @@ func enter_state(new_state: int, old_state: int) -> void:
 		states.WLK:
 			pass
 		states.DSH:
-			data.mov_mob_dsh.start(old_state)
+			actions.dsh_gnd.start(old_state)
 		states.JMP_SQT:
 			brain.play_anim(&"JmpSqt", true)
 		states.AIR:
@@ -897,117 +905,117 @@ func enter_state(new_state: int, old_state: int) -> void:
 		states.AIR_ACT:
 			if data.mov_mob_air.get("uses") != null:
 				data.mov_mob_air.uses += 1
-			data.mov_mob_air.start(old_state)
+			actions.dsh_air.start(old_state)
 		states.LND:
 			brain.play_section(&"Lnd", &"", &"Land")
 		states.GRD:
-			data.mov_def_grd.start(old_state)
+			actions.def_grd.start(old_state)
 		states.HEL:
 			brain.play_section(&"Hel", &"Startup", &"LoopStart")
 		states.DGE_GND:
 			brain.dodge_input = brain.input_raw_to_world(brain.last_move_input_raw)
 			brain.update_facing_dir(brain.dodge_input)
-			data.mov_dge_gnd.start(old_state)
+			actions.dge_gnd.start(old_state)
 		states.DGE_AIR:
-			data.mov_dge_air.start(old_state)
+			actions.dge_air.start(old_state)
 		states.ATK_NT1:
-			data.atk_nt1.start(old_state)
+			actions.atk_nt1.start(old_state)
 		states.ATK_NT2:
-			data.atk_nt2.start(old_state)
+			actions.atk_nt2.start(old_state)
 		states.ATK_NT3:
-			data.atk_nt3.start(old_state)
+			actions.atk_nt3.start(old_state)
 		states.ATK_FWC:
 			brain.play_anim(&"AtkFwC", true, Animation.LOOP_NONE)
 		states.ATK_FWL:
-			data.atk_fwl.start(old_state)
+			actions.atk_fwl.start(old_state)
 		states.ATK_FWH:
-			data.atk_fwh.start(old_state)
+			actions.atk_fwh.start(old_state)
 		states.ATK_UPC:
 			brain.play_anim(&"AtkUpC", true, Animation.LOOP_NONE)
 		states.ATK_UPL:
-			data.atk_upl.start(old_state)
+			actions.atk_upl.start(old_state)
 		states.ATK_UPH:
-			data.atk_uph.start(old_state)
+			actions.atk_uph.start(old_state)
 		states.ATK_ARN:
 			if old_state == states.JMP_SQT:
 				brain.jump(data.get_short_jump_force())
-			if data.atk_arn.get("uses") != null:
-				data.atk_arn.uses += 1
-			data.atk_arn.start(old_state)
+			if actions.atk_arn.get("uses") != null:
+				actions.atk_arn.uses += 1
+			actions.atk_arn.start(old_state)
 		states.ATK_ARF:
 			if old_state == states.JMP_SQT:
 				brain.jump(data.get_short_jump_force())
-			if data.atk_arf.get("uses") != null:
-				data.atk_arf.uses += 1
-			data.atk_arf.start(old_state)
+			if actions.atk_arf.get("uses") != null:
+				actions.atk_arf.uses += 1
+			actions.atk_arf.start(old_state)
 		states.ATK_ARU:
 			if old_state == states.JMP_SQT:
 				brain.jump(data.get_short_jump_force())
-			if data.atk_aru.get("uses") != null:
-				data.atk_aru.uses += 1
-			data.atk_aru.start(old_state)
+			if actions.atk_aru.get("uses") != null:
+				actions.atk_aru.uses += 1
+			actions.atk_aru.start(old_state)
 		states.ATK_ARA:
 			if old_state == states.JMP_SQT:
 				brain.jump(data.get_short_jump_force())
-			if data.atk_ara.get("uses") != null:
+			if actions.atk_ara.get("uses") != null:
 				data.atk_ara.uses += 1
-			data.atk_ara.start(old_state)
+			actions.atk_ara.start(old_state)
 		states.ATK_DSH:
-			data.atk_dsh.start(old_state)
+			actions.atk_dsh.start(old_state)
 		states.ATK_DNK:
 			brain.chase_target = null
 			SyncManager.set_synced(brain, "chase_window", 0)
-			data.atk_dnk.start(old_state)
+			actions.atk_dnk.start(old_state)
 		states.GRB_IDL:
-			data.grb_idl.start(old_state)
+			actions.grb_idl.start(old_state)
 		states.GRB_DSH:
-			data.grb_dsh.start(old_state)
+			actions.grb_dsh.start(old_state)
 		states.GRB_HLD:
 			brain.play_anim("GrbHld")
 		states.THW_FWD:
-			data.thw_fwd.start(old_state)
+			actions.thw_fwd.start(old_state)
 		states.THW_BAK:
-			data.thw_bak.start(old_state)
+			actions.thw_bak.start(old_state)
 		states.THW_UPR:
-			data.thw_upr.start(old_state)
+			actions.thw_upr.start(old_state)
 		states.THW_DWN:
-			data.thw_dwn.start(old_state)
+			actions.thw_dwn.start(old_state)
 		states.SHT_NTL:
-			data.sht_gnd_ntl.start(old_state)
+			actions.sht_gnn.start(old_state)
 		states.SHT_FWD:
-			data.sht_gnd_fwd.start(old_state)
+			actions.sht_gnf.start(old_state)
 		states.SHT_UPR:
-			data.sht_gnd_upr.start(old_state)
+			actions.sht_gnu.start(old_state)
 		states.SHT_ARN:
-			data.sht_air_ntl.start(old_state)
+			actions.sht_arn.start(old_state)
 		states.SHT_ARF:
-			data.sht_air_fwd.start(old_state)
+			actions.sht_arf.start(old_state)
 		states.SHT_ARU:
-			data.sht_air_upr.start(old_state)
+			actions.sht_aru.start(old_state)
 		states.PWR_NTL:
-			data.pwr_gnd_ntl.start(old_state)
+			actions.pwr_gnn.start(old_state)
 		states.PWR_FWD:
-			data.pwr_gnd_fwd.start(old_state)
+			actions.pwr_gnf.start(old_state)
 		states.PWR_UPR:
-			data.pwr_gnd_upr.start(old_state)
+			actions.pwr_gnu.start(old_state)
 		states.PWR_ARN:
-			data.pwr_air_ntl.start(old_state)
+			actions.pwr_arn.start(old_state)
 		states.PWR_ARF:
-			data.pwr_air_fwd.start(old_state)
+			actions.pwr_arf.start(old_state)
 		states.PWR_ARU:
-			data.pwr_air_upr.start(old_state)
+			actions.pwr_aru.start(old_state)
 		states.TRP_NTL:
-			data.trp_gnd_ntl.start(old_state)
+			actions.trp_gnn.start(old_state)
 		states.TRP_FWD:
-			data.trp_gnd_fwd.start(old_state)
+			actions.trp_gnf.start(old_state)
 		states.TRP_UPR:
-			data.trp_gnd_upr.start(old_state)
+			actions.trp_gnu.start(old_state)
 		states.TRP_ARN:
-			data.trp_air_ntl.start(old_state)
+			actions.trp_arn.start(old_state)
 		states.TRP_ARF:
-			data.trp_air_fwd.start(old_state)
+			actions.trp_arf.start(old_state)
 		states.TRP_ARU:
-			data.trp_air_upr.start(old_state)
+			actions.trp_aru.start(old_state)
 		states.CHS:
 			brain.play_anim(&"Chs", true, Animation.LOOP_NONE)
 		states.STN_HIT:

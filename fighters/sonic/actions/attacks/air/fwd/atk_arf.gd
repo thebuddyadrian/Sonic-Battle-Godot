@@ -1,4 +1,4 @@
-class_name SonicAtkArF extends FighterAction
+extends FighterAction
 
 
 var uses: int = 0
@@ -21,18 +21,18 @@ func update(delta: float) -> void:
 	brain.apply_gravity(delta, data.get_fall_gravity())
 	brain.walk(brain.move_input, data.air_speed, data.get_air_accel_amount(), data.get_air_decel_amount(), delta)
 	
-	if brain.frame == 9.0:
+	if brain.frame == 9:
 		hitboxes["A/0"].activate({aim = kb_aim})
 		hitboxes["A/1"].activate({aim = kb_aim})
 	
-	if brain.frame >= 10.0 && brain.frame <= 14.0:
+	if brain.frame >= 10 && brain.frame <= 14:
 		if brain.velocity.y <= 5.0 && uses == 1 && !brain.is_on_floor():
 			brain.velocity.y = 5.0
 	
-	if brain.frame >= 19.0:
+	if brain.frame >= 19:
 		sm.change_state(sm.states.AIR, "FAL_NRM")
-	if brain.frame >= 14.0:
-		if brain.attack_buffer > 0.0:
+	if brain.frame >= 14:
+		if brain.attack_buffer > 0:
 			var attack_input_data: Dictionary = brain.buffered_attack_input_data
 			match attack_input_data.type:
 				FighterBrain.AttackType.NML:
@@ -46,12 +46,12 @@ func update(delta: float) -> void:
 						FighterBrain.AttackInput.BAK:
 							brain.reset_attack_buffer()
 							sm.change_state(sm.states.ATK_ARU)
-		elif brain.jump_buffer > 0.0 && brain.air_act_refreshed:
-				brain.jump_buffer = 0.0
+		elif brain.jump_buffer > 0:
+				brain.jump_buffer = 0
 				sm.change_state(sm.states.AIR_ACT)
 	if brain.is_on_floor():
-		if brain.frame >= 7.0 && brain.frame <= 13.0:
-			brain.land(9.0, 3.0)
+		if brain.frame >= 7 && brain.frame <= 13:
+			brain.land(9, 3.0)
 		else:
 			brain.land()
 

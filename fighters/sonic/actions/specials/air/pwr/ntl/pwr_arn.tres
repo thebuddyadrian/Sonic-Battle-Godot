@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SonicPwrArN" format=3 uid="uid://crn3ksbgwqigw"]
+
+[ext_resource type="Script" uid="uid://b1l4tufitttqq" path="res://engine/data_types/grabbox_data.gd" id="1_l0k8w"]
+[ext_resource type="Script" uid="uid://rkkxdvstbqhq" path="res://engine/data_types/guardbox_data.gd" id="2_2sit8"]
+[ext_resource type="Script" uid="uid://cf1mhd3sjqm8" path="res://engine/data_types/hitbox_group.gd" id="3_umb22"]
+[ext_resource type="Script" uid="uid://1sc8scxr35x" path="res://engine/data_types/hurtbox_data.gd" id="4_nu1on"]
+[ext_resource type="Script" uid="uid://ctwudswmiuko8" path="res://fighters/sonic/actions/specials/air/pwr/ntl/pwr_arn.gd" id="5_l0k8w"]
+
+[resource]
+script = ExtResource("5_l0k8w")
+metadata/_custom_type_script = "uid://c5r5s7yeui30f"

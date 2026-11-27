@@ -103,137 +103,136 @@ class_name FighterData extends Resource
 @export var combat_weight: float = 100.0
 @export var combat_hurtbox: HurtboxData
 #Actions
-@export_group("Actions")
+@export_group("Actions", "act")
 #region MOVEMENT
-@export_subgroup("Movement", "mov")
-@export_subgroup("Movement/Mobility", "mov_mob")
-@export var mov_mob_dsh: FighterAction
-@export var mov_mob_air: FighterAction
-@export_subgroup("Movement/Defense", "mov_def")
-@export var mov_def_grd: FighterAction
-@export var mov_def_hel: FighterAction
-@export_subgroup("Movement/Dodge", "mov_dge")
-@export var mov_dge_gnd: FighterAction
-@export var mov_dge_air: FighterAction
+@export_subgroup("Dash", "act_dsh")
+@export_file("*.tres") var act_dsh_gnd: String
+@export_file("*.tres") var act_dsh_air: String
+@export_subgroup("Defense", "act_def")
+@export_file("*.tres") var act_def_grd: String
+@export_file("*.tres") var act_def_hel: String
+@export_subgroup("Dodge", "act_dge")
+@export_file("*.tres") var act_dge_gnd: String
+@export_file("*.tres") var act_dge_air: String
 #endregion
 #region GROUND ATTACKS
 @export_subgroup("Attacks")
 @export_subgroup("Attacks/Ground")
-@export_subgroup("Attacks/Ground/Neutral", "atk_nt")
-@export var atk_nt1: FighterAction
-@export var atk_nt2: FighterAction
-@export var atk_nt3: FighterAction
-@export_subgroup("Attacks/Ground/Forward", "atk_fw")
-@export var atk_fwl: FighterAction:
+@export_subgroup("Attacks/Ground/Neutral", "act_atk_nt")
+@export_file("*.tres") var act_atk_nt1: String
+@export_file("*.tres") var act_atk_nt2: String
+@export_file("*.tres") var act_atk_nt3: String
+@export_subgroup("Attacks/Ground/Forward", "act_atk_fw")
+@export_file("*.tres") var act_atk_fwl: String:
 	get():
-		return atk_fwh if !atk_fwl else atk_fwl
-@export var atk_fwh: FighterAction
-@export_subgroup("Attacks/Ground/Upper", "atk_up")
-@export var atk_upl: FighterAction:
+		return act_atk_fwh if !act_atk_fwl else act_atk_fwl
+@export_file("*.tres") var act_atk_fwh: String
+@export_subgroup("Attacks/Ground/Upper", "act_atk_up")
+@export_file("*.tres") var act_atk_upl: String:
 	get():
-		return atk_uph if !atk_upl else atk_upl
-@export var atk_uph: FighterAction
-@export_subgroup("Attacks/Ground/Dash", "atk_dsh")
-@export var atk_dsh: FighterAction
+		return act_atk_uph if !act_atk_upl else act_atk_upl
+@export_file("*.tres") var act_atk_uph: String
+@export_subgroup("Attacks/Ground/Dash", "act_atk_dsh")
+@export_file("*.tres") var act_atk_dsh: String
 #endregion
 #region AIR ATTACKS
-@export_subgroup("Attacks/Air", "atk_ar")
-@export var atk_arn: FighterAction
-@export var atk_arf: FighterAction:
+@export_subgroup("Attacks/Air", "act_atk_ar")
+@export_file("*.tres") var act_atk_arn: String
+@export_file("*.tres") var act_atk_arf: String:
 	get():
-		return atk_arn if !atk_arf else atk_arf
-@export var atk_aru: FighterAction:
+		return act_atk_arn if !act_atk_arf else act_atk_arf
+@export_file("*.tres") var act_atk_aru: String:
 	get():
-		return atk_arn if !atk_aru else atk_aru
-@export var atk_ara: FighterAction:
+		return act_atk_arn if !act_atk_aru else act_atk_aru
+@export_file("*.tres") var act_atk_ara: String:
 	get():
-		return atk_arn if !atk_ara else atk_ara
-@export_subgroup("Attacks/Air/Dunk", "atk_dnk")
-@export var atk_dnk: FighterAction
+		return act_atk_arn if !act_atk_ara else act_atk_ara
+@export_subgroup("Attacks/Air/Dunk", "act_atk_dnk")
+@export_file("*.tres") var act_atk_dnk: String
 #endregion
 #region GROUND SPECIALS
 @export_subgroup("Specials")
 @export_subgroup("Specials/Ground")
-@export_subgroup("Specials/Ground/Shot", "sht_gnd")
-@export var sht_gnd_ntl: FighterAction
-@export var sht_gnd_fwd: FighterAction:
+@export_subgroup("Specials/Ground/Shot", "act_sht_gn")
+@export_file("*.tres") var act_sht_gnn: String
+@export_file("*.tres") var act_sht_gnf: String:
 	get():
-		return sht_gnd_ntl if !sht_gnd_fwd else sht_gnd_fwd
-@export var sht_gnd_upr: FighterAction:
+		return act_sht_gnn if !act_sht_gnf else act_sht_gnf
+@export_file("*.tres") var act_sht_gnu: String:
 	get():
-		return sht_gnd_ntl if !sht_gnd_upr else sht_gnd_upr
-@export_subgroup("Specials/Ground/Power", "pwr_gnd")
-@export var pwr_gnd_ntl: FighterAction
-@export var pwr_gnd_fwd: FighterAction:
+		return act_sht_gnn if !act_sht_gnu else act_sht_gnu
+@export_subgroup("Specials/Ground/Power", "act_pwr_gn")
+@export_file("*.tres") var act_pwr_gnn: String
+@export_file("*.tres") var act_pwr_gnf: String:
 	get():
-		return pwr_gnd_ntl if !pwr_gnd_fwd else pwr_gnd_fwd
-@export var pwr_gnd_upr: FighterAction:
+		return act_pwr_gnn if !act_pwr_gnf else act_pwr_gnf
+@export_file("*.tres") var act_pwr_gnu: String:
 	get():
-		return pwr_gnd_ntl if !pwr_gnd_upr else pwr_gnd_upr
-@export_subgroup("Specials/Ground/Trap", "trp_gnd")
-@export var trp_gnd_ntl: FighterAction
-@export var trp_gnd_fwd: FighterAction:
+		return act_pwr_gnn if !act_pwr_gnu else act_pwr_gnu
+@export_subgroup("Specials/Ground/Trap", "act_trp_gn")
+@export_file("*.tres") var act_trp_gnn: String
+@export_file("*.tres") var act_trp_gnf: String:
 	get():
-		return trp_gnd_ntl if !trp_gnd_fwd else trp_gnd_fwd
-@export var trp_gnd_upr: FighterAction:
+		return act_trp_gnn if !act_trp_gnf else act_trp_gnf
+@export_file("*.tres") var act_trp_gnu: String:
 	get():
-		return trp_gnd_ntl if !trp_gnd_upr else trp_gnd_upr
+		return act_trp_gnn if !act_trp_gnu else act_trp_gnu
 #endregion
 #region AIR SPECIALS
 @export_subgroup("Specials/Air")
-@export_subgroup("Specials/Air/Shot", "sht_air")
-@export var sht_air_ntl: FighterAction
-@export var sht_air_fwd: FighterAction:
+@export_subgroup("Specials/Air/Shot", "act_sht_ar")
+@export_file("*.tres") var act_sht_arn: String
+@export_file("*.tres") var act_sht_arf: String:
 	get():
-		return sht_air_ntl if !sht_air_fwd else sht_air_fwd
-@export var sht_air_upr: FighterAction:
+		return act_sht_arn if !act_sht_arf else act_sht_arf
+@export_file("*.tres") var act_sht_aru: String:
 	get():
-		return sht_air_ntl if !sht_air_upr else sht_air_upr
-@export_subgroup("Specials/Air/Power", "pwr_air")
-@export var pwr_air_ntl: FighterAction
-@export var pwr_air_fwd: FighterAction:
+		return act_sht_arn if !act_sht_aru else act_sht_aru
+@export_subgroup("Specials/Air/Power", "act_pwr_ar")
+@export_file("*.tres") var act_pwr_arn: String
+@export_file("*.tres") var act_pwr_arf: String:
 	get():
-		return pwr_air_ntl if !pwr_air_fwd else pwr_air_fwd
-@export var pwr_air_upr: FighterAction:
+		return act_pwr_arn if !act_pwr_arf else act_pwr_arf
+@export_file("*.tres") var act_pwr_aru: String:
 	get():
-		return pwr_air_ntl if !pwr_air_upr else pwr_air_upr
-@export_subgroup("Specials/Air/Trap", "trp_air")
-@export var trp_air_ntl: FighterAction
-@export var trp_air_fwd: FighterAction:
+		return act_pwr_arn if !act_pwr_aru else act_pwr_aru
+@export_subgroup("Specials/Air/Trap", "act_trp_ar")
+@export_file("*.tres") var act_trp_arn: String
+@export_file("*.tres") var act_trp_arf: String:
 	get():
-		return trp_air_ntl if !trp_air_fwd else trp_air_fwd
-@export var trp_air_upr: FighterAction:
+		return act_trp_arn if !act_trp_arf else act_trp_arf
+@export_file("*.tres") var act_trp_aru: String:
 	get():
-		return trp_air_ntl if !trp_air_upr else trp_air_upr
+		return act_trp_arn if !act_trp_aru else act_trp_aru
 #endregion
 #region DEFENSE SPECIALS
-@export_subgroup("Specials/Defense")
-@export var sht_def: FighterAction:
+@export_subgroup("Specials/Defense", "act")
+@export_file("*.tres") var act_sht_def: String:
 	get():
-		return sht_gnd_ntl if !sht_def else sht_def
-@export var pwr_def: FighterAction:
+		return act_sht_gnn if !act_sht_def else act_sht_def
+@export_file("*.tres") var act_pwr_def: String:
 	get():
-		return pwr_gnd_ntl if !pwr_def else pwr_def
-@export var trp_def: FighterAction:
+		return act_pwr_gnn if !act_pwr_def else act_pwr_def
+@export_file("*.tres") var act_trp_def: String:
 	get():
-		return trp_gnd_ntl if !trp_def else trp_def
+		return act_trp_gnn if !act_trp_def else act_trp_def
 #endregion
 #region GRABS
-@export_subgroup("Grabs", "grb")
-@export var grb_idl: FighterAction
-@export var grb_dsh: FighterAction:
+@export_subgroup("Grabs", "act_grb")
+@export_file("*.tres") var act_grb_idl: String
+@export_file("*.tres") var act_grb_dsh: String:
 	get():
-		return grb_idl if !grb_dsh else grb_dsh
-@export var grb_pvt: FighterAction:
+		return act_grb_idl if !act_grb_dsh else act_grb_dsh
+@export_file("*.tres") var act_grb_pvt: String:
 	get():
-		return grb_idl if !grb_pvt else grb_pvt
+		return act_grb_idl if !act_grb_pvt else act_grb_pvt
 #endregion
 #region THROWS
-@export_subgroup("Throws", "thw")
-@export var thw_fwd: FighterAction
-@export var thw_bak: FighterAction
-@export var thw_upr: FighterAction
-@export var thw_dwn: FighterAction
+@export_subgroup("Throws", "act_thw")
+@export_file("*.tres") var act_thw_fwd: String
+@export_file("*.tres") var act_thw_bak: String
+@export_file("*.tres") var act_thw_upr: String
+@export_file("*.tres") var act_thw_dwn: String
 #endregion
 
 

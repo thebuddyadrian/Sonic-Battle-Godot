@@ -1,4 +1,4 @@
-class_name SonicAtkDnk extends FighterAction
+extends FighterAction
 
 func wake() -> void:
 	super()
@@ -9,12 +9,12 @@ func start(old_state: int) -> void:
 	brain.velocity = Vector3.ZERO
 
 func update(delta: float) -> void:
-	if brain.frame == 10.0:
+	if brain.frame == 10:
 		hitboxes["A/0"].activate()
-	if brain.frame == 12.0:
+	if brain.frame == 12:
 		hitboxes["A/1"].activate()
 	
-	if brain.frame >= 29.0:
+	if brain.frame >= 29:
 		sm.change_state(sm.states.AIR, "FAL_NRM")
 
 func end(new_state: int) -> void:

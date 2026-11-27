@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SonicHel" format=3 uid="uid://dnesmc3t5jrpo"]
+[gd_resource type="Resource" format=3 uid="uid://dnesmc3t5jrpo"]
 
 [ext_resource type="Script" uid="uid://b1l4tufitttqq" path="res://engine/data_types/grabbox_data.gd" id="1_2aacg"]
 [ext_resource type="Script" uid="uid://rkkxdvstbqhq" path="res://engine/data_types/guardbox_data.gd" id="2_bb7sc"]
@@ -8,4 +8,4 @@
 
 [resource]
 script = ExtResource("5_885gg")
-metadata/_custom_type_script = "uid://bwrrhbvtoi2lj"
+metadata/_custom_type_script = "uid://c5r5s7yeui30f"

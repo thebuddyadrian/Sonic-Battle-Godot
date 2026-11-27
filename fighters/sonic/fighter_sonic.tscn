@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cwr3ph7e6g1hq" path="res://engine/bases/base_fighter/fighter_base.tscn" id="1_v76ad"]
 [ext_resource type="Script" uid="uid://ckdrwjyw4ibp0" path="res://fighters/sonic/sonic_brain.gd" id="2_cxkcp"]
-[ext_resource type="Resource" uid="uid://dmu4k5t8fwr7e" path="res://fighters/sonic/resources/sonic_data.tres" id="3_1k5qc"]
 [ext_resource type="Texture2D" uid="uid://d2hfvlr1paroj" path="res://fighters/sonic/sprites/SonicSpriteSheet.png" id="4_67y5v"]
 [ext_resource type="Shader" uid="uid://blv5m2gdcne5m" path="res://engine/assets/shaders/player/player_highlight.gdshader" id="5_lbp1w"]
 [ext_resource type="SpriteFrames" uid="uid://df8awwisy41ia" path="res://fighters/sonic/resources/sonic_sprite_frames.tres" id="6_or4nb"]
@@ -31,7 +30,7 @@ shader_parameter/texture_alpha = ExtResource("4_67y5v")
 
 [node name="Player" unique_id=1535971227 instance=ExtResource("1_v76ad")]
 script = ExtResource("2_cxkcp")
-fighter_data = ExtResource("3_1k5qc")
+fighter_data = "uid://dmu4k5t8fwr7e"
 
 [node name="Collbox" parent="." index="0" unique_id=1644590465]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76, 0)
@@ -42,10 +41,9 @@ material_override = SubResource("StandardMaterial3D_7xcmf")
 material_overlay = SubResource("ShaderMaterial_4gjej")
 texture_filter = 0
 sprite_frames = ExtResource("6_or4nb")
-animation = &"Stp"
+animation = &"Idl"
 
-[node name="AnimationPlayer" parent="." index="4" unique_id=1803453290]
-deterministic = true
+[node name="AnimationPlayer" parent="." index="4" unique_id=16981710]
 libraries/sonic_anim_lib = ExtResource("7_3k1go")
 
 [node name="FighterStateMachine" parent="." index="5" unique_id=345778050]

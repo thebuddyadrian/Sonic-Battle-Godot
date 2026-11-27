@@ -1,1 +1,1 @@
-class_name SonicHel extends FighterAction
+extends FighterAction

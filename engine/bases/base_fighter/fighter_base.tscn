@@ -65,10 +65,12 @@ billboard = 1
 script = ExtResource("3_jkidi")
 metadata/_custom_type_script = "uid://d0127k12xvws"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1803453290]
+[node name="AnimationPlayer" type="NetworkAnimationPlayer" parent="." unique_id=16981710]
+process_after = NodePath("..")
+deterministic = true
 autoplay = &"Idle"
 
-[node name="FighterStateMachine" type="Node" parent="." unique_id=345778050 groups=["network_sync"]]
+[node name="FighterStateMachine" type="Node" parent="." unique_id=345778050]
 script = ExtResource("4_srrlm")
 
 [node name="ShadowRayCast" type="RayCast3D" parent="." unique_id=1155105408]

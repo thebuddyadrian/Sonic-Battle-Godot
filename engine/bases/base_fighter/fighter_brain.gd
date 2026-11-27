@@ -68,7 +68,7 @@ enum SpriteModes{
 }
 
 
-@export var fighter_data: FighterData
+@export_file("*_data.tres") var fighter_data: String
 @export var player_id: int
 @export var player_name: String
 @export var control_mode: ControlModes = ControlModes.INP_PLR
@@ -153,18 +153,18 @@ signal kod
 
 
 func _ready() -> void:
-	data = fighter_data.duplicate_deep(Resource.DEEP_DUPLICATE_ALL)
+	data = ResourceLoader.load(fighter_data)
 	sm.data = data
 	for property in data.get_property_list():
-		if property.class_name == &"FighterAction":
+		if property.name.begins_with("act_"):
 			if data.get(property.name):
-				var action: FighterAction = data.get(property.name)
-				action.brain = self
-				action.wake()
+				var action: FighterAction = ResourceLoader.load(data.get(property.name))
+				sm.actions[property.name.erase(0, 4)] = action
 	data.combat_hurtbox.weight = data.combat_weight
 	data.combat_hurtbox.defense = data.combat_def
 	health = data.combat_max_hp
 	hurtbox = HurtboxArea.new(data.combat_hurtbox, self)
+	sm.wake()
 	#hurtbox.reflector_entered.connect(_on_reflect)
 
 #func _unhandled_input(event: InputEvent) -> void:
@@ -292,25 +292,32 @@ func _predict_remote_input(previous_input: Dictionary, ticks_since_real_input: i
 func _network_process(input: Dictionary) -> void:
 	local_input = input
 	if sm.state != -1:
-		sm.global_state_update(1.0/60.0)
-		sm.state_update(1.0/60.0)
+		sm.global_state_update(SyncManager.tick_time)
+		sm.state_update(SyncManager.tick_time)
+	move_and_slide()
+	force_update_transform()
 
-func _sync_properties() -> Array:
-	return ["frame", "sub_frame"]
+func _save_state() -> Dictionary:
+	return {
+		frame = frame,
+		sub_frame = sub_frame,
+		global_position = global_position,
+		velocity = velocity,
+		state = sm.state,
+		substate = sm.substate,
+		prev_state = sm.prev_state,
+		state_data = sm.state_data.duplicate(true),
+	}
 
-#func _sync_properties() -> Array:
-	#return [
-		#"jump_buffer",
-		#"dash_buffer",
-		#"dash_input_buffer",
-		#"is_turning",
-		#"fast_falling",
-		#"land_lag",
-		#"land_decel",
-		#"local_flip_h",
-		#"global_facing_dir",
-		#"global_facing_dir_h",
-	#]
+func _load_state(state: Dictionary) -> void:
+	frame = state['frame']
+	sub_frame = state['sub_frame']
+	global_position = state['global_position']
+	velocity = state['velocity']
+	sm.state = state['state']
+	sm.substate = state['substate']
+	sm.prev_state = state['prev_state']
+	sm.state_data = state['state_data'].duplicate(true)
 
 
 func wake() -> void:
@@ -321,17 +328,17 @@ func wake() -> void:
 	#hurtbox.scale /= Hitbox.SCALE_MODIFIER
 	#grabbox.scale /= Hitbox.SCALE_MODIFIER
 	health = data.combat_max_hp
-	update_facing_dir(global_position.direction_to(Vector3.ZERO))
+	#update_facing_dir(global_position.direction_to(Vector3.ZERO))
 	start()
 
 func start() -> void:
-	hurtbox.activate()
+	pass
+	#hurtbox.activate()
 
 func update(delta: float) -> void:
 	var delta_frame: float = floorf(delta*Globals.FPS)
-	if pause_dur == 0.0:
-		frame += 1
-		sub_frame += 1
+	frame += 1
+	sub_frame += 1
 	SyncManager.set_synced(self, "dash_input_buffer", dash_input_buffer-1)
 	SyncManager.set_synced(self, "dash_buffer", dash_buffer-1)
 	SyncManager.set_synced(self, "jump_buffer", jump_buffer-1)

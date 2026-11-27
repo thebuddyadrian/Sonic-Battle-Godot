@@ -1,4 +1,4 @@
-class_name SonicDgA extends FighterAction
+extends FighterAction
 
 func wake() -> void:
 	super()

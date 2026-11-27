@@ -11,6 +11,7 @@ var brain: FighterBrain:
 var data: FighterData
 var sm: FighterStateMachine
 
+
 @export var hitbox_groups: Dictionary[StringName, HitboxGroup]
 @export var hurtbox_datas: Dictionary[StringName, HurtboxData]
 @export var grabbox_datas: Dictionary[StringName, GrabboxData]

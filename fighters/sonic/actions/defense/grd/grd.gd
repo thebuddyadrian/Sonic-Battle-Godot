@@ -1,4 +1,4 @@
-class_name SonicGrd extends FighterAction
+extends FighterAction
 
 var guard_speed: float
 var guard_decel: float
@@ -17,18 +17,18 @@ func start(old_state: int) -> void:
 
 func update(delta: float) -> void:
 	brain.walk(Vector3.ZERO, guard_speed, 0.0, guard_decel, delta)
-	if brain.frame == 8.0:
+	if brain.frame == 8:
 		hurtboxes["A"].hurtbox_mode = HurtboxData.HurtboxModes.INT
 		guardboxes["A"].activate()
 	
-	if brain.frame == 23.0:
+	if brain.frame == 23:
 		hurtboxes["A"].hurtbox_mode = HurtboxData.HurtboxModes.NRM
 	
-	if brain.frame >= 38.0:
+	if brain.frame >= 38:
 		sm.change_state(sm.states.IDL, "IDL")
 		return
-	if brain.frame >= 33.0:
-		if brain.attack_buffer > 0.0:
+	if brain.frame >= 33:
+		if brain.attack_buffer > 0:
 			if brain.buffered_attack_input_data.type == FighterBrain.AttackType.SPL:
 				if sm.input_attack(
 					sm.get_special(FighterBrain.SpecialVariant.GND, FighterBrain.AttackInput.NTL),

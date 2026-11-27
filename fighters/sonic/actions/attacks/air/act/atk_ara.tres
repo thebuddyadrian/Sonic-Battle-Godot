@@ -1,89 +1,11 @@
-[gd_resource type="Resource" script_class="SonicAtkArA" format=3 uid="uid://cp1g1vvx0aq8b"]
+[gd_resource type="Resource" format=3 uid="uid://cp1g1vvx0aq8b"]
 
 [ext_resource type="Script" uid="uid://b1l4tufitttqq" path="res://engine/data_types/grabbox_data.gd" id="1_ojxen"]
 [ext_resource type="Script" uid="uid://rkkxdvstbqhq" path="res://engine/data_types/guardbox_data.gd" id="2_d0gy1"]
 [ext_resource type="Script" uid="uid://cf1mhd3sjqm8" path="res://engine/data_types/hitbox_group.gd" id="3_hr84h"]
-[ext_resource type="Script" uid="uid://cwuu74bkqw4h2" path="res://engine/data_types/hitbox_data.gd" id="4_d0gy1"]
 [ext_resource type="Script" uid="uid://1sc8scxr35x" path="res://engine/data_types/hurtbox_data.gd" id="4_w6oc8"]
 [ext_resource type="Script" uid="uid://clv2rbferyyro" path="res://fighters/sonic/actions/attacks/air/act/atk_ara.gd" id="5_w7lw3"]
 
-[sub_resource type="Resource" id="Resource_66dvv"]
-script = ExtResource("4_d0gy1")
-hit_damage = 0.0
-hit_angle = Vector2(0, 0)
-hit_knockback = 0.0
-hit_stun = 0.0
-hit_lag = 0.0
-shield_damage = 0.0
-shield_knockback = 0.0
-shield_stun = 0.0
-shield_lag = 0.0
-type_launch = 0
-type_hitbox = 0
-type_angle = 0
-position = Vector3(0, 0, 0)
-anchor_rotation = Vector3(0, 0, 0)
-box_rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
-duration = 0.0
-rotation_mode = 1
-priority = 0
-metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
-
-[sub_resource type="Resource" id="Resource_lujjg"]
-script = ExtResource("4_d0gy1")
-hit_damage = 0.0
-hit_angle = Vector2(0, 0)
-hit_knockback = 0.0
-hit_stun = 0.0
-hit_lag = 0.0
-shield_damage = 0.0
-shield_knockback = 0.0
-shield_stun = 0.0
-shield_lag = 0.0
-type_launch = 0
-type_hitbox = 0
-type_angle = 0
-position = Vector3(0, 0, 0)
-anchor_rotation = Vector3(0, 0, 0)
-box_rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
-duration = 0.0
-rotation_mode = 1
-priority = 0
-metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
-
-[sub_resource type="Resource" id="Resource_hknv8"]
-script = ExtResource("4_d0gy1")
-hit_damage = 0.0
-hit_angle = Vector2(0, 0)
-hit_knockback = 0.0
-hit_stun = 0.0
-hit_lag = 0.0
-shield_damage = 0.0
-shield_knockback = 0.0
-shield_stun = 0.0
-shield_lag = 0.0
-type_launch = 0
-type_hitbox = 0
-type_angle = 0
-position = Vector3(0, 0, 0)
-anchor_rotation = Vector3(0, 0, 0)
-box_rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
-duration = 0.0
-rotation_mode = 1
-priority = 0
-metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
-
-[sub_resource type="Resource" id="Resource_msol4"]
-script = ExtResource("3_hr84h")
-hitboxes = Array[ExtResource("4_d0gy1")]([SubResource("Resource_66dvv"), SubResource("Resource_lujjg"), SubResource("Resource_hknv8")])
-metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
-
 [resource]
 script = ExtResource("5_w7lw3")
-hitbox_groups = Dictionary[StringName, ExtResource("3_hr84h")]({
-&"A": SubResource("Resource_msol4")
-})
-metadata/_custom_type_script = "uid://clv2rbferyyro"
+metadata/_custom_type_script = "uid://c5r5s7yeui30f"

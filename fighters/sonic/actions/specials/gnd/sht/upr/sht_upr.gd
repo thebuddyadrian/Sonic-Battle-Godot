@@ -1,4 +1,4 @@
-class_name SonicShtUpr extends PlayerAction
+extends FighterAction
 
 
 var projectile: ProjectileBrain
@@ -17,10 +17,10 @@ func start(old_state: int) -> void:
 func update(delta: float) -> void:
 	brain.walk(Vector3.ZERO, data.walk_speed, 0.0, data.get_walk_decel_amount(), delta)
 	
-	if brain.frame == 13.0:
+	if brain.frame == 13:
 		projectile.spawn({"dir": brain.global_facing_dir_h})
 	
-	if brain.frame >= 37.0:
+	if brain.frame >= 37:
 		sm.change_state(sm.states.IDL, "IDL")
 
 func end(new_state: int) -> void:

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://b0yj647y025nq"]
+
+[ext_resource type="Script" uid="uid://b1l4tufitttqq" path="res://engine/data_types/grabbox_data.gd" id="1_rm2ak"]
+[ext_resource type="Script" uid="uid://rkkxdvstbqhq" path="res://engine/data_types/guardbox_data.gd" id="2_gch84"]
+[ext_resource type="Script" uid="uid://cf1mhd3sjqm8" path="res://engine/data_types/hitbox_group.gd" id="3_htoy8"]
+[ext_resource type="Script" uid="uid://1sc8scxr35x" path="res://engine/data_types/hurtbox_data.gd" id="4_kwvj4"]
+[ext_resource type="Script" uid="uid://cwx338hvu4h2s" path="res://fighters/sonic/actions/movement/dsh_air/dsh_air.gd" id="5_rm2ak"]
+
+[resource]
+script = ExtResource("5_rm2ak")
+metadata/_custom_type_script = "uid://c5r5s7yeui30f"

@@ -3,41 +3,9 @@
 [ext_resource type="Script" uid="uid://b1l4tufitttqq" path="res://engine/data_types/grabbox_data.gd" id="1_l6u6w"]
 [ext_resource type="Script" uid="uid://rkkxdvstbqhq" path="res://engine/data_types/guardbox_data.gd" id="2_jgk2i"]
 [ext_resource type="Script" uid="uid://cf1mhd3sjqm8" path="res://engine/data_types/hitbox_group.gd" id="3_ie2qk"]
-[ext_resource type="Script" uid="uid://cwuu74bkqw4h2" path="res://engine/data_types/hitbox_data.gd" id="4_jgk2i"]
 [ext_resource type="Script" uid="uid://1sc8scxr35x" path="res://engine/data_types/hurtbox_data.gd" id="4_vsa3k"]
 [ext_resource type="Script" uid="uid://c3tdu4axbb6wd" path="res://fighters/sonic/actions/attacks/gnd/fwd/hv/atk_fwh.gd" id="5_qtx78"]
 
-[sub_resource type="Resource" id="Resource_hhdim"]
-script = ExtResource("4_jgk2i")
-hit_damage = 0.0
-hit_angle = Vector2(0, 0)
-hit_knockback = 0.0
-hit_stun = 0.0
-hit_lag = 0.0
-shield_damage = 0.0
-shield_knockback = 0.0
-shield_stun = 0.0
-shield_lag = 0.0
-type_launch = 0
-type_hitbox = 0
-type_angle = 0
-position = Vector3(0, 0, 0)
-anchor_rotation = Vector3(0, 0, 0)
-box_rotation = Vector3(0, 0, 0)
-scale = Vector3(1, 1, 1)
-duration = 0.0
-rotation_mode = 1
-priority = 0
-metadata/_custom_type_script = "uid://cwuu74bkqw4h2"
-
-[sub_resource type="Resource" id="Resource_xxv8f"]
-script = ExtResource("3_ie2qk")
-hitboxes = Array[ExtResource("4_jgk2i")]([SubResource("Resource_hhdim")])
-metadata/_custom_type_script = "uid://cf1mhd3sjqm8"
-
 [resource]
 script = ExtResource("5_qtx78")
-hitbox_groups = Dictionary[StringName, ExtResource("3_ie2qk")]({
-&"A": SubResource("Resource_xxv8f")
-})
-metadata/_custom_type_script = "uid://c3tdu4axbb6wd"
+metadata/_custom_type_script = "uid://c5r5s7yeui30f"

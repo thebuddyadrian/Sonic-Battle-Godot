@@ -19,37 +19,6 @@ font_size = 32
 script = ExtResource("1_wwbcy")
 test_stage = "test_stage"
 
-[node name="SubViewportGridContainer" type="GridContainer" parent="." unique_id=10805103]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(480, 320)
-offset_right = 40.0
-offset_bottom = 40.0
-columns = 2
-
-[node name="SubViewportContainer1" type="SubViewportContainer" parent="SubViewportGridContainer" unique_id=656556]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="SubViewportGridContainer" unique_id=125936519]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="SubViewportContainer3" type="SubViewportContainer" parent="SubViewportGridContainer" unique_id=1136714344]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="SubViewportContainer4" type="SubViewportContainer" parent="SubViewportGridContainer" unique_id=862188222]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=321029605]
 
 [node name="MainMenu" type="HBoxContainer" parent="CanvasLayer" unique_id=1697186015]
