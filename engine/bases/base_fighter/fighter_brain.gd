@@ -2,19 +2,23 @@ class_name FighterBrain extends EntityBody
 
 
 const JUMP_BUFFER_FRAMES: int = 6
-const DASH_INPUT_BUFFER_FRAMES: int = 15
-const DASH_BUFFER_FRAMES: int = 9
-const DODGE_DIR_BUFFER_FRAMES: int = 7
-const DODGE_BUFFER_FRAMES: int = 9
-const GUARD_BUFFER_FRAMES: int = 25
-const ATTACK_BUFFER_FRAMES: int = 9
-const ATTACK_DIR_BUFFER_FRAMES: int = 7
+const DASH_INPUT_BUFFER_FRAMES: int = 0
+const DASH_BUFFER_FRAMES: int = 0
+const DODGE_DIR_BUFFER_FRAMES: int = 0
+const DODGE_BUFFER_FRAMES: int = 0
+const GUARD_BUFFER_FRAMES: int = 0
+const ATTACK_BUFFER_FRAMES: int = 0
+const ATTACK_DIR_BUFFER_FRAMES: int = 0
 const GUARD_COOLDOWN_FRAMES: int = 20
 const DODGE_COOLDOWN_FRAMES: int = 30
 const STOP_THRESHOLD: float = 1.0
 const CHASE_WINDOW_FRAMES: int = 60
 const CHASE_SPEED: float = 0.07
 const STUN_KB_DECAY: float = 0.85
+
+const MAX_SPEED: float = 8.0
+const ACCELERATION: float = 0.1
+const DECELERATION: float = 0.1
 
 
 enum AttackType{
@@ -85,6 +89,8 @@ var is_turning: bool = false
 var grounded: bool = false
 var can_guard_cancel: bool = false
 var fast_falling: bool = false
+
+var on_floor: bool
 
 var points: int = 3
 var attack_input: AttackInput
@@ -291,14 +297,27 @@ func _predict_remote_input(previous_input: Dictionary, ticks_since_real_input: i
 
 func _network_process(input: Dictionary) -> void:
 	local_input = input
-	if sm.state != -1:
-		sm.global_state_update(SyncManager.tick_time)
-		sm.state_update(SyncManager.tick_time)
+	# var collision: KinematicCollision3D = move_and_collide(velocity * SyncManager.tick_time)
+	# if collision:
+	# 	on_floor = true
+	# else:
+	# 	on_floor = false
+
+	var input_vector: Vector2 = input.get("move_vector", Vector2.ZERO)
+	var target_speed = Vector3(input_vector.x * MAX_SPEED, 0, input_vector.y * MAX_SPEED)
+	if input_vector != Vector2.ZERO:
+		velocity = velocity.move_toward(target_speed, ACCELERATION)
+	else:
+		velocity = velocity.move_toward(target_speed, DECELERATION)
 	move_and_slide()
 	force_update_transform()
+	#if sm.state != -1:
+	#	sm.global_state_update(SyncManager.tick_time)
+	#	sm.state_update(SyncManager.tick_time)
 
 func _save_state() -> Dictionary:
 	return {
+		on_floor = on_floor,
 		frame = frame,
 		sub_frame = sub_frame,
 		global_position = global_position,
@@ -310,6 +329,7 @@ func _save_state() -> Dictionary:
 	}
 
 func _load_state(state: Dictionary) -> void:
+	on_floor = state["on_floor"]
 	frame = state['frame']
 	sub_frame = state['sub_frame']
 	global_position = state['global_position']
@@ -318,6 +338,7 @@ func _load_state(state: Dictionary) -> void:
 	sm.substate = state['substate']
 	sm.prev_state = state['prev_state']
 	sm.state_data = state['state_data'].duplicate(true)
+	force_update_transform()
 
 
 func wake() -> void:
@@ -339,19 +360,19 @@ func update(delta: float) -> void:
 	var delta_frame: float = floorf(delta*Globals.FPS)
 	frame += 1
 	sub_frame += 1
-	SyncManager.set_synced(self, "dash_input_buffer", dash_input_buffer-1)
-	SyncManager.set_synced(self, "dash_buffer", dash_buffer-1)
-	SyncManager.set_synced(self, "jump_buffer", jump_buffer-1)
-	SyncManager.set_synced(self, "dodge_dir_buffer", dodge_dir_buffer-1)
-	SyncManager.set_synced(self, "dodge_buffer", dodge_buffer-1)
-	SyncManager.set_synced(self, "guard_buffer", guard_buffer-1)
-	SyncManager.set_synced(self, "guard_cooldown", guard_cooldown-1)
-	SyncManager.set_synced(self, "dodge_cooldown", dodge_cooldown-1)
-	SyncManager.set_synced(self, "grab_cooldown", grab_cooldown-1)
-	SyncManager.set_synced(self, "attack_buffer", attack_buffer-1)
-	SyncManager.set_synced(self, "attack_dir_buffer", attack_dir_buffer-1)
-	SyncManager.set_synced(self, "grab_buffer", grab_buffer-1)
-	SyncManager.set_synced(self, "chase_window", chase_window-1)
+	# SyncManager.set_synced(self, "dash_input_buffer", dash_input_buffer-1)
+	# SyncManager.set_synced(self, "dash_buffer", dash_buffer-1)
+	# SyncManager.set_synced(self, "jump_buffer", jump_buffer-1)
+	# SyncManager.set_synced(self, "dodge_dir_buffer", dodge_dir_buffer-1)
+	# SyncManager.set_synced(self, "dodge_buffer", dodge_buffer-1)
+	# SyncManager.set_synced(self, "guard_buffer", guard_buffer-1)
+	# SyncManager.set_synced(self, "guard_cooldown", guard_cooldown-1)
+	# SyncManager.set_synced(self, "dodge_cooldown", dodge_cooldown-1)
+	# SyncManager.set_synced(self, "grab_cooldown", grab_cooldown-1)
+	# SyncManager.set_synced(self, "attack_buffer", attack_buffer-1)
+	# SyncManager.set_synced(self, "attack_dir_buffer", attack_dir_buffer-1)
+	# SyncManager.set_synced(self, "grab_buffer", grab_buffer-1)
+	# SyncManager.set_synced(self, "chase_window", chase_window-1)
 	
 	if chase_window <= 0 && chase_target != null && sm.state != sm.states.CHS:
 		SyncManager.set_synced(self, "chase_window", 0)
@@ -394,8 +415,8 @@ func update(delta: float) -> void:
 		ControlModes.GRD:
 			on_guard_press()
 	
-	if move_input.length() <= PlayerInput.DEADZONE:
-		SyncManager.set_synced(self, "attack_dir_buffer", 0)
+	#if move_input.length() <= PlayerInput.DEADZONE:
+	#	SyncManager.set_synced(self, "attack_dir_buffer", 0)
 	if attack_dir_buffer <= 0:
 		attack_input = AttackInput.NTL
 	
@@ -433,6 +454,7 @@ func reset_frames() -> void:
 func reset_attack_buffer()-> void:
 	SyncManager.set_synced(self, "attack_buffer", 0)
 	SyncManager.set_synced(self, "attack_dir_buffer", 0)
+	pass
 
 func apply_gravity(delta: float, gravity_strength: float, max_speed: float = data.fall_max_speed) -> void:
 	velocity.y += gravity_strength*delta
@@ -639,15 +661,16 @@ func get_kb_aim() -> Vector2:
 func walk(dir: Vector3, speed: float, acceleration: float, deceleration: float, delta: float) -> void:
 	var target_speed: Vector3 = dir*speed
 	
-	var accel_rate: float = acceleration if target_speed.length() > PlayerInput.DEADZONE else deceleration
+	# var accel_rate: float = acceleration if target_speed.length() > PlayerInput.DEADZONE else deceleration
 	
-	var speed_dif: Vector3 = target_speed-velocity
-	var movement: Vector3 = speed_dif*accel_rate
-	velocity.x += movement.x*delta
-	velocity.z += movement.z*delta
-	if target_speed.length() <= PlayerInput.DEADZONE && Vector2(velocity.x, velocity.z).length() <= STOP_THRESHOLD:
-		velocity.x = 0.0
-		velocity.z = 0.0
+	# var speed_dif: Vector3 = target_speed-velocity
+	# var movement: Vector3 = speed_dif*accel_rate
+	# velocity.x += movement.x*delta
+	# velocity.z += movement.z*delta
+	velocity = target_speed
+	# if target_speed.length() <= PlayerInput.DEADZONE && Vector2(velocity.x, velocity.z).length() <= STOP_THRESHOLD:
+	# 	velocity.x = 0.0
+	# 	velocity.z = 0.0
 
 func jump(force: float) -> void:
 	velocity.y = force

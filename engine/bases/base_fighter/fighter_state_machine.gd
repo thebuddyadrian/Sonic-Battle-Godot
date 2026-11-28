@@ -368,7 +368,7 @@ func state_update(delta: float) -> void:
 						delta,
 						data.get_short_jump_gravity()
 						)
-					if brain.is_on_floor() && brain.frame >= 3:
+					if brain.on_floor && brain.frame >= 3:
 						brain.land()
 						return
 					if substate_start():
@@ -382,7 +382,7 @@ func state_update(delta: float) -> void:
 						delta,
 						data.get_full_jump_gravity()
 						)
-					if brain.is_on_floor() && brain.frame >= 3:
+					if brain.on_floor && brain.frame >= 3:
 						brain.land()
 						return
 					if substate_start():
@@ -399,7 +399,7 @@ func state_update(delta: float) -> void:
 						data.get_fast_fall_gravity() if brain.fast_falling else data.get_fall_gravity(),
 						data.fall_fast_max_speed if brain.fast_falling else data.fall_fast_max_speed
 						)
-					if brain.is_on_floor():
+					if brain.on_floor:
 						brain.land()
 						return
 				substates.FAL_FRE:
@@ -410,7 +410,7 @@ func state_update(delta: float) -> void:
 						data.get_fast_fall_gravity() if brain.fast_falling else data.get_fall_gravity(),
 						data.fall_fast_max_speed if brain.fast_falling else data.fall_fast_max_speed
 						)
-					if brain.is_on_floor():
+					if brain.on_floor:
 						brain.land(data.land_hard_lag)
 						return
 		states.AIR_ACT:
@@ -790,7 +790,7 @@ func state_update(delta: float) -> void:
 				chase_pos = Vector3.ZERO
 				change_state(states.AIR, "FAL_FRE")
 		states.STN_HIT:
-			if !brain.is_on_floor():
+			if !brain.on_floor:
 				brain.apply_gravity(delta, data.get_fall_gravity(), data.fall_max_speed)
 			if Vector2(brain.velocity.x, brain.velocity.z).length() <= 1.0:
 				brain.velocity.x = 0.0
@@ -799,7 +799,7 @@ func state_update(delta: float) -> void:
 				brain.velocity.x *= FighterBrain.STUN_KB_DECAY
 				brain.velocity.z *= FighterBrain.STUN_KB_DECAY
 			if brain.frame >= brain.stun+5:
-				if brain.is_on_floor():
+				if brain.on_floor:
 					change_state(states.IDL, "IDL")
 				else:
 					change_state(states.AIR, "FAL_NRM")
@@ -811,7 +811,7 @@ func state_update(delta: float) -> void:
 					change_state(states.IDL, "IDL")
 					return
 				if input_dodge(): return
-				if brain.is_on_floor():
+				if brain.on_floor:
 					if input_jump(): return 
 					if input_dash(): return
 					if brain.attack_buffer > 0:
@@ -867,7 +867,7 @@ func state_update(delta: float) -> void:
 			if brain.frame >= brain.stun+3:
 				change_state(states.AIR, "FAL_NRM")
 			brain.apply_gravity(delta, FighterData.get_gravity(brain.knockback.y, brain.stun))
-			if brain.is_on_floor():
+			if brain.on_floor:
 				brain.velocity.x *= 0.3
 				brain.velocity.z *= 0.3
 				brain.velocity.y = 5.0
@@ -897,7 +897,7 @@ func state_update(delta: float) -> void:
 				brain.velocity = brain.velocity.limit_length(brain.velocity.length()*0.75)
 				if brain.frame >= brain.stun:
 					if input_dodge(): return
-					if brain.is_on_floor():
+					if brain.on_floor:
 						if input_jump(): return 
 						if input_dash(): return
 						if brain.attack_buffer > 0:
@@ -941,12 +941,12 @@ func state_update(delta: float) -> void:
 			var substates: Dictionary[String, int] = get_substates()
 			match substate:
 				substates.IMP:
-					if brain.is_on_floor():
+					if brain.on_floor:
 						brain.velocity = brain.get_floor_normal()*absf(brain.knockback.length()*0.5)
 						change_substate(substates.CRS)
 				substates.CRS:
 					brain.apply_gravity(delta, -absf(brain.knockback.y))
-					if brain.is_on_floor():
+					if brain.on_floor:
 						var floor_normal: Vector3 = brain.get_floor_normal()
 						if Vector2(floor_normal.x, floor_normal.z).length() > 0.1:
 							brain.velocity.x = floor_normal.x*5.0
@@ -969,12 +969,12 @@ func state_update(delta: float) -> void:
 				brain.velocity.x *= exp(-0.95*delta)
 				brain.velocity.z *= exp(-0.95*delta)
 				
-				if brain.is_on_floor():
+				if brain.on_floor:
 					brain.velocity = Vector3(-6.0*DetMath._math.cos(brain.global_facing_dir), 5.0, 6.0*DetMath._math.sin(brain.global_facing_dir))
 					change_state(states.CRS_FLR)
 		states.CRS_FLR:
 			brain.apply_gravity(delta, -40.0)
-			if brain.is_on_floor():
+			if brain.on_floor:
 				change_state(states.FNT)
 		states.TEC_NTL:
 			pass
@@ -1186,7 +1186,7 @@ func enter_state(new_state: int, old_state: int) -> void:
 			brain.play_anim(&"Chs", true, Animation.LOOP_NONE)
 		states.STN_HIT:
 			brain.play_section(&"StnHit", &"", &"Stun", true)
-			if !brain.is_on_floor():
+			if !brain.on_floor:
 				if brain.knockback.y == 0.0:
 					brain.velocity.y = 12.0
 		states.STN_BLK:
@@ -1486,7 +1486,7 @@ func falling() -> bool:
 		states.LNC_HVY,
 		states.LNC_UPR,
 		states.LNC_DNK,
-		states.FNT].has(state) && !brain.is_on_floor()
+		states.FNT].has(state) && !brain.on_floor
 
 func attacking() -> Array:
 	return [
